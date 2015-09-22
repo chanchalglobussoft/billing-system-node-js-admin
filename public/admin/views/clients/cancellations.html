@@ -1,0 +1,362 @@
+<div ng-controller="CancelRequestController" data-ng-init="init()">
+    <div class="col-md-3 " id="cancalReqPortlet" style="position:fixed; height: 450px !important; width:20%;">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption caption-md">
+                            <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <b>
+                            <a href="#/clients-overview.html">
+                                <span class="title">Clients Overview</span>
+                            </a><br>
+
+                            <a href="#/client-search.html">
+                                <span class="title">Clients Search</span>
+                            </a><br>
+                        </b>
+                    </div>
+                </div>
+
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption caption-md">
+                            <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <b>
+                            <a href="#/search-domain.html">
+                                <span class="title">Domain Search</span>
+                            </a><br>
+
+
+                            <a href="#/reg-domain.html">
+                                <span class="title">Register Domain</span>
+                            </a><br>
+                        </b>
+                    </div>
+                </div>
+
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption caption-md">
+                            <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <b>
+                            <a href="#/mass-mail.html">
+                                <span class="title">Mass Mail</span>
+                            </a><br>
+
+
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+
+        <span class="actions" style="float: right;">
+            <a class="btn btn-default btn-circle" onclick="goBack()">
+                <i class="fa fa-angle-left"></i>
+                <span class="hidden-480">
+                    Back </span>
+            </a>
+        </span>
+
+
+
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a data-target="#pending" aria-controls="profile" role="tab" data-toggle="tab">Pending Requests <span class="bold font-green-haze badge badge-default">{{pendingReqCount}}</span></a>
+                </li>
+                <li role="presentation" >
+                    <a data-target="#accepted" aria-controls="profile" role="tab" data-toggle="tab">Accepted Requests <span class="bold font-green-haze badge badge-default">{{acceptedReqCount}}</span> </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <!--first panel-->
+                <div role="tabpanel" class="tab-pane active" id="pending">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet-heading" ng-if="response.pending.length == 0">
+                                <div class="portlet-title">
+                                    <div class="caption caption-md" id="mySupportTickets">
+                                        <i class="icon-bar-chart font-green-haze hide"></i>
+                                        <center><h2 class="caption-subject font-green-haze bold uppercase">There are no Pending Cancellation Requests</h2></center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-heading" ng-if="response.pending.length > 0">
+                                <div class="portlet-title">
+                                    <div class="caption caption-md" id="mySupportTickets">
+                                        <i class="icon-bar-chart font-green-haze hide"></i>
+                                        <h2 class="caption-subject font-green-haze bold uppercase">Pending Cancellation Requests</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form >
+                                <div class="form-group">
+                                    <div class="input-group" >
+                                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                        <input type="text" class="form-control" placeholder="Search Pending Cancellation Requests" ng-model="searchPendingRequests" autofocus >
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <table class="table table-bordered table-striped" ng-if="response.pending.length > 0">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'canIDpending'; sortReverse1 = !sortReverse1">
+                                                Cancellation ID
+                                                <span ng-show="sortType1 == 'canIDpending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'canIDpending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'cIDpending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Client ID
+                                                <span ng-show="sortType1 == 'cIDpending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'cIDpending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'namepending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Name
+                                                <span ng-show="sortType1 == 'namepending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'namepending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'pnamepending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Product Name
+                                                <span ng-show="sortType1 == 'pnamepending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'pnamepending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'reasonpending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Reason
+                                                <span ng-show="sortType1 == 'reasonpending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'reasonpending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'typepending';
+                                                        sortReverse = !sortReverse">
+                                                Type
+                                                <span ng-show="sortType1 == 'typepending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'typepending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'statuspending';
+                                                        sortReverse1 = !sortReverse">
+                                                Request Status
+                                                <span ng-show="sortType1 == 'statuspending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'statuspending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'reqDatepending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Requested Date
+                                                <span ng-show="sortType1 == 'reqDatepending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'reqDatepending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType1 = 'actionpending';
+                                                        sortReverse1 = !sortReverse1">
+                                                Action
+                                                <span ng-show="sortType1 == 'actionpending' && !sortReverse1" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType1 == 'actionpending' && sortReverse1" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pendingrequest in response.pending| orderBy:sortType1:sortReverse1 | filter : searchPendingRequests  ">
+                                        <td>{{pendingrequest.cancellationId}}</td>
+                                        <td><a href="#/client-profile.html?clientId={{pendingrequest.clientId}}">{{pendingrequest.clientId}}</a></td>
+                                        <td><a href="#/client-profile.html?clientId={{pendingrequest.clientId}}">{{pendingrequest.fname}} {{pendingrequest.lname}}</a></td>
+                                        <td>{{pendingrequest.productName}}</td>
+                                        <td>{{pendingrequest.reason}}</td>
+                                        <td>{{pendingrequest.type}}</td>
+                                        <td><label  ng-if="pendingrequest.requestStatus == 0" >Pending</label>
+                                            <label  ng-if="pendingrequest.requestStatus == 1" >Accepted</label>
+                                            <label  ng-if="pendingrequest.requestStatus == 2" >Rejected</label>
+                                        </td>
+                                        <td>
+                                            <label> {{pendingrequest.date| date:"longDate"}} </label>
+                                        </td>
+                                        <td>
+                                            <label>
+                                                <a href="#" ng-click="updateCancellationStatus(1, pendingrequest.cancellationId)" ng-if="pendingrequest.requestStatus == 0 || pendingrequest.requestStatus == 2"> Accept </a>
+                                            </label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--2nd Tab panel-->
+                <div role="tabpanel" class="tab-pane" id="accepted">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="portlet-heading" ng-if="response.accepted.length == 0">
+                                <div class="portlet-title">
+                                    <div class="caption caption-md" id="mySupportTickets">
+                                        <i class="icon-bar-chart font-green-haze hide"></i>
+                                        <center><h2 class="caption-subject font-green-haze bold uppercase">There are no Accepted Cancellation Requests</h2></center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portlet-heading" ng-if="response.accepted.length > 0">
+                                <div class="portlet-title">
+                                    <div class="caption caption-md" id="mySupportTickets">
+                                        <i class="icon-bar-chart font-green-haze hide"></i>
+                                        <h2 class="caption-subject font-green-haze bold uppercase">Accepted Cancellation Requests</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                        <input type="text" class="form-control" placeholder="Search Accepted Cancellation Requests" ng-model="searchAcceptedRequests" autofocus>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <table class="table table-bordered table-striped" ng-if="response.accepted.length > 0">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'canIDaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Cancellation ID
+                                                <span ng-show="sortType == 'canIDaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'canIDaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'cIDaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Client ID
+                                                <span ng-show="sortType == 'cIDaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'cIDaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'nameaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Name
+                                                <span ng-show="sortType == 'nameaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'nameaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'pnameaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Product Name
+                                                <span ng-show="sortType == 'pnameaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'pnameaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'reasonaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Reason
+                                                <span ng-show="sortType == 'reasonaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'reasonaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'typeaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Type
+                                                <span ng-show="sortType == 'typeaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'typeaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'statusaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Request Status
+                                                <span ng-show="sortType == 'statusaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'statusaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'reqDateaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Requested Date
+                                                <span ng-show="sortType == 'reqDateaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'reqDateaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" ng-click="sortType = 'acceptedDateaccepted';
+                                                        sortReverse = !sortReverse">
+                                                Accepted Date
+                                                <span ng-show="sortType == 'acceptedDateaccepted' && !sortReverse" class="fa fa-caret-down"></span>
+                                                <span ng-show="sortType == 'acceptedDateaccepted' && sortReverse" class="fa fa-caret-up"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="acceptedrequest in response.accepted| orderBy:sortType:sortReverse | filter: searchAcceptedRequests  ">
+                                        <td>{{acceptedrequest.cancellationId}}</td>
+                                        <td><a href="#/client-profile.html?clientId={{acceptedrequest.clientId}}">{{acceptedrequest.clientId}}</a></td>
+                                        <td><a href="#/client-profile.html?clientId={{acceptedrequest.clientId}}">{{acceptedrequest.fname}} {{acceptedrequest.lname}}</a></td>
+                                        <td>{{acceptedrequest.productName}}</td>
+                                        <td>{{acceptedrequest.reason}}</td>
+                                        <td>{{acceptedrequest.type}}</td>
+                                        <td><label  ng-if="acceptedrequest.requestStatus == 0" >Pending</label>
+                                            <label  ng-if="acceptedrequest.requestStatus == 1" >Accepted</label>
+                                            <label  ng-if="acceptedrequest.requestStatus == 2" >Rejected</label>
+                                        </td>
+                                        <td>
+                                            <label> {{acceptedrequest.date}} </label>
+                                        </td>
+                                        <td>
+                                            <label> {{acceptedrequest.lastModifiedOn}} </label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#cancalReqPortlet").mCustomScrollbar({theme: "minimal"});
+    </script>

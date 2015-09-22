@@ -1,0 +1,1176 @@
+<!-- BEGIN PAGE BREADCRUMB -->
+<!--<ul class="page-breadcrumb breadcrumb">-->
+	<!--<li>-->
+		<!--<a href="#">Home</a><i class="fa fa-circle"></i>-->
+	<!--</li>-->
+  <!--<li>-->
+		<!--<a href="#">Support</a><i class="fa fa-circle"></i>-->
+	<!--</li>-->
+	<!--<li class="active">-->
+    <!--Announcements-->
+	<!--</li>-->
+<!--</ul>-->
+<!-- END PAGE BREADCRUMB -->
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" class="margin-top-10">
+	<div class="row">
+		<div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="supportTicketsPortlet" style="position:fixed; height: 427px !important; width:25%;">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">support</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<ul class="list-unstyled page-sidebar-menu">
+								<li>
+									<a href="#">
+										<i class="icon-user-follow"></i>
+										<span class="title">Announcements</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Downloads</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-note"></i>
+										<span class="title">KnowledgeBase</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-list"></i>
+										<span class="title">Open New Ticket</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-badge"></i>
+										<span class="title">Predefined Replies</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">filter tickets</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<form action="#" class="form-horizontal">
+								<div class="form-group">
+                  <label class="control-label">Status</label>
+									<select class="form-control">
+										<option>-- Any --</option>
+										<option>Awaiting Reply (3)</option>
+                    <option>Flagged Tickets (0)</option>
+                    <option>All Active Tickets (3)</option>
+                    <option>Open (3)</option>
+                    <option>Answered (3)</option>
+                    <option>Customer Reply (3)</option>
+                    <option>On Hold (3)</option>
+                    <option>In Progress (3)</option>
+                    <option>Closed (3)</option>
+									</select>
+								</div>
+								<div class="form-group">
+                  <label class="control-label">Department</label>
+									<select class="form-control">
+										<option>-- Any --</option>
+										<option>Sale Department</option>
+										<option>Technical Support</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="1" placeholder="Subject/Message" />
+								</div>
+                <div class="form-group">
+									<input type="email" class="form-control" name="1" placeholder="Email Address" />
+								</div>
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="Filter" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+      <div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">Network Issues</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+              <ul class="list-unstyled page-sidebar-menu">
+								<li>
+									<a href="#">
+										<i class="icon-user-follow"></i>
+										<span class="title">Open</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Scheduled</span>
+									</a>
+								</li>
+                <li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Resolved</span>
+									</a>
+								</li>
+                <li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Create New</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+<!--      <div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<form action="#" class="form-horizontal">
+								<div class="form-group">
+									<select class="form-control">
+										<option>Clients</option>
+										<option>Orders</option>
+										<option>Invoices</option>
+										<option>Services</option>
+										<option>Domains</option>
+										<option>Tickets</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<select class="form-control">
+										<option>Client Name</option>
+										<option>Company Name</option>
+										<option>Email Address</option>
+										<option>Address 1</option>
+										<option>Address 2</option>
+										<option>City</option>
+										<option>State</option>
+										<option>Pincode</option>
+										<option>Country</option>
+										<option>Phone No. </option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="1" />
+								</div>
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="SEARCH" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>-->
+<!--			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<ul class="list-unstyled">
+								<li>Admin</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<div class="col-md-9 col-md-offset-3">
+			<div class="row">
+        <div class="col-md-12">
+          <div ng-controller="TabsDemoCtrl">
+						<tabset justified="true">
+						  <tab heading="Search/Filter">
+								<div class="row">
+									<form name="submitForm" novalidate ng-submit="submit()">
+		                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                    <div class="form-group">
+													<span class="input input--nao">
+						              	<input class="input__field input__field--nao" type="text" id="input-1" name="fName" ng-model="session.fName" required />
+						                <label class="input__label input__label--nao" for="input-1">
+						                	<span class="input__label-content input__label-content--nao">First Name</span>
+						                </label>
+						                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+							                <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+						                </svg>
+						              </span>
+														<!-- <label class="control-label"> First Name </label>
+		                        <input type="text" class="form-control" name="fName" ng-model="session.fName" required />
+		                        <span class="help-block" ng-show="submitForm.fName.$error.required">Required</span> -->
+		                    </div>
+		                    <div class="form-group">
+														<span class="input input--nao">
+							              	<input class="input__field input__field--nao" type="text" id="input-2" name="lName" ng-model="session.lName" required />
+							                <label class="input__label input__label--nao" for="input-1">
+							                	<span class="input__label-content input__label-content--nao">Last Name</span>
+							                </label>
+							                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+								                <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+							                </svg>
+							              </span>
+		                    </div>
+		                    <div class="form-group">
+														<span class="input input--nao">
+							              	<input class="input__field input__field--nao" type="text" id="input-2" name="cmpyName" ng-model="session.cmpyName" required />
+							                <label class="input__label input__label--nao" for="input-1">
+							                	<span class="input__label-content input__label-content--nao">Company Name</span>
+							                </label>
+							                <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+								                <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+							                </svg>
+							              </span>
+		                    </div>
+		                		<div class="form-group">
+													<span class="input input--nao">
+														<input class="input__field input__field--nao" type="text" id="input-2" name="emailId" ng-model="session.eMail" required />
+														<label class="input__label input__label--nao" for="input-1">
+															<span class="input__label-content input__label-content--nao">Email Address</span>
+														</label>
+														<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+															<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+														</svg>
+													</span>
+												</div>
+		                    <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="passWd" ng-model="session.passWd" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">Password</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-large cs-skin-underline" name="secQues" ng-model="session.secQues">
+														<option value="" disabled selected>Security Question</option>
+														<option value="1"> None </option>
+														<option value="2"> What was the name of your elementary / primary school? </option>
+														<option value="2"> In what city or town does your nearest sibling live? </option>
+														<option value="2"> What time of the day were you born? (hh:mm) </option>
+													</select>
+		                    </div>
+		                   <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="secAns" ng-model="session.secAns" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">Security Answer</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+		                    <div class="form-group">
+													<div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off" style="padding-top:8%;">
+														<strong class="labelCheck">Late Fees</strong>
+														<ul>
+															<li>
+																<input id="check1" name="check1" ng-model="session.check1" type="checkbox" />
+																<label for="check1">Don't Apply Late Fees</label>
+															</li>
+														<ul>
+													</div>
+		                    </div>
+		                    <div class="form-group">
+		                      <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+														<strong class="labelCheck">Overdue Notices</strong>
+														<ul>
+															<li>
+																<input id="check2" name="check2" ng-model="session.check2" type="checkbox" />
+																<label for="check2">Don't Send Overdue Emails</label>
+															</li>
+														<ul>
+													</div>
+		                    </div>
+		                    <div class="form-group">
+		                      <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+														<strong class="labelCheck">Tax Exempt</strong>
+														<ul>
+															<li>
+																<input id="check3" name="check3" ng-model="session.check3" type="checkbox" />
+																<label for="check3">Don't Apply Tax to Invoices</label>
+															</li>
+														<ul>
+													</div>
+		                    </div>
+		                    <div class="form-group">
+		                      <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+														<strong class="labelCheck">Separate Invoices</strong>
+														<ul>
+															<li>
+																<input id="check4" name="check4" ng-model="session.check4" type="checkbox" />
+																<label for="check4">Separate Invoices for Services</label>
+															</li>
+														<ul>
+													</div>
+		                    </div>
+		                    <div class="form-group">
+		                      <div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+														<strong class="labelCheck">Disable CC Processing</strong>
+														<ul>
+															<li>
+																<input id="check5" name="check5" ng-model="session.check5" type="checkbox" />
+																<label for="check5">Disable Automatic CC Processing</label>
+															</li>
+														<ul>
+													</div>
+		                    </div>
+		                		<div class="form-group">
+													<span class="input input--nao" style="margin-top: -2%;">
+														<input class="input__field input__field--nao" type="text" id="input-2" name="creditBalance" ng-model="session.creditBalance" required />
+														<label class="input__label input__label--nao" for="input-1">
+															<span class="input__label-content input__label-content--nao">Credit Balance</span>
+														</label>
+														<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+															<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+														</svg>
+													</span>
+		                    </div>
+		                	</div>
+		                	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+		                    <div class="form-group">
+													<span class="input input--nao">
+														<input class="input__field input__field--nao" type="text" id="input-2" name="address1" ng-model="session.address1" required />
+														<label class="input__label input__label--nao" for="input-1">
+															<span class="input__label-content input__label-content--nao">Address1</span>
+														</label>
+														<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+															<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+														</svg>
+													</span>
+		                    </div>
+												<div class="form-group">
+													<span class="input input--nao">
+														<input class="input__field input__field--nao" type="text" id="input-2" name="address2" ng-model="session.address2" required />
+														<label class="input__label input__label--nao" for="input-1">
+															<span class="input__label-content input__label-content--nao">Address2</span>
+														</label>
+														<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+															<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+														</svg>
+													</span>
+		                    </div>
+		                     <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="city" ng-model="session.city" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">City</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+
+		                     <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="state" ng-model="session.state" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">State/Region</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+
+		                     <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="zip" ng-model="session.zip" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">ZipCode</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+
+		                    <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="country" ng-model="session.country" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">Country</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+
+		                     <div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="phone"  ng-model="session.phone" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">Phone No</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="payMethod" ng-model="session.payMethod">
+														<option value="" disabled selected>Payment Method</option>
+														<option value="1"> Debit Card </option>
+														<option value="2"> Credit Card </option>
+													</select>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="billing" ng-model="session.billing">
+														<option value="" disabled selected>Billing</option>
+														<option value="1"> Default </option>
+														<option value="2"> Special </option>
+														<option value="3"> Optional </option>
+													</select>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="lang" ng-model="session.lang">
+														<option value="" disabled selected>Language</option>
+														<option value="1"> English </option>
+														<option value="2"> French </option>
+														<option value="3"> German </option>
+													</select>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="status" ng-model="session.status">
+														<option value="" disabled selected>Status</option>
+														<option value="1"> Active </option>
+														<option value="2"> Inactive </option>
+													</select>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="currency" ng-model="session.currency">
+														<option value="" disabled selected>Currency</option>
+														<option value="1"> USD </option>
+														<option value="2"> INR </option>
+													</select>
+		                    </div>
+		                    <div class="form-group">
+													<select class="cs-select cs-skin-underline" name="cGroup" ng-model="session.cGroup">
+														<option value="" disabled selected>Client Group</option>
+														<option value="1"> Active </option>
+														<option value="2"> Inactive </option>
+													</select>
+		                    </div>
+												<div class="form-group">
+													<span class="input input--nao">
+														<input class="input__field input__field--nao" type="text" id="input-2" name="skype" ng-model="session.skype" required />
+														<label class="input__label input__label--nao" for="input-1">
+															<span class="input__label-content input__label-content--nao">Skype</span>
+														</label>
+														<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+															<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+														</svg>
+													</span>
+		                    </div>
+												<div class="form-group">
+														<span class="input input--nao">
+															<input class="input__field input__field--nao" type="text" id="input-2" name="about" ng-model="session.about" required />
+															<label class="input__label input__label--nao" for="input-1">
+																<span class="input__label-content input__label-content--nao">About</span>
+															</label>
+															<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+																<path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+															</svg>
+														</span>
+		                    </div>
+		                </div>
+		                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+												<div class="form-group text-center col-md-offset-4 col-md-6" style="margin-top:30px;">
+													<button class="button button--itzel button--text-thick" ng-disabled="!submitForm.$valid" value="ADD CLIENT">
+														<i class="button__icon icon icon-user"></i><span>Add Client</span>
+													</button>
+												</div>
+		                </div>
+		            </form>
+					        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					            <div class="form-group text-center col-md-offset-3 col-md-6">
+					              <button class="button button--itzel button--text-thick" style="width:400px;max-width:400px;" value="Add New Announcement">
+					                <i class="button__icon icon icon-upload" style="margin-top: -2%;"></i><span>Add New Announcement</span>
+					              </button>
+					            </div>
+					        </div>
+								</div>
+							</tab>
+							<tab heading="Auto Refresh">
+								<div class="row">
+					        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+										<p>Hiiiiii</p>
+									</div>
+								</div>
+							</tab>
+						</tabset>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+        <div class="col-md-12">
+          <div class="portlet box blue-hoki">
+      			<div class="portlet-body">
+              <table class="table table-striped table-bordered table-hover" id="sample_1">
+							<thead>
+							<tr>
+								<th class="table-checkbox">
+									<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes"/>
+								</th>
+								<th>
+									 Username
+								</th>
+								<th>
+									 Email
+								</th>
+								<th>
+									 Points
+								</th>
+								<th>
+									 Joined
+								</th>
+								<th>
+									 Status
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 shuxer
+								</td>
+								<td>
+									<a href="mailto:shuxer@gmail.com">
+									shuxer@gmail.com </a>
+								</td>
+								<td>
+									 120
+								</td>
+								<td class="center">
+									 12 Jan 2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 looper
+								</td>
+								<td>
+									<a href="mailto:looper90@gmail.com">
+									looper90@gmail.com </a>
+								</td>
+								<td>
+									 120
+								</td>
+								<td class="center">
+									 12.12.2011
+								</td>
+								<td>
+									<span class="label label-sm label-warning">
+									Suspended </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 userwow
+								</td>
+								<td>
+									<a href="mailto:userwow@yahoo.com">
+									userwow@yahoo.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 user1wow
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									userwow@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-default">
+									Blocked </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 restest
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									test@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 foopl
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 weep
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 coop
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 pppol
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 test
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 userwow
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									userwow@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-default">
+									Blocked </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 test
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									test@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 goop
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 weep
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 15.11.2011
+								</td>
+								<td>
+									<span class="label label-sm label-default">
+									Blocked </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 toopl
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 16.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 userwow
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									userwow@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 9.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-default">
+									Blocked </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 tes21t
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									test@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 14.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 fop
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 13.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-warning">
+									Suspended </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 kop
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 17.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 vopl
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.11.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 userwow
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									userwow@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-default">
+									Blocked </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 wap
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									test@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 12.12.2012
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 test
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 19.12.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 toop
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 17.12.2010
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="1"/>
+								</td>
+								<td>
+									 weep
+								</td>
+								<td>
+									<a href="mailto:userwow@gmail.com">
+									good@gmail.com </a>
+								</td>
+								<td>
+									 20
+								</td>
+								<td class="center">
+									 15.11.2011
+								</td>
+								<td>
+									<span class="label label-sm label-success">
+									Approved </span>
+								</td>
+							</tr>
+							</tbody>
+							</table>
+      			</div>
+      		</div>
+        </div>
+      </div>
+		</div>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script src="assets/js/svgcheckbx.js"></script>
+<script>
+// Tabs demo controller
+function TabsDemoCtrl($scope) {
+	$scope.tabs = [
+			{ title:'Dynamic Title 1', content:'Dynamic content 1' },
+			{ title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+		];
+
+		/*
+		$scope.alertMe = function() {
+			setTimeout(function() {
+				alert('You\'ve selected the alert tab!');
+			});
+		};
+		*/
+}
+</script>
+<script>
+	(function() {
+		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+			new SelectFx(el);
+		} );
+	})();
+</script>
+<style>
+	.cs-large .cs-options {
+		width: 150% !important;
+	}
+	.cs-large > span::after {
+  	display: none !important;
+	}
+	.btn-group.tabletools-dropdown-on-portlet {
+	  display: none;
+	}
+	.nav.nav-tabs.nav-justified {
+    width: 40%;
+  }
+</style>
+<script>
+  TableAdvanced.init();
+  TableManaged.init();
+  $("#supportTicketsPortlet").mCustomScrollbar({theme:"minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

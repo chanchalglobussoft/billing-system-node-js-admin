@@ -1,0 +1,218 @@
+
+<div ng-controller="PromocodeSettingsController" ng-init="getpromocodes()" >
+	<div ng-include="'views/settings/settings-sidebar.html'"></div>
+
+
+	<div class="row">
+		<div class="col-md-9 col-md-offset-3">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet light form-fit">
+				<div class="portlet-title">
+					<div class="caption">
+						<span class="caption-subject font-red-sunglo bold uppercase">Generate A Promo code</span>
+					</div>
+					<div class="tools">
+						<a href="javascript:;" class="collapse"></a>
+					</div>
+				</div>
+				<div class="portlet-body form">
+					<!-- BEGIN FORM-->
+					<form name="submitForm" class="form-horizontal form-bordered" novalidate ng-submit="submit()">
+						<div class="form-body">
+							<div class="form-group">
+								<label class="control-label col-md-3">PromoCode</label>
+								<div class="col-md-4">
+									<div class="input-group">
+										<input type="text"  class="form-control" name="code1"  ng-model="session.code" required>
+										<span class="input-group-btn">
+											<button class="btn default date-reset" ng-click="code()" type="button" ><i class="glyphicon glyphicon-refresh" ></i></button>
+										</span> 
+									</div>
+									<span class="help-block text-danger" ng-show="submitForm.code1.$error.required">Required</span>  
+									<!-- /input-group -->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">Start Date Time</label>
+								<div class="col-md-4">
+									<div class="input-group date form_datetime" data-date="2012-12-21T15:25:00Z">
+										<input type="text" size="16"  class="form-control" id="date"  ng-model="session.startdate">
+										<span class="input-group-btn">
+											<button class="btn default date-reset" type="button"><i class="fa fa-times"></i></button>
+											<button class="btn default date-set" type="button"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+									<!-- /input-group -->
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-md-3">End Date Time</label>
+								<div class="col-md-4">
+									<div class="input-group date form_datetime" data-date="2012-12-21T15:25:00Z">
+										<input type="text" size="16"  class="form-control" id="date1"  ng-model="parent.checkOut">
+										<span class="input-group-btn">
+											<button class="btn default date-reset" type="button"><i class="fa fa-times"></i></button>
+											<button class="btn default date-set" type="button"><i class="fa fa-calendar"></i></button>
+										</span>
+									</div>
+									<!-- /input-group -->
+								</div>
+							</div>
+						</div>
+						<input type="submit"  class="btn btn-danger col-md-offset-3" value="Save" ng-disabled="submitForm.$invalid">
+					</form>
+					<!-- END FORM-->
+				</div>
+			</div>
+<!-- END PORTLET-->
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="portlet box">
+						<div class="portlet-head">
+							<h3>Promocode  Information</h3>                      
+						</div>
+						<div class="portlet-body">
+							<table class="table table-striped table-bordered table-hover"  id="sample_1">
+								<thead>
+									<tr>
+										<th>
+											Promo CodeId
+										</th>
+
+										<th>
+											Code
+										</th>
+										<th>
+											Validity Start Date
+										</th>
+										<th>
+											Validity End Date
+										</th>
+
+										<th>
+											Sataus
+										</th>
+										<th>Edit
+										</th>
+										<th>Delete
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="data in response.promocodedata">
+										<td> {{data.promocode_id}}</td>
+										<td>{{data.promocode}}</td>
+										<td>
+											<span class="label label-info pull-right">
+												{{data.validity_start}}
+											</span>
+										</td>
+										<td>
+											<span class="label label-info pull-right">
+												{{data.validity_end}}
+											</span>
+										</td>
+										<td>  
+											<span class="label label-warning pull-right" ng-if="data.status==1">
+												Active
+											</span>
+											<span class="label label-danger pull-right" ng-if="data.status==0">
+												InActive
+											</span>
+										</td>
+										<td class="text-center">
+											<a href="#"  data-toggle="modal" data-target="#AddProductModal"  ng-click="getpromocode(data.promocode_id)"class="fa fa-pencil btn btn-info btn-xs"></a>
+										</td>
+										<td class="text-center">
+											<a href="javascript:;" class="fa fa-times btn btn-danger btn-xs" ng-click="remove(data.promocode_id)"></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+    <!-- Add Product  Modal -->
+    <div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModal">Edit Promocode</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="margin-top-20 table-responsive">
+                        <!-- <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                                <label class="control-label col-sm-2" for="inputSuccess4">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSuccess4" type="search" placeholder="Search" name="query" ng-model="product"  ng-keyup="searchproduct()">
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status1" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form> -->
+
+                        <table class="table table-bordered margin-top-20">
+                            <thead>
+                            <tr>
+                          
+                                <th>Promocode Id</th>
+                                <th>Code</th>
+                                <th>Validity Start</th>
+                                <th>Validity End</th>
+                                <th >Type <span>1=Cashback 2=Percentage</span></th>
+                                <th>Value</th>
+                                <th>Status <span>0=Inactive 1=Active</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            	 <td>{{response.edit.promocode_id}}</td>
+                                <td><input  type="text" ng-model="response.edit.promocode"></td>
+                                
+                                <td><input  type="text" ng-model="response.edit.validity_start"></td>
+                                <td><input type="text" ng-model="response.edit.validity_end"></td>
+                                <td scope="col">                                
+                                	<span ng-if="response.edit.type==1">Cashback </span>
+                                	<span ng-if="response.edit.type==2">Percentage </span>
+                                	<span ng-if="response.edit.type==0">Not Defined </span>
+                                	<input  type="number" min="1" max="2" ng-model="response.edit.type">
+                                </td>
+                                <td><input type="number"  min="0" ng-model="response.edit.value"></td>
+                                 <td><input type="number" min="0" max="1" ng-model="response.edit.status"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updatepromocode()">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+ComponentsPickers.init(); // init todo page
+
+// 	$("#date3").click(function(){
+// 		$("#date1").html()=$("#date1").val();
+
+// alert($("#date1").val())
+
+// 	});
+</script>

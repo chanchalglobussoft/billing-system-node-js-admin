@@ -1,0 +1,320 @@
+<div ng-controller="ClientOverViewController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3" id="clientsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new Client</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+                    <!-- overview cloud ends -->
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+            <div class="row">
+
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.clientCount.clientCount}}
+                            </div>
+                            <div class="desc">
+                                Total Clients
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-user-plus"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.reg_month.reg_month}}
+                            </div>
+                            <div class="desc">
+                                New This Month
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.orderCount.orderCount}}
+
+                            </div>
+                            <div class="desc">
+                                New Orders
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-plum">
+                        <div class="visual">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                0
+                            </div>
+                            <div class="desc">
+                                Active Clients
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-user-times"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                0
+                            </div>
+                            <div class="desc">
+                                Inactive Clients
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-thumbs-down"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                0
+                            </div>
+                            <div class="desc">
+                                Fraudulent Clients
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel">
+                <form>
+                    <div class="form-group">
+                    <div class="input-group col-sm-12 form-inline" style="margin-bottom: 3%;">
+                        <div class="input-group">
+                            <div class="input-group-addon" style="width: 5%;"><i class="fa fa-search"></i></div>
+                            <input type="text" class="form-control col-sm-12" placeholder="Search Clients" ng-model="searchClients" >
+                        </div>
+
+                        <div class="btn-group" >
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Export Table <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li id="tablePDF"><a href="#">PDF</a></li>
+                            <li id="tableCSV"><a href="#">CSV</a></li>
+                            <li id="tableExcel"><a href="#">Excel</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li id="tablePrint"><a href="#">Print</a></li>
+                          </ul>
+                        </div>
+
+                        <div class="input-group" style="float: right">
+                            <div class="input-group-addon"><i class="fa fa-list-ol"></i>
+                            <select ng-model="numPerPage">
+                              <option value="10">10 rows</option>
+                               <option value ="20">20 rows</option>
+                                <option value ="30">30 rows</option>
+                                  <option value ="40">40 rows</option>
+                                    <option value ="50">50 rows</option>
+                                      <option value ="100">100 rows</option>
+                                       <option value ="100000">All rows</option>
+                            </select></div>
+                        </div>
+                      </div>
+                    </div>
+                </form>
+
+                <table class="table table-bordered table-striped" id="clientsOverview">
+                    <thead>
+                        <tr>
+                             <td>
+                                <a href="#" ng-click="sortType = 'cID';
+                                                            sortReverse = !sortReverse">
+                                    Client ID
+                                    <span ng-show="sortType == 'cID' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'cID' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="sortType = 'fname';
+                                                            sortReverse = !sortReverse">
+                                    Name
+                                    <span ng-show="sortType == 'fname' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'fname' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="sortType = 'cname';
+                                                            sortReverse = !sortReverse">
+                                    Company Name
+                                    <span ng-show="sortType == 'cname' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'cname' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="sortType = 'services';
+                                                            sortReverse = !sortReverse">
+                                    E-Mail ID
+                                    <span ng-show="sortType == 'services' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'services' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="sortType = 'created';
+                                                            sortReverse = !sortReverse">
+                                    Created
+                                    <span ng-show="sortType == 'created' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'created' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" ng-click="sortType = 'status';
+                                                            sortReverse = !sortReverse">
+                                    Status
+                                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in response.data| orderBy:sortType:sortReverse | filter:searchClients  | filter : paginate">
+                            <td><a href="#/client-profile.html?clientId={{user.clientId}}">{{user.clientId}}</a></td>
+                            <td><strong><a href="#/client-profile.html?clientId={{user.clientId}}">{{user.fname}} {{user.lname}}</a></strong></td>
+                            <td>
+                                <span ng-if="!user.company" style="color:red"> Not mentioned </span>
+                                <span ng-if="user.company" > {{user.company}} </span>
+                            </td>
+                            <td>{{user.emailId}}</td>
+                            <td>{{user.regDate| date:"MM/dd/yyyy"}}</td>
+                            <td>
+                                <span ng-if="!user.status" style="color:red"> Not Specified yet </span>
+                                <span ng-if="user.status == 1" style="color:blue"> Active </span>
+                                <span ng-if="user.status == 2" style="color:green"> Inactive </span>
+                                <span ng-if="user.status == 3" > Closed </span>
+                                <span ng-if="user.status == 0" style="color:red"> Not Verified yet </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div align="center">
+                    <pagination total-items="totalItems" ng-model="currentPage"
+                                boundary-links="true"
+                                items-per-page="numPerPage" class="pagination-sm">
+                    </pagination>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $("#clientsPortlet").mCustomScrollbar({theme: "minimal"});
+    $( "#tablePDF" ).click(function() {
+      $('#clientsOverview').tableExport({
+        type:'pdf',
+        escape:'false',
+         pdfFontSize:'8'
+      });
+    });
+    $( "#tableCSV" ).click(function() {
+      $('#clientsOverview').tableExport({type:'csv',escape:'false'});
+    });
+    $( "#tableExcel" ).click(function() {
+      $('#clientsOverview').tableExport({type:'excel',escape:'false'});
+    });
+    $( "#tablePrint" ).click(function() {
+	    $("#clientsOverview").print({
+                                append : "Billing System - Client Overview",
+                                prepend : "Billing System"
+      });
+    });
+</script>

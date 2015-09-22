@@ -1,0 +1,45 @@
+/* here you can put your own css to customize and override the theme */
+
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/
+
+.logo-text {
+	color: #5c9acf;
+  	font-weight: bold;
+  	margin-left: -3px;
+  	margin-top: 14.5%;
+}
+
+.page-head .page-title > h1 {
+  	font-size: 16px;
+}
+
+.page-head .page-title > h1 > small {
+  	color: #697882;
+  	font-size: 18px;
+  	font-weight: 700;
+	color: #4db3a2 !important;
+}
+
+.todo-project-list ul > li.user-info {
+  	padding: 2%;
+}
+
+.todo-project-list ul > li {
+  	padding: 1%;
+}

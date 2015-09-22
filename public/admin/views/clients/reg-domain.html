@@ -1,0 +1,266 @@
+
+<div ng-controller="RegDomainController" ng-init="init()">
+    <!-- BEGIN SEARCH CLIENT FORM -->
+    <div class="row">
+        <div class="col-md-3" id="regDomainPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new Client</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+                                <a href="#/tld-register-domain.html">
+                                    <span class="title">Domain Price</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+            <div class="row" style="margin-top:50px;">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+
+
+
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-sm-offset-3">
+                        <div class="form-group">
+                            <form ng:submit="session.domain && keyPress()">
+                                <input type="text" class="form-control" name="domain" placeholder="Enter A Domain" ng-model="session.domain" required autofocus>
+                            </form>
+
+
+                            <!-- <input type="text" class="form-control" placeholder="Search" name="query" ng-model=name  ng-keyup="keyPress($event.keyCode)"> -->
+
+                        </div>
+
+                        <div class="form-group">
+                            <input class="btn btn-danger col-md-offset-3 col-md-6 " value="Search Domain" ng-if="!session.domain" disabled/>
+                            <input type="submit" class="btn btn-danger col-md-offset-3 col-md-6 " value="Search Domain" ng-click="keyPress()" ng-if="session.domain && !loading"/>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-sm-offset-3">
+
+                        <div class="form-group">
+                            <center>
+                                <img ng-if="loading" src="assets/img/loading_animation.gif"/>
+                            </center>
+                        </div>
+
+                        <div class="form-group" ng-if="!loading">
+                            <center><h1>
+                                    <div style="color:green" ng-if="response.result == 1"> Available</div>
+                                    <div style="color:red" ng-if="response.result == 0">Not Available</div>
+                                </h1></center>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- END SEARCH CLIENT FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box" ng-if="response.info && !loading">
+                        <div class="portlet-head">
+                            <h3>Domain Results</h3>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable">
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Domain
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                Subscription Plans
+                                            </th>
+                                            <th>
+                                                Price
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="user in response.info">
+
+                                            <td>
+                                                <label> {{user.domain}}</label>
+                                            </td>
+                                            <td>
+                                                <span  style="color:blue" ng-if="user.status == true"> Available</span>
+                                                <span style="color:red"  ng-if="user.status == false">Not Available</span>
+                                                <!-- <label>{{user.Available== true ? "Available" : "Not Available"}}  &nbsp; <span class="label label-sm label-success"></span> </label> -->
+                                            </td>
+
+
+                                            <td>
+                                                <a  href="#" data-toggle="modal" ng-if="user.status == true" data-target="#{{user.tld}}">Min {{user.minDuration}} year  And Max {{user.maxDuration}} years </a>
+                                                <label ng-if="user.status == false" style="color:red">None</label>
+                                            </td>
+                                            <td>
+                                                <label ng-if="user.status == true">&#36; {{user.price| number:2}}@1year</label>
+                                                <label ng-if="user.status == false" style="color:red">None</label>
+                                            </td>
+                                            <td>
+                                                <label> <a href="#" ng-if="user.status == true" ng-click="orderDomain(user.domain, 1, user.price)">Register Domain </a></label>
+                                                <label ng-if="user.status == false" style="color:red">No Action</label>
+                                                <!-- in above line in function orderDomain(user,1) second argument is hardcoded menas it will take 1year subscription as default -->
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- END SEARCH TABLE FORM -->
+
+            <!-- END MAIN CONTENT -->
+            <div  ng-repeat="user in response.info"  ng-if="user.status == true">
+                <div class="modal fade" role="dialog" id="{{user.tld}}" aria-labelledby="gridSystemModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Pricing Structure</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th>
+                                                Duration
+                                            </th>
+
+
+                                            <th>
+                                                Price Per Year
+
+                                            </th>
+
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="price in user.pricingDetails">
+
+
+                                            <td>
+                                                <label> {{price.Duration}} Year</label>
+
+                                            </td>
+
+
+
+                                            <td>
+                                                <label>&#36; {{price.YourPrice| number:2}}</label>
+                                            </td>
+                                            <td>
+                                                <label> <a href="#" ng-click="orderDomain(user.domain, price.Duration, price.YourPrice)">Register Domain </a> </label>
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <!-- <div ng-repeat="price in user.pricingDetails">
+        <div class="container-fluid">
+
+        </div>
+                        </div> -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+            </div>
+        </div>
+        <!-- END SEARCH CLIENT FORM -->
+        <!-- BEGIN SEARCH TABLE FORM -->
+        <!-- END SEARCH TABLE FORM -->
+    </div>
+</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    $("#regDomainPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

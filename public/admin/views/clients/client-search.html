@@ -1,0 +1,349 @@
+<div ng-controller="SearchController">
+    <div class="row">
+        <div class="col-md-3" id="searchClientPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new Client</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+
+            <div data-ng-init="init()">
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                        <form name="submitForm" class="row" novalidate ng-submit="submit()">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="form-group">
+                                    <label class="control-label"> Client ID </label>
+                                    <input type="text" class="form-control" name="cName"  ng-model="session.cID"/>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Client Name </label>
+                                    <input type="text" class="form-control" name="cName"  ng-model="session.cName"/>
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Email Address </label>
+                                    <input type="text" class="form-control" name="userEmail" ng-model="session.userEmail"/>
+                                </div>
+                                <!--  <div class="form-group">
+                                     <label class="control-label"> Status </label>
+                                     <select ng-model="session.key1"  class="form-control" ng-options="key1 as value for (key1 , value) in status"></select>
+
+                                 </div> -->
+                                <!-- <div class="form-group">
+                                    <label class="control-label"> Client Group </label>
+                                    <select name="cGroup"  ng-model="session.key" class="form-control" ng-options="key as value for (key , value) in data"></select>
+
+
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="control-label"> Phone No </label>
+                                    <input type="text" class="form-control" name="phone" ng-model="session.phone" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label"> Skype </label>
+                                    <input type="text" class="form-control" name="skype" ng-model="session.skype" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <div class="form-group">
+                                  <label class="control-label"> Country </label>
+                                  <select class="form-control" ng-model="session.countryID">
+                                      <option value="">Select Country</option>
+                                      <option ng-repeat="country in countries" value="{{country.id_countries}}">{{country.name}}</option>
+                                  </select>
+                              </div>
+
+                                <!-- <div class="form-group">
+                                    <label class="control-label"> Currency </label>
+                                    <select   ng-model="session.key3" class="form-control">
+                                      <option value="">Select Currency</option>
+                                    <option ng-repeat="currency in currencies" value="{{currency.id_countries}}">{{currency.currency_code}}</option></select>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="control-label"> Company Name </label>
+                                    <input type="text" class="form-control" name="cmpyName" ng-model="session.cmpyName"/>
+                                </div>
+                                <div class="form-group">
+                                                  <label class="control-label"> Address </label>
+                                                  <textarea class="form-control" name="address"  style="min-height:109px;"  ng-model="session.address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label"> Date Range Search</label>
+                                    <span>
+                                        <input type="checkbox" ng-model="dateSwitch">
+                                    </span>
+                                    <div class="input-group" >
+                                        <input class="form-control"  type="daterange" ng-model="session.datesrange" ranges="ranges" ng-disabled="!dateSwitch">
+                                        <span class="input-group-btn">
+                                            <button class="btn default" type="button" disabled><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!--  <div class="form-group">
+                                     <label class="control-label"> State/Region </label>
+                                     <input type="text" class="form-control" name="state" ng-model="session.state" />
+                                 </div> -->
+
+                                <!--  <div class="form-group">
+                                     <label class="control-label"> Card Last Four Digits <sup>*</sup> </label>
+                                     <input type="text" class="form-control" name="card"   ng-model="session.card"/>
+                                 </div> -->
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                <div class="form-group text-center margin-top-20">
+                                    <input type="submit"  class="btn btn-danger col-md-offset-3 col-md-6" value="SEARCH" />
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- END SEARCH CLIENT FORM -->
+                    <!-- BEGIN SEARCH TABLE FORM -->
+
+                </div>
+                <!--</div>-->
+                <!--</div>-->
+                <div class="tabpanel">
+                    <div class="portlet box">
+                        <div class="portlet-head">
+                            <h3>Search Client Results</h3>
+                        </div>
+                        <div class="portlet-body">
+                            <div role="tabpanel">
+                              <form>
+                                  <div class="form-group">
+                                  <div class="input-group col-sm-12 form-inline" style="margin-bottom: 3%;">
+                                      <div class="input-group">
+                                          <div class="input-group-addon" style="width: 5%;"><i class="fa fa-search"></i></div>
+                                          <input type="text" class="form-control col-sm-12" placeholder="Search Clients" ng-model="searchClients" >
+                                      </div>
+                                      <div class="input-group" style="float: right">
+                                          <div class="input-group-addon"><i class="fa fa-list-ol"></i>
+                                          <select ng-model="numPerPage">
+                                            <option value="10">10 rows</option>
+                                             <option value ="20">20 rows</option>
+                                              <option value ="30">30 rows</option>
+                                                <option value ="40">40 rows</option>
+                                                  <option value ="50">50 rows</option>
+                                                    <option value ="100">100 rows</option>
+                                                     <option value ="100000">All rows</option>
+                                          </select></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </form>
+                                <!-- <form>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input type="text" class="form-control" placeholder="Search Clients" ng-model="searchClients">
+                                        </div>
+                                    </div>
+                                </form> -->
+
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'cID';
+                                                            sortReverse = !sortReverse">
+                                                    Client ID
+                                                    <span ng-show="sortType == 'cID' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'cID' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'fname';
+                                                            sortReverse = !sortReverse">
+                                                    Name
+                                                    <span ng-show="sortType == 'fname' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'fname' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'cname';
+                                                            sortReverse = !sortReverse">
+                                                    Company Name
+                                                    <span ng-show="sortType == 'cname' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'cname' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'services';
+                                                            sortReverse = !sortReverse">
+                                                    E-Mail ID
+                                                    <span ng-show="sortType == 'services' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'services' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'phone';
+                                                            sortReverse = !sortReverse">
+                                                    Phone
+                                                    <span ng-show="sortType == 'phone' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'phone' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'skypeid';
+                                                            sortReverse = !sortReverse">
+                                                    Skype ID
+                                                    <span ng-show="sortType == 'skypeid' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'skypeid' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'country';
+                                                            sortReverse = !sortReverse">
+                                                    Country
+                                                    <span ng-show="sortType == 'country' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'country' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'created';
+                                                            sortReverse = !sortReverse">
+                                                    Created
+                                                    <span ng-show="sortType == 'created' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'created' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'status';
+                                                            sortReverse = !sortReverse">
+                                                    Status
+                                                    <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="user in response.data| orderBy:sortType:sortReverse | filter:searchClients  | filter : paginate">
+                                            <td><a href="#/client-profile.html?clientId={{user.clientId}}">{{user.clientId}}</a></td>
+                                            <td><strong><a href="#/client-profile.html?clientId={{user.clientId}}">{{user.fname}} {{user.lname}}</a></strong></td>
+                                            <!--<td><a href="#/client-profile.html?clientId={{user.clientId}}">{{user.lname}}</a></td>-->
+
+                                            <td>
+                                                 <span ng-if="user.company">{{user.company}} </span>
+                                                  <span ng-if="!user.company" style="color:red"> Not available </span>
+                                              </td>
+                                            <td>{{user.emailId}}</td>
+
+                                            <td>
+                                                 <span ng-if="user.mobile">{{user.mobile}} </span>
+                                                  <span ng-if="!user.mobile" style="color:red"> Not available </span>
+                                              </td>
+                                            <td>
+                                                 <span ng-if="user.skypeId" >{{user.skypeId}} </span>
+                                                  <span ng-if="!user.skypeId" style="color:red"> Not available </span>
+                                              </td>
+                                            <td>{{user.name}}</td>
+                                            <td>{{user.regDate| date:"MM/dd/yyyy"}}</td>
+                                            <td>
+                                              <span ng-if="!user.status" style="color:red"> Not available </span>
+                                                <span ng-if="user.status == 1" style="color:blue"> Active </span>
+                                                <span ng-if="user.status == 2" style="color:green"> Inactive </span>
+                                                <span ng-if="user.status == 3" > Closed </span>
+                                                <span ng-if="user.status == 0" style="color:red"> Not Verified yet </span>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div align="center">
+                                    <pagination total-items="totalItems" ng-model="currentPage"
+                                                max-size="5" boundary-links="true"
+                                                items-per-page="numPerPage" class="pagination-sm">
+                                    </pagination>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- END SEARCH TABLE FORM -->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+    })();
+
+    $("#searchClientPortlet").mCustomScrollbar({theme: "minimal"});
+
+    function noResults()
+    {
+        swal({
+	  title: "Client Not Found",
+	  text: "Sorry, there are no clients available with the entered filters",
+	  confirmButtonClass: 'btn-danger',
+	  confirmButtonText: 'OK'
+	});
+    }
+</script>

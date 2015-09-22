@@ -1,0 +1,810 @@
+<style>
+          .item {
+            /*background: #639bf6 none repeat scroll 0 0;*/
+            display: block;
+            /*margin: 15px;*/
+            position: relative;
+          }
+          #daddy3 > div > div, .item {
+            /*background: #639bf6 none repeat scroll 0 0;
+            color: white;*/
+            display: block;
+            /*font-family: "Segoe UI",sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;*/
+          }
+          .draggable {
+            /*background: #639bf6 none repeat scroll 0 0;
+            border-bottom: 4px solid black;
+            color: #ffffff;*/
+            display: block;
+            /*font-family: "Segoe UI",sans-serif;
+            font-size: 16px;
+            height: 20px;
+            left: 0;
+            line-height: 18px;
+            position: absolute;
+            text-align: center;
+            top: 0;
+            width: 100%;*/
+          }
+          .dad-noSelect,.dad-noSelect *{
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -khtml-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              cursor: -webkit-grabbing !important;
+              cursor: -moz-grabbing !important;
+          }
+
+          .dad-container{
+              position: relative;
+              -webkit-touch-callout: none;
+              -webkit-user-select: none;
+              -khtml-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+          }
+          .dad-container::after{
+              content: '';
+              clear: both !important;
+              display: block;
+          }
+          .dad-active .dad-draggable-area{
+              cursor: -webkit-grab;
+              cursor: -moz-grab;
+          }
+          .dad-draggable-area>*,.dad-draggable-area img{
+              pointer-events: none;
+          }
+          .dads-children.active{
+              pointer-events: none;
+          }
+          .dads-children-clone{
+              opacity: 1;
+              z-index: 9999;
+              pointer-events: none;
+          }
+          .dads-children-placeholder{
+              pointer-events: none;
+              overflow: hidden;
+              position: absolute !important;
+              box-sizing: border-box;
+              border:4px dashed #639BF6;
+              margin:5px;
+              text-align: center;
+              color: #639BF6;
+              font-weight: bold;
+          }
+</style>
+<div ng-controller="DashboardActivityController" class="margin-top-10" id="orderOverview" data-ng-init="init()">
+
+    <!--<div ng-include="'views/dashboard/dashboard-sidebar.html'"></div>-->
+
+    <div class="row">
+        <div class="col-md-3" id="dashboardPortlet" style="position:fixed; height: 455px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <!--Overview cloud-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Overview Shortcuts</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/orders-overview.html">
+                                    <span class="title">Orders Overview</span>
+                                </a><br>
+
+                                <a href="#/billing-overview.html">
+                                    <span class="title">Billing Overview</span>
+                                </a><br>
+
+                                <a href="#/support-overview.html">
+                                    <span class="title">Support Overview</span>
+                                </a><br>
+
+                                <a href="#">
+                                    <span class="title">Reports Overview</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+                    <!--overview cloud ends-->
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Search Shortcuts</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/client-search.html">
+                                    <span class="title">Client Search</span>
+                                </a><br>
+
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/manage-order.html">
+                                    <span class="title">Order Search</span>
+                                </a><br>
+
+                                <a href="#/manage-transactions.html">
+                                    <span class="title">Transaction Search</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                    <!--search shotcuts ends-->
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Quick Add</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new client</span>
+                                </a><br>
+
+                                <a href="#/manage-order.html">
+                                    <span class="title">Add new order</span>
+                                </a><br>
+
+                                <a href="#">
+                                    <span class="title">Open new ticket</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Logged Admin Details</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li ng-if="response.adminDetails[0].adminId">Admin ID: <strong>{{response.adminDetails[0].adminId}} </strong></li>
+                                <li ng-if="response.adminDetails[0].fname">Name: <strong>{{response.adminDetails[0].fname}} {{response.adminDetails[0].lname}}</strong></li>
+                                <li ng-if="response.adminDetails[0].emailId">Email ID: <strong>{{response.adminDetails[0].emailId}}</strong></li>
+                                <li ng-if="response.adminDetails[0].skypeId">Skype ID: <strong>{{response.adminDetails[0].skypeId}}</strong></li>
+                                <li ng-if="response.adminDetails[0].mobile">Mobile: <strong>{{response.adminDetails[0].mobile}}</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-9 col-md-offset-3"> -->
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 3%;">
+            <div class="page-title">
+                <h1>
+                    <!--<span><strong>Admin Summary</strong></span>-->
+                    <small>Welcome Back {{response.adminDetails[0].fname}} {{response.adminDetails[0].lname}} !</small>
+                </h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-controller="AlertDemoCtrl" align="center">
+                        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">Attention Items:  <a href="#/log-settings.html"> {{logCount}} Log(s) recorded in logger </a> - <a href="#/support-tickets.html"> {{totalTickets}} Ticket(s) are Generated </a> - <a href="#">  0 Ticket(s) Awaiting Reply </a> - <a href="#">  0 Pending Cancellation(s)</a> - <a href="#"> 0 To-Do Item(s) Due </a> </alert>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row dad-draggable">
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Getting Started with Billing System</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <span style="font-weight:bold;font-size:14px;color:#29467C;">Welcome to Billing System</span>
+                                    <!--<button type="button" class="btn btn-success btn-xs pull-right">Dismiss Getting Started Guide</button><br>-->
+                                    Here's our handy links for getting up and running...<br>
+                                    <blockquote>
+                                        <b>Clients</b> - <a href="#/client-search.html">Search</a> &amp; <a href="#/add-client.html">Add</a> clients or <a href="#/reg-domain.html">Register</a> a domain for your client ...<br>
+                                        <b>Orders</b> - <a href="#/create-order.html">Add</a> a order for your client &amp; <a href="#/manage-order.html">Manage</a> it ...<br>
+                                        <b>Billing</b>  - Check <a href="#/manage-transactions.html">Transactions</a> &amp; <a href="#/manage-invoices.html"> Invoices</a> of your clients...<br>
+                                        <b>Support</b> - Check <a href="#/active-tickets.html">Tickets</a> generated &amp; <a href="#/on-hold-tickets.html"> On-Hold</a> tickets...<br>
+                                        <b>Reports</b> - Analyze <a href="#/annual-income.html">Income</a> generated &amp; <a href="#/response-time-per-tech.html"> Track</a> support stats...<br>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<div class="row">-->
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">My Calendar</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div style="display:inline-block; min-height:290px;">
+                                        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <p><strong>Today, {{today}} {{month}} 2015</strong></p>
+                                    <p>0 Products/Services Due to Renew</p>
+                                    <p>0 Addons Due to Renew</p>
+                                    <p>0 Domains Due to Renew</p>
+                                    <p>0 To-Do Items Due</p>
+                                    <p>0 Events Scheduled</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Monthly Income Forecast ($M)</span>
+                            </div>
+                            <div class="actions">
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="500" height="325" ></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Support Tickets Overview</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <p class="text-center">Number of Tickets assigned to you. ( Admin ID: {{myAdminId}} ) : <strong>{{response.mytickets.length}}</strong> </p>
+                            <p class="text-center">Number of Active Tickets <strong>{{response.activetickets.length}}</strong></p>
+                            <p class="text-center" ng-if="response.scheduledtickets.length > 0">Number of Scheduled Tickets <strong>{{response.scheduledtickets.length}}</strong> </p>
+                            <p class="text-center" ng-if="response.scheduledtickets.length == null">There are no Scheduled Tickets. </p>
+                            <!--                            <p class="text-center" ng-if="$scope.response.recentlyanswered.length > 0">There are <strong>{{$scope.response.recentlyanswered.length}}</strong> Recently Answered Tickets. </p>
+                                                        <p class="text-center" ng-if="$scope.response.recentlyanswered.length == null">There are no Recently Answered Tickets. </p>-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">System Overview</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div ng-controller="ProgressDemoCtrl">
+                                <div class="row">
+                                    <div class="col-sm-2">Clients</div>
+                                    <div class="col-sm-8"><progressbar class="progress-striped" value="22" type="success">22%</progressbar></div>
+                                    <div class="col-sm-2">202</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">Services</div>
+                                    <div class="col-sm-8"><progressbar class="progress-striped" value="49" type="info">49%</progressbar></div>
+                                    <div class="col-sm-2">49</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">Unpaid Invoices</div>
+                                    <div class="col-sm-8"><progressbar class="progress-striped" value="22" type="danger">22%</progressbar></div>
+                                    <div class="col-sm-2">202</div>
+                                </div>
+                                <!--<p class="text-center">Your Last Login: 29/06/2015 06:58 from IP 108.162.238.9</p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Network Status</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                        <tr class="uppercase">
+                                            <th>
+                                                Server Name
+                                            </th>
+                                            <th>
+                                                HTTP
+                                            </th>
+                                            <th>
+                                                Load
+                                            </th>
+                                            <th>
+                                                Uptime
+                                            </th>
+                                            <th>
+                                                % Used
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            <span class="bold font-green-haze">0%</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            Not Available
+                                        </td>
+                                        <td>
+                                            <span class="bold font-green-haze">0%</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">System Information</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <tr>
+                                        <td>
+                                            Registered To
+                                        </td>
+                                        <td>
+                                            Billing System
+                                        </td>
+                                        <td>
+                                            Expires
+                                        </td>
+                                        <td>
+                                            Never
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            License Type
+                                        </td>
+                                        <td>
+                                            Owned License
+                                        </td>
+                                        <td>
+                                            Version
+                                        </td>
+                                        <td>
+                                            0.0.3 RC1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Staff Online</td>
+                                        <td>Admin</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Top Five Clients By Order</span>
+                                <span class="caption-helper hide">weekly stats...</span>
+                            </div>
+
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                        <tr class="uppercase">
+                                            <th >
+                                                Client Id
+                                            </th>
+                                            <th>
+                                                Client Name
+                                            </th>
+                                            <th>
+                                                Number of orders
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tr ng-repeat="data in response.topfiveorders" >
+                                        <td >
+                                            {{data.clientId}}
+                                        </td>
+                                        <td>
+                                            {{data.fname + ' ' + data.lname}}
+                                        </td>
+                                        <td>
+                                            {{data.count}}
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Clients Activity</span>
+                                <span class="caption-helper hide">weekly stats...</span>
+                            </div>
+                            <div class="actions">
+                                <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active" ng-click="dataByday(0)" >
+                                        <input type="radio" name="options" class="toggle" id="option1">Today</label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm" ng-click="dataByday(1)" >
+                                        <input type="radio" name="options" class="toggle" id="option2">Week</label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm" ng-click="dataByday(2)" >
+                                        <input type="radio" name="options" class="toggle" id="option2">Month</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="scroller" style="overflow-y: auto;height: 232px;" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                <div class="row number-stats margin-bottom-30">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="stat-left">
+                                            <div class="stat-chart">
+                                                <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                                <div id="sparkline_bar"></div>
+                                            </div>
+                                            <div class="stat-number">
+                                                <div class="title">
+                                                    Total Pending
+                                                </div>
+                                                <div class="number">
+                                                    {{response.pending.count}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="stat-right">
+                                            <div class="stat-chart">
+                                                <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                                <div id="sparkline_bar2"></div>
+                                            </div>
+                                            <div class="stat-number">
+                                                <div class="title">
+                                                    New
+                                                </div>
+                                                <div class="number">
+                                                    719
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-scrollable table-scrollable-borderless table-responsive">
+                                    <table class="table table-hover table-light">
+                                        <thead>
+                                            <tr class="uppercase">
+                                                <th >
+                                                    Client Id
+                                                </th>
+                                                <th>
+                                                    Product Id
+                                                </th>
+                                                <th>
+                                                    Description
+                                                </th>
+                                                <th>
+                                                    Order Status
+                                                </th>
+                                                <th>
+                                                    Ip
+                                                </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tr ng-repeat="data in response.ordersData" >
+                                            <td >
+                                                {{data.clientId}}
+                                            </td>
+                                            <td>
+                                                {{data.productId}}
+                                            </td>
+                                            <td>
+                                                {{data.description}}
+                                            </td>
+                                            <td>
+                                                <span ng-if="data.orderStatus == 1">Pending</span>
+                                                <span ng-if="data.orderStatus == 2" >Active</span>
+                                                <span ng-if="data.orderStatus == 3">Cancelled</span>
+                                                <span ng-if="data.orderStatus == 4">Fraud</span>
+                                                <span ng-if="data.orderStatus == 5">Completed</span>
+
+
+                                            </td>
+                                            <td>
+                                                {{data.ipaddress}}
+
+                                            </td>
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+
+
+
+                <div class="col-md-12 col-sm-12">
+                    <div class="portlet light item">
+                        <div class="portlet-title draggable">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">My Notes</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="form-group">
+                                <form>
+                                    <textarea class="form-control" ng-model="note">This is my note</textarea>
+                                </form>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn blue-soft" ng-click='addnotes(note)'>Save Notes</button>
+                                        <!-- <button type="button" class="btn default">Cancel</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="portlet-body">
+                        <div class="table-scrollable table-scrollable-borderless">
+                            <table class="table table-hover table-light">
+                                <thead>
+                                    <tr class="uppercase">
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Note
+                                        </th>
+
+                                        <th>
+                                            Action
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="data in response.notes">
+                                    <td width="18%" valign="top">
+                                        {{data.date| date:'medium'}}
+                                    </td>
+                                    <td  width="auto" class="warning">
+                                        {{data.note}}
+                                    </td>
+                                    <td width="5%" class="danger">
+                                        <a href="javascript:;" class="btn" ng-click="deletenote(data.notesId)">
+                                            <i class="fa fa-trash-o"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- END MAIN CONTENT -->
+
+
+<!-- todolist Modal -->
+<div class="modal fade" id="todolist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- openinvoice Modal -->
+<div class="modal fade" id="openinvoice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Open Invoices</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    // Index.init();
+    // Tasks.initDashboardWidget();
+    $("#dashboardPortlet").mCustomScrollbar({theme: "minimal"});
+    
+    $(function(){
+
+            $(".dad-draggable").dad({draggable:'.draggable'})
+
+        })
+</script>
+<script type="text/javascript">
+// Progressbar demo controller
+    function ProgressDemoCtrl($scope) {
+        $scope.max = 200;
+
+        $scope.random = function () {
+            var value = Math.floor((Math.random() * 100) + 1);
+            var type;
+
+            if (value < 25) {
+                type = 'success';
+            } else if (value < 50) {
+                type = 'info';
+            } else if (value < 75) {
+                type = 'warning';
+            } else {
+                type = 'danger';
+            }
+
+            $scope.showWarning = (type === 'danger' || type === 'warning');
+
+            $scope.dynamic = value;
+            $scope.type = type;
+        };
+        $scope.random();
+
+        $scope.randomStacked = function () {
+            $scope.stacked = [];
+            var types = ['success', 'info', 'warning', 'danger'];
+
+            for (var i = 0, n = Math.floor((Math.random() * 4) + 1); i < n; i++) {
+                var index = Math.floor((Math.random() * 4));
+                $scope.stacked.push({
+                    value: Math.floor((Math.random() * 30) + 1),
+                    type: types[index]
+                });
+            }
+        };
+        $scope.randomStacked();
+    }
+
+// Alert demo controller
+    function AlertDemoCtrl($scope) {
+        $scope.alerts = [
+            {type: 'danger', msg: 'Attention Items:   1 Ticket(s) Awaiting Reply  -  0 Pending Cancellation(s)  -  14 To-Do Item(s) Due  -  0 Open Network Issue(s)'},
+        ];
+
+        $scope.addAlert = function () {
+            $scope.alerts.push({msg: 'Another alert!'});
+        };
+
+        $scope.closeAlert = function (index) {
+            $scope.alerts.splice(index, 1);
+        };
+    }
+    ;
+
+</script>

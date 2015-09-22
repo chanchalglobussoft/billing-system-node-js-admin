@@ -1,0 +1,384 @@
+<!-- BEGIN PAGE HEADER-->
+<!--<h3 class="page-title">-->
+	<!--Clients-->
+<!--</h3>-->
+<!--<div class="page-bar">-->
+	<!--<ul class="page-breadcrumb">-->
+		<!--<li>-->
+			<!--<i class="fa fa-home"></i>-->
+			<!--<a href="index.html">Home</a>-->
+			<!--<i class="fa fa-angle-right"></i>-->
+		<!--</li>-->
+		<!--<li>-->
+			<!--<a href="#">Clients</a>-->
+		<!--</li>-->
+	<!--</ul>-->
+<!--</div>-->
+<!-- END PAGE HEADER-->
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="ClientController" data-ng-init="init()">
+	<!-- BEGIN DASHBOARD STATS -->
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="dashboard-stat blue-madison">
+				<div class="visual">
+					<i class="fa fa-users"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{response.data[0].count}}
+					</div>
+					<div class="desc">
+						Total No. of Clients
+					</div>
+				</div>
+				<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="dashboard-stat red-intense">
+				<div class="visual">
+					<i class="fa fa-user-plus"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						3
+					</div>
+					<div class="desc">
+						New Clients this Month
+					</div>
+				</div>
+				<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="dashboard-stat green-haze">
+				<div class="visual">
+					<i class="fa fa-user"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{response.data[1].active}}
+					</div>
+					<div class="desc">
+						Active Clients
+					</div>
+				</div>
+				<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<div class="dashboard-stat purple-plum">
+				<div class="visual">
+					<i class="fa fa-user-times"></i>
+				</div>
+				<div class="details">
+					<div class="number">
+						{{response.data[2].inactive}}
+					</div>
+					<div class="desc">
+						Inactive Clients
+					</div>
+				</div>
+				<a class="more" href="#">
+				View more <i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<!-- END DASHBOARD STATS -->
+	<div class="row">
+		<div class="col-md-6 col-sm-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption caption-md">
+						<i class="icon-bar-chart font-green-haze hide"></i>
+						<span class="caption-subject font-green-haze bold uppercase">Clients Summary</span>
+						<span class="caption-helper hide">weekly stats...</span>
+					</div>
+					<div class="actions">
+						<div class="btn-group btn-group-devided" data-toggle="buttons">
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+							<input type="radio" name="options" class="toggle" id="option1">Today</label>
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+							<input type="radio" name="options" class="toggle" id="option2">Week</label>
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+							<input type="radio" name="options" class="toggle" id="option2">Month</label>
+						</div>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="row list-separated">
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="font-grey-mint font-sm">
+								Total Clients
+							</div>
+							<div class="uppercase font-hg font-red-flamingo">
+								{{response.data[0].count}}<span class="font-lg font-grey-mint"> </span>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="font-grey-mint font-sm">
+								Active
+							</div>
+							<div class="uppercase font-hg font-green-haze">
+								{{response.data[1].active}} <span class="font-lg font-grey-mint"> </span>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="font-grey-mint font-sm">
+								Inactive
+							</div>
+							<div class="uppercase font-hg font-purple">
+							{{response.data[2].inactive}}<span class="font-lg font-grey-mint"> </span>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-3 col-xs-6">
+							<div class="font-grey-mint font-sm">
+								New Arrival
+							</div>
+							<div class="uppercase font-hg font-blue-sharp">
+								{{response.data[0].count}} <span class="font-lg font-grey-mint"> </span>
+							</div>
+						</div>
+					</div>
+					<ul class="list-separated list-inline-xs hide">
+						<li>
+							<div class="font-grey-mint font-sm">
+								Total Sales
+							</div>
+							<div class="uppercase font-hg font-red-flamingo">
+								13760 <span class="font-lg font-grey-mint">$</span>
+							</div>
+						</li>
+						<li>
+						</li>
+						<li class="border">
+							<div class="font-grey-mint font-sm">
+								Revenue
+							</div>
+							<div class="uppercase font-hg font-green-haze">
+								4760 <span class="font-lg font-grey-mint">$</span>
+							</div>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							<div class="font-grey-mint font-sm">
+								Expenses
+							</div>
+							<div class="uppercase font-hg font-purple">
+								1760 <span class="font-lg font-grey-mint">$</span>
+							</div>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							<div class="font-grey-mint font-sm">
+								Growth
+							</div>
+							<div class="uppercase font-hg font-blue-sharp">
+								9760 <span class="font-lg font-grey-mint">$</span>
+							</div>
+						</li>
+					</ul>
+					<div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+					</div>
+				</div>
+			</div>
+			<!-- END PORTLET-->
+		</div>
+		<div class="col-md-6 col-sm-12">
+			<!-- BEGIN PORTLET-->
+			<div class="portlet light ">
+				<div class="portlet-title">
+					<div class="caption caption-md">
+						<i class="icon-bar-chart font-green-haze hide"></i>
+						<span class="caption-subject font-green-haze bold uppercase">Clients Activity</span>
+						<span class="caption-helper hide">weekly stats...</span>
+					</div>
+					<div class="actions">
+						<div class="btn-group btn-group-devided" data-toggle="buttons">
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+							<input type="radio" name="options" class="toggle" id="option1">Today</label>
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+							<input type="radio" name="options" class="toggle" id="option2">Week</label>
+							<label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+							<input type="radio" name="options" class="toggle" id="option2">Month</label>
+						</div>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div class="row number-stats margin-bottom-30">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="stat-left">
+								<div class="stat-chart">
+									<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+									<div id="sparkline_bar"></div>
+								</div>
+								<div class="stat-number">
+									<div class="title">
+										Total
+									</div>
+									<div class="number">
+										2460
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<div class="stat-right">
+								<div class="stat-chart">
+									<!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+									<div id="sparkline_bar2"></div>
+								</div>
+								<div class="stat-number">
+									<div class="title">
+										New
+									</div>
+									<div class="number">
+										719
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="table-scrollable table-scrollable-borderless">
+						<table class="table table-hover table-light">
+							<thead>
+								<tr class="uppercase">
+									<th colspan="2">
+										MEMBER
+									</th>
+									<th>
+										Earnings
+									</th>
+									<th>
+										CASES
+									</th>
+									<th>
+										CLOSED
+									</th>
+									<th>
+										RATE
+									</th>
+								</tr>
+							</thead>
+							<tr>
+								<td class="fit">
+									<img class="user-pic" src="assets/images/avatar4.jpg">
+								</td>
+								<td>
+									<a href="javascript:;" class="primary-link">Brain</a>
+								</td>
+								<td>
+									$345
+								</td>
+								<td>
+									45
+								</td>
+								<td>
+									124
+								</td>
+								<td>
+									<span class="bold font-green-haze">80%</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="fit">
+									<img class="user-pic" src="assets/images/avatar5.jpg">
+								</td>
+								<td>
+									<a href="javascript:;" class="primary-link">Nick</a>
+								</td>
+								<td>
+									$560
+								</td>
+								<td>
+									12
+								</td>
+								<td>
+									24
+								</td>
+								<td>
+									<span class="bold font-green-haze">67%</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="fit">
+									<img class="user-pic" src="assets/images/avatar6.jpg">
+								</td>
+								<td>
+									<a href="javascript:;" class="primary-link">Tim</a>
+								</td>
+								<td>
+									$1,345
+								</td>
+								<td>
+									450
+								</td>
+								<td>
+									46
+								</td>
+								<td>
+									<span class="bold font-green-haze">98%</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="fit">
+									<img class="user-pic" src="assets/images/avatar7.jpg">
+								</td>
+								<td>
+									<a href="javascript:;" class="primary-link">Tom</a>
+								</td>
+								<td>
+									$645
+								</td>
+								<td>
+									50
+								</td>
+								<td>
+									89
+								</td>
+								<td>
+									<span class="bold font-green-haze">58%</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- END PORTLET-->
+		</div>
+	</div>
+    <div class="clearfix">
+				</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<!--
+<script>
+	Index.init();
+	Tasks.initDashboardWidget();
+</script>
+-->
+ <script>
+            jQuery(document).ready(function() {
+              // Index.init();
+//               Index.initDashboardDaterange();
+//               Index.initJQVMAP(); // init index page's custom scripts
+              // Index.initCalendar(); // init index page's custom scripts
+               Index.initCharts(); // init index page's custom scripts
+//               Index.initChat();
+              // Index.initMiniCharts();
+              // Tasks.initDashboardWidget();
+            });
+        </script>
+<!-- BEGIN MAIN JS & CSS -->

@@ -1,0 +1,476 @@
+<div ng-controller="AffiliateProfileController" ng-init="init()" >
+    <div ng-include="'views/settings/settings-sidebar.html'"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3" >
+            <div class="row">        
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="portlet box">
+                            <div class="portlet-head">
+                                <h3>{{response.summery.fname}}   {{response.summery.lname}} 's Affiliate Information</h3>
+                                <!--<a> http://38.87.45.213:3000/#/client-signup.html?reff={{response.aff.affiliate_link}} </a>-->
+                            </div>
+                            <div class="portlet-body">
+
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="dashboard-stat blue-madison">
+                                            <div class="visual">
+                                                <i class="fa fa-comments"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number">
+                                                    {{response.summery.total_hits}}
+                                                </div>
+                                                <div class="desc">
+                                                    Total Hits
+                                                </div>
+                                            </div>
+                                            <!--                                            <a class="more" href="javascript:;">
+                                                                                            View more <i class="m-icon-swapright m-icon-white"></i>
+                                                                                        </a>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="dashboard-stat red-intense">
+                                            <div class="visual">
+                                                <i class="fa fa-bar-chart-o"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number">
+                                                    {{response.summery.total_signups}}
+                                                </div>
+                                                <div class="desc">
+                                                    Total Signup
+                                                </div>
+                                            </div>
+                                            <!--                                            <a class="more" href="javascript:;">
+                                                                                            View more <i class="m-icon-swapright m-icon-white"></i>
+                                                                                        </a>-->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="dashboard-stat green-haze">
+                                            <div class="visual">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </div>
+                                            <div class="details">
+                                                <div class="number">
+                                                    {{response.summery.revenue| number:2}}$
+                                                </div>
+                                                <div class="desc">
+
+                                                    Revenue Generated
+                                                </div>
+                                            </div>
+                                            <!--                                            <a class="more" href="javascript:;">
+                                                                                            View more <i class="m-icon-swapright m-icon-white"></i>
+                                                                                        </a>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 margin-top-10">
+                                        <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">{{response.summery.fname}}   {{response.summery.lname}}'s Unique Referral Link</h3>  
+                                              
+                                            </div>
+                                            <div class="portlet-body">
+                                                <div class="note note-info">
+                                                    <p>                                                        
+                                                        <code> http://38.87.45.213:3000/#/client-signup.html?reff={{response.aff.affiliate_link}} </code>
+                                                    </p>
+                                                </div>
+                                                <!-- List group -->
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        Total Comission Till Date: 
+                                                        <span class="label label-info pull-right">
+                                                            <span class="ng-scope">
+                                                                {{response.aff.available_commission_balance}}USD
+                                                            </span>  
+                                                        </span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Available Commissions Balance: 
+                                                        <span class="label label-info pull-right">
+                                                            <span class="ng-scope">
+                                                                {{response.aff.available_mature_balance}}USD
+                                                            </span>  
+                                                        </span>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        Total Amount Withdrawn: 
+                                                        <span class="label label-info pull-right">
+                                                            <span class="ng-scope">
+                                                                {{response.aff.commission_withdrawn}}USD
+                                                            </span>  
+                                                        </span>
+                                                    </li>            
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                        <!--  <p>
+                                           <a href="javascript:;" class="btn blue col-md-6 col-md-offset-3 margin-bottom-10">
+                                           Button </a>                        
+                                         </p> -->
+                                        <div class=" text-center btn-group-justified">
+                                            <a href="javascript:;" class="btn grey-cascade col-sm-2 red-stripe" ng-disabled="response.activate" data-toggle="modal" data-target="#ReleseNow">
+                                                Release Now </a>
+                                            <a href="javascript:;" class="btn grey-cascade col-sm-2  blue-stripe" ng-disabled=" response.inactive" ng-click="freeze(1)">
+                                                Activate Account  </a>
+                                            <a href="javascript:;" class="btn grey-cascade col-sm-2 green-stripe" ng-disabled="response.activate" ng-click="freeze(0)">
+                                                Freeze Account </a>
+                                            <a href="javascript:;" class="btn grey-cascade col-sm-2 red-stripe" ng-disabled="response.activate"data-toggle="modal" data-target="#Scheduler">
+                                                Schedule Release </a>
+                                        </div>
+                                        <br>
+                                        <p class="col-md-12 col-md-offset-1 margin-bottom-10">You will be able to request a withdrawal as soon as your balance reaches the minimum required amount of $100.00 USD.</p>
+
+
+                                        <!--<div ng-if="response.data">-->
+                                        <table class="table table-bordered table-striped table-hover" id="sample_1">
+                                            <thead>
+
+                                                <tr>
+                                                    <th>
+                                                        Affiliate Referral Id
+                                                    </th>
+
+                                                    <th>
+                                                        Affiliate Name
+                                                    </th>
+                                                    <th>
+                                                        Date/Time
+                                                    </th>
+                                                    <th>
+                                                        Ip
+                                                    </th>
+                                                    <th>
+                                                        Is Signup
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in response.data">
+
+
+
+                                                    <td>{{data.affiliate_referrals_id}}</td>
+                                                    <td>{{data.fname}}</td>
+
+                                                    <td>
+                                                        {{data.date_of_referral}}
+
+                                                    </td>
+                                                    <td>
+                                                        {{data.ip}}
+
+                                                    </td>
+                                                    <td>  
+                                                        <label class="text-success" ng-if="data.status == 1" >Signup</label>
+                                                        <label class="text-danger" ng-if="data.status == 0" >No Signup
+                                                        </label>
+
+
+
+
+                                                    </td>
+
+
+
+
+
+
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+<!--</div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form   name="submitForm" class="form-horizontal form-bordered" novalidate ng-submit="submit()">
+                    <div class="portlet-head">
+                        <h3>Affiliate Current Setting</h3>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Commission Type</label>
+                                <div class="col-md-9">
+                                    <div class="margin-bottom-10">
+                                        <div class="md-radio-inline">
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio6" name="radio2" class="md-radiobtn" checked="" ng-model="session.ctype"  value="1"  ng-checked="check()"  >
+                                                <label for="radio6">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    OneTime </label>
+                                            </div>
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio7" name="radio2" class="md-radiobtn"  ng-model="session.ctype"  value="2" >
+                                                <label for="radio7">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    Recurring Percentage </label>
+                                            </div>
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio8" name="radio2" class="md-radiobtn" ng-model="session.ctype"  value="3" >
+                                                <label for="radio8">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    Recurring Set Amount</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="portlet-body form">                
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Commission Percentage</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+
+                                                        <input type="number" min="0" id="typeahead_example_1" name="percentage" ng-model="session.percentage" class="form-control" ng-disabled="response.disable" required/>
+                                                    </div> 
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.percentage.$error.required">Required</span>      
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Commission Amount</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+                                                        <input type="number" min="0"  id="typeahead_example_2" name="amount" ng-model="session.amount" class="form-control" required />
+
+                                                    </div>
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.amount.$error.required">Required</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">PayOut Day</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+                                                        <input type="number" min="0" max="30"  id="typeahead_example_3" name="payday" ng-model="session.payoutday" class="form-control" required/>
+                                                    </div>
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.payday.$error.required">Required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                                <div class="form-group text-center margin-top-20">
+                                                    <input type="submit"  class="btn btn-danger col-md-offset-4 col-md-3" value="Update" ng-disabled="submitForm.$invalid"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Current Affiliate Setting</h3>
+                                            </div>
+                                            <!-- List group -->
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Commission Type <span class="label label-info pull-right">
+                                                        <span ng-if="response.aff.commission_type == 1">
+                                                            One Time</span>
+                                                        <span ng-if="response.aff.commission_type == 2">
+                                                            Recurring Percentage</span>
+                                                        <span ng-if="response.aff.commission_type == 3">
+                                                            Set Amount</span>
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Commission Percentage <span class="label label-info pull-right">
+                                                        {{response.aff.commission_percentage}}% </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Commission Amount <span class="label label-info pull-right">
+                                                        {{response.aff.commission_amount}}$</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    PayOut Day <span class="label label-info pull-right">Day
+                                                        {{response.aff.pay_out_day}}</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Last Update <span class="label label-info pull-right">
+                                                        {{response.aff.settings_change_date| date:'medium'}}</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Last Updated Admin Id<span class="label label-info pull-right">
+                                                        {{response.aff.settings_changed_by_adminId}}</span>
+                                                </li>
+
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>                     
+
+                            </div>
+                        </div>
+                    </div>
+                </form>  
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ReleseNow modal  -->
+    <div class="modal fade" id="ReleseNow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Release Now</h4>
+                    <h5>Amount Will Credited to Client Wallet</h5>
+                </div>
+                <div class="modal-body">
+                    <form  name="myForm" class="form-horizontal form-bordered" novalidate >
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Percentage</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+
+                                    <input type="number" min="0" max="100"  id="typeahead_example_2" name="per" ng-model="myFormdata.per" class="form-control" required />
+
+
+
+
+                                </div>
+                                <span class="help-block text-danger"
+                                      ng-show="myForm.per.$error.required">Required</span>   
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <textarea id="maxlength_textarea" name="descr" ng-model="myFormdata.descr" class="form-control" maxlength="255" rows="2" placeholder="This textarea has a limit of 225 chars." required ></textarea>
+                                </div>
+                                <span class="help-block text-danger"
+                                      ng-show="myForm.descr.$error.required">Required</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <input   class="btn btn-danger" value="Update" data-dismiss="modal" ng-disabled="myForm.$invalid" ng-click="releaseAmount()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SchedulerModal -->
+<!--    <div class="modal fade" id="Scheduler" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Scheduler</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="#" id="form-username" class="form-horizontal form-bordered">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Percentage</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <input type="text" id="typeahead_example_1" name="typeahead_example_1" class="form-control" placeholder="fuck u"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Percentage</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <input type="text" id="typeahead_example_1" name="typeahead_example_1" class="form-control" placeholder="fuck u"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                    <textarea id="maxlength_textarea" class="form-control" maxlength="225" rows="2" placeholder="This textarea has a limit of 225 chars."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <!-- END MAIN CONTENT -->
+</div>
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    (function () {
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+    })();
+</script>
+<script>
+
+
+    $("#manageOrderPortlet").mCustomScrollbar({theme: "minimal"});
+
+
+</script>
+<!-- BEGIN MAIN JS & CSS -->

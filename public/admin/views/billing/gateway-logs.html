@@ -1,0 +1,270 @@
+<div ng-controller="GatewayLogs" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3" id="logPortlet" style="position:fixed; height: 455px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <!-- Overview cloud -->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Overview Shortcuts</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/orders-overview.html">
+                                    <span class="title">Orders Overview</span>
+                                </a><br>
+
+                                <a href="#/billing-overview.html">
+                                    <span class="title">Billing Overview</span>
+                                </a><br>
+
+                                <a href="#/support-overview.html">
+                                    <span class="title">Support Overview</span>
+                                </a><br>
+
+                                <a href="#">
+                                    <span class="title">Reports Overview</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+                    <!-- overview cloud ends -->
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Search Shortcuts</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/client-search.html">
+                                    <span class="title">Client Search</span>
+                                </a><br>
+
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/manage-order.html">
+                                    <span class="title">Order Search</span>
+                                </a><br>
+
+                                <a href="#/manage-transactions.html">
+                                    <span class="title">Transaction Search</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                    <!-- search shotcuts ends -->
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Quick Add</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new client</span>
+                                </a><br>
+
+                                <a href="#/manage-order.html">
+                                    <span class="title">Add new order</span>
+                                </a><br>
+
+                                <a href="#">
+                                    <span class="title">Open new ticket</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-9 col-md-offset-3" style="margin-left: 21%; margin-right: 1%; width: 79%;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box">
+                        <div class="portlet-body">
+
+                            <div role="tabpanel">
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+
+                                        <form name="submitForm" class="row well" novalidate ng-submit="submit()">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> Date Range Search</label>
+                                                    <span>
+                                                        <input type="checkbox" ng-model="dateSwitch">
+                                                    </span>
+                                                    <div class="input-group" >
+                                                        <input class="form-control"  type="daterange" ng-model="session.datesrange" ranges="ranges" ng-disabled="!dateSwitch">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button" disabled><i class="fa fa-calendar"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>     
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> Gateway </label>
+                                                    <select ng-model="session.gateway"  class="form-control" ng-options="gateway as value for (gateway , value) in paymentGateway"> <option value=""> Any </option> </select>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> Debug Data </label>
+                                                    <input type="text" class="form-control" name="amount" ng-model="session.debug"/>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> Days ago Search</label>
+                                                    <span>
+                                                        <input type="checkbox" ng-model="daysAgoSwitch">
+                                                    </span>
+                                                    <div class="input-group" >
+                                                        <input class="form-control"  ng-model="session.daysAgo" ng-disabled="!daysAgoSwitch" type="text">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default cancelClass" type="button" ng-click="session.daysAgo = ''" ng-disabled="!daysAgoSwitch"><i class="fa fa-times"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label"> Result </label>
+                                                    <select ng-model="session.result"  class="form-control" ng-options="gateway as value for (gateway , value) in response.paymentGateway"> <option value=""> Any </option> </select>
+                                                </div>
+
+
+                                                <div class="form-group " style="margin-top: 5%; float: right;">
+                                                    <input type="submit" class="btn btn-danger"  value="SEARCH" />
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="portlet box">
+                                            <div class="portlet-head">
+                                                <h3>Gateway Logs</h3>
+                                            </div>
+                                            <div class="portlet-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <div class="input-group col-sm-12 form-inline" style="margin-bottom: 3%;">
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon" style="width: 5%;"><i class="fa fa-search"></i></div>
+                                                                <input type="text" class="form-control" placeholder="Search Gateway Transaction Log" ng-model="searchLogs">
+                                                            </div>
+
+                                                            <div class="input-group" style="float: right">
+                                                                <div class="input-group-addon"><i class="fa fa-list-ol"></i>
+                                                                    <select ng-model="numPerPage">
+                                                                        <option value="10">10 rows</option>
+                                                                        <option value ="20">20 rows</option>
+                                                                        <option value ="30">30 rows</option>
+                                                                        <option value ="40">40 rows</option>
+                                                                        <option value ="50">50 rows</option>
+                                                                        <option value ="100">100 rows</option>
+                                                                        <option value ="100000">All rows</option>
+                                                                    </select></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+                                                                    Date - Time
+                                                                    <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+                                                                    <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+                                                                </a>
+                                                            </td>
+
+                                                            <td>
+                                                                <a href="#" ng-click="sortType = 'gateway'; sortReverse = !sortReverse">
+                                                                    Gateway
+                                                                    <span ng-show="sortType == 'gateway' && !sortReverse" class="fa fa-caret-down"></span>
+                                                                    <span ng-show="sortType == 'gateway' && sortReverse" class="fa fa-caret-up"></span>
+                                                                </a>
+                                                            </td>
+
+                                                            <td>
+                                                                <a href="#" ng-click="sortType = 'debug'; sortReverse = !sortReverse">
+                                                                    Debug data
+                                                                    <span ng-show="sortType == 'debug' && !sortReverse" class="fa fa-caret-down"></span>
+                                                                    <span ng-show="sortType == 'debug' && sortReverse" class="fa fa-caret-up"></span>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#" ng-click="sortType = 'result'; sortReverse = !sortReverse">
+                                                                    Type
+                                                                    <span ng-show="sortType == 'result' && !sortReverse" class="fa fa-caret-down"></span>
+                                                                    <span ng-show="sortType == 'resultresult' && sortReverse" class="fa fa-caret-up"></span>
+                                                                </a>
+                                                            </td>                                           
+                                                        </tr>
+                                                    </thead>                
+                                                    <tbody>
+                                                        <tr ng-repeat="log in allLogs| orderBy : sortType : sortReverse | filter : searchLogs  | filter : paginate">
+                                                            <td>{{log.date| date:"dd-MMM-yyyy" }} - {{log.date| date:'mediumTime' }}</td>                                           
+                                                            <td>{{log.type}}</td>
+                                                            <td>{{log.status}}</td>
+                                                            <td>{{log.IP}}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div align="center"><pagination total-items="totalItems" ng-model="currentPage"
+                                                                                max-size="5" boundary-links="true"
+                                                                                items-per-page="numPerPage" class="pagination-sm">
+                                                    </pagination>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT -->
+
+        <!-- BEGIN MAIN JS & CSS -->
+        <script>
+                    $("#logPortlet").mCustomScrollbar({theme: "minimal"});
+        </script>
+        <!-- BEGIN MAIN JS & CSS -->

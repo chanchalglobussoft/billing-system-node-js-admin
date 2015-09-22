@@ -1,0 +1,104 @@
+
+<div ng-controller="MonthlyTransactionController" ng-init="init(1000)" >
+	<div class="row">
+      <div ng-include="'views/report/income/income-report-side-bar.html'"></div>
+
+
+
+   <div class="col-md-9 col-md-offset-3" style="margin-left: 21%; margin-right: 1%; width: 79%;">
+			<!-- <div class="row">
+		        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+							<div id="canvas-holder">
+
+								<canvas tc-chartjs-bar chart-options="opt" chart-data="dat" chart-legend="barChart1" width="939" height="500"></canvas>
+							
+							</div>
+		        </div>
+		    </div> -->
+		    <!-- END SEARCH ORDERS FORM -->
+		    <!-- BEGIN SEARCH TABLE FORM -->
+		        <div class="row">
+				        <div class="col-lg-12">
+				            <div class="portlet box">
+				                <div class="portlet-head">
+				                    <h3>Monthly Transaction Report</h3>
+				                </div>
+				                <div class="portlet-body">
+													<div style="display: inline-flex;">
+													<h4 style="color:blue;"><span class="label" style="margin: 5px; background-color: blue;">&nbsp;</span>Total Income:<span>{{paid | number:2}}</span></h4>
+													<h4 style="color:red;"><span class="label" style="margin: 5px; background-color: red;">&nbsp;</span>Total Refund:<span>{{refund | number:2}}</span></h4>
+													<h4 style="color:green;"><span class="label" style="margin: 5px; background-color: green;">&nbsp;</span>Profit:<span>{{profit | number:2}}</span></h4>
+												</div>
+
+
+				                    <div class="portlet-body">
+
+															<table class="table table-bordered table-striped table-hover"  id="sample_1">
+																	<thead>
+																			<tr>
+
+																					<th>
+																							Date
+																					</th>
+																					<th>
+																						Amount
+																					</th>
+																					<th>
+																							Type
+																					</th>
+																					<th>
+																						Status
+																					</th>
+
+
+																			</tr>
+																	</thead>
+																	<tbody>
+			            <tr ng-repeat="data in datatab ">
+
+
+
+			                <td>{{data.date}}</td>
+											<td>{{data.amount | number:2}}</td>
+
+											  <td>
+												  <label class="text-success" ng-if="data.paymentType==0" >Paid</label>
+													<label class="text-danger" ng-if="data.paymentType==1" >Refund</label>
+
+
+												</td>
+											  <td>
+
+												  <label class="text-success" ng-if="data.status==1" >sucess</label>
+												  <label class="text-danger" ng-if="data.status==2" >fail</label>
+												  <label class="text-info" ng-if="data.status==3" >pending</label>
+												  <label class="text-danger" ng-if="data.status==4" >Incomplete</label>
+
+												  </td>
+
+			            </tr>
+
+			        </tbody>
+															</table>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+	</div>
+</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+	(function() {
+		[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+			new SelectFx(el);
+		} );
+	})();
+</script>
+<script>
+
+	$("#manageOrderPortlet").mCustomScrollbar({theme:"minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

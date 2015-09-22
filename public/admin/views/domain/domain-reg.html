@@ -1,0 +1,186 @@
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
+
+<div ng-controller="DomainRegistration" ng-init="init()">
+    <div class="row">
+
+        <div class="col-md-3" id="searchDomainPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new Client</span>
+                                </a><br>
+
+
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+                                <a href="#/tld-register-domain.html">
+                                    <span class="title">Domain Price</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-9 col-sm-offset-3">
+
+            <form ng-submit="submit()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="font-green-haze bold">REGISTRANT CONTACT</h4>
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> First Name * </label>
+                        <input type="text" class="form-control" name="RegistrantFirstName"  ng-model="session.RegistrantFirstName" value="{{response.client.fname}}"/>
+                    </div>
+
+
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Last Name *</label>
+                        <input type="text" class="form-control" name="RegistrantLastName" value="{{response.client.lname}}" ng-model="session.RegistrantLastName"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Registrant Organization Name </label>
+                        <input type="text" class="form-control" name="RegistrantOrganizationName" value="{{response.client.company}}" ng-model="session.RegistrantOrganizationName" />
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Street Address *  </label>
+                        <input type="text" class="form-control" name="RegistrantAddress1"  value="{{response.client.address1}}"  ng-model="session.RegistrantAddress1"/>
+                    </div>
+
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> City * </label>
+                        <input type="text" class="form-control" name="RegistrantCity"  value="{{response.client.city}}"  ng-model="session.RegistrantCity"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> State/ Prov.*  </label>
+                        <input type="text" class="form-control" name="RegistrantStateProvince" value="{{response.client.state}}"   ng-model="session.RegistrantStateProvince"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Zip / Postal Code *  </label>
+                        <input type="text" class="form-control" name="RegistrantPostalCode"  value="{{response.client.zipcode}}"  ng-model="session.RegistrantPostalCode"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Country * </label>
+                        <input type="text" class="form-control" name="RegistrantCountry" value="{{response.client.name}}"   ng-model="session.RegistrantCountry"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> E-Mail Address *  </label>
+                        <input type="text" class="form-control" name="RegistrantEmailAddress"  value="{{response.client.emailId}}"  ng-model="session.RegistrantEmailAddress"/>
+                    </div>
+                    <div class="form-group col-md-4 col-sm-4">
+                        <label class="control-label"> Phone Number *  </label>
+                         <label class="control-label"> E.g.: CountryCode.PhoneNo.(Don't use + ) </label>
+                        <!--<span>Example:country code.Phone No.(don't use + )</span>-->
+                        <input type="text" class="form-control" name="RegistrantPhone"  value="{{"91."+response.client.mobile}}"  ng-model="session.RegistrantPhone"/>
+                    </div>
+                    
+                     <div class="form-group col-md-4 col-sm-4" ng-if="response.err != 0">
+                         <label class="control-label" style="color:red"> Please try again after verifying the provided inputs.  </label>
+                    </div>
+                    
+                    <div class="form-group col-md-4 col-sm-4" ng-if="response.err != 0">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 150px;color:red">Error Code</th>
+                                        <th style="width: 150px;color:red">Error</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr ng-repeat="error in response.err">
+                                        <th scope="row">{{error.Number}}</th>
+                                        <td>{{error.$t}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                   
+
+                    
+                </div>
+                
+                <div class="form-group text-center margin-top-20" ng-if="!loading">
+                    <input type="submit" class="btn btn-danger col-md-offset-3 col-md-6 "   value="Register" />
+                </div>
+                <div class="form-group">
+                    <center>
+                        <img ng-if="loading" src="assets/img/loading_animation.gif"/>
+                    </center>
+                </div>
+            </form>
+            <!-- BEGIN SEARCH Client FORM -->
+
+
+        </div>
+    </div> <!-- END SEARCH CLIENT FORM -->
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+
+<script>
+    $("#searchClientPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

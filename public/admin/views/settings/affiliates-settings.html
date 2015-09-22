@@ -1,0 +1,258 @@
+
+<div ng-controller="AffiliatesSettingsController" ng-init="init()" >
+    <div ng-include="'views/settings/settings-sidebar.html'"></div>
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3" >
+            <!-- END SEARCH ORDERS FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+                <form   name="submitForm" class="form-horizontal form-bordered" novalidate ng-submit="submit()">
+                    <div class="portlet-head">
+                        <h3>Common Affiliate Setting</h3>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Commission Type</label>
+                                <div class="col-md-9">
+                                    <div class="margin-bottom-10">
+                                        <div class="md-radio-inline">
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio6" name="radio2" class="md-radiobtn" checked="" ng-model="session.ctype"  value="1"  ng-checked="check()"  >
+                                                <label for="radio6">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    OneTime </label>
+                                            </div>
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio7" name="radio2" class="md-radiobtn"  ng-model="session.ctype"  value="2" >
+                                                <label for="radio7">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    Recurring Percentage </label>
+                                            </div>
+                                            <div class="md-radio">
+                                                <input type="radio" id="radio8" name="radio2" class="md-radiobtn" ng-model="session.ctype"  value="3" >
+                                                <label for="radio8">
+                                                    <span class="inc"></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
+                                                    Recurring Set Amount</label>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="portlet-body form">                
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Commission Percentage</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+
+                                                        <input type="number" min="0" id="typeahead_example_1" name="percentage" ng-model="session.percentage" class="form-control" ng-disabled="response.disable" required/>
+                                                    </div> 
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.percentage.$error.required">Required</span>      
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Commission Amount</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+                                                        <input type="number" min="0"  id="typeahead_example_2" name="amount" ng-model="session.amount" class="form-control" required />
+
+                                                    </div>
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.amount.$error.required">Required</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">PayOut Day</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-cogs"></i>
+                                                        </span>
+                                                        <input type="number" min="0" max="30"  id="typeahead_example_3" name="payday" ng-model="session.payoutday" class="form-control" required/>
+                                                    </div>
+                                                    <span class="help-block text-danger"
+                                                          ng-show="submitForm.payday.$error.required">Required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                                <div class="form-group text-center margin-top-20">
+                                                    <input type="submit"  class="btn btn-danger col-md-offset-4 col-md-3" value="Update" ng-disabled="submitForm.$invalid"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="panel panel-info">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Latest Affiliate Setting</h3>
+                                            </div>
+                                            <!-- List group -->
+                                            <ul class="list-group">
+                                                <li class="list-group-item">
+                                                    Commission Type <span class="label label-info pull-right">
+                                                        <span ng-if="response.affdata.commissionType == 1">
+                                                            One Time</span>
+                                                        <span ng-if="response.affdata.commissionType == 2">
+                                                            Recurring Percentage</span>
+                                                        <span ng-if="response.affdata.commissionType == 3">
+                                                            Set Amount</span>
+                                                    </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Commission Percentage <span class="label label-info pull-right">
+                                                        {{response.affdata.commissionPercentage}}% </span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Commission Amount <span class="label label-info pull-right">
+                                                        {{response.affdata.commissionamount}}$</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    PayOut Day <span class="label label-info pull-right">
+                                                        {{response.affdata.payoutDay}}</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Last Update <span class="label label-info pull-right">
+                                                        {{response.affdata.date| date:'medium'}}</span>
+                                                </li>
+                                                <li class="list-group-item">
+                                                    Last Updated Admin Id<span class="label label-info pull-right">
+                                                        {{response.affdata.adminId}}</span>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>                     
+                                </form>                    
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="portlet box">
+                                <div class="portlet-head">
+                                    <h3>Affiliate Information</h3>
+                                    <h5>Click Name For Advanced Setting</h5>
+                                </div>
+                                <div class="portlet-body">
+
+
+
+
+
+                                    <table class="table table-bordered table-striped table-hover" id="sample_1">
+                                        <thead>
+
+                                            <tr>
+                                                <th>
+                                                    Affiliate Name
+                                                </th>
+
+                                                <th>
+                                                    Affiliate Link
+                                                </th>
+                                                <th>
+                                                    Commission Type
+                                                </th>
+                                                <th>
+                                                    Commission Percentage
+                                                </th>
+                                                <th>
+                                                    Commission Amount
+                                                </th>
+                                                <th>
+                                                    Payout Day
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in response.aff">
+
+                                                <td><a ng-href="#/affiliate-profile.html?clientId={{data.client_id}}" > {{data.fname}} {{data.lname}}</a></td>
+
+                                                <td>{{data.affiliate_link}}</td>
+
+
+                                                <td>
+
+                                                    <span class="label label-info pull-right">
+                                                        <span ng-if="data.commission_type == 1">
+                                                            One Time</span>
+                                                        <span ng-if="data.commission_type == 2">
+                                                            Recurring Percentage</span>
+                                                        <span ng-if="data.commission_type == 3">
+                                                            Set Amount</span>
+                                                    </span>
+
+
+                                                </td>
+                                                <td>
+                                                    {{data.commission_percentage}}
+
+                                                </td>
+                                                <td>  
+                                                    {{data.commission_amount}}$
+                                                </td>
+                                                <td>
+                                                    Day&nbsp;{{data.pay_out_day}}
+                                                </td>
+
+
+
+
+
+
+
+                                            </tr>
+
+                                        </tbody>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <!-- END MAIN CONTENT -->
+    <!-- BEGIN MAIN JS & CSS -->
+    <script>
+        (function () {
+            [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                new SelectFx(el);
+            });
+        })();
+    </script>
+    <script>
+
+
+        $("#manageOrderPortlet").mCustomScrollbar({theme: "minimal"});
+    </script>
+    <!-- BEGIN MAIN JS & CSS -->

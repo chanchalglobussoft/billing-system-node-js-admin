@@ -1,0 +1,111 @@
+
+<div ng-controller="AffiliatetrafficController" ng-init="init()" >
+    <div ng-include="'views/affiliates/affiliates-side-bar.html'"></div>
+    <div class="row">
+
+
+
+
+        <div class="col-md-9 col-md-offset-3" >
+
+            <!-- END SEARCH ORDERS FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box">
+                        <div class="portlet-head">
+                            <h3>Traffic By Affiliates</h3>
+                        </div>
+                        <div class="portlet-body">
+
+
+
+
+
+                            <table class="table table-bordered table-striped table-hover" id="sample_1">
+                                <thead>
+
+                                    <tr>
+                                        <th>
+                                            Affiliate Referral Id
+                                        </th>
+
+                                        <th>
+                                            Affiliate Name
+                                        </th>
+                                        <th>
+                                            Date/Time
+                                        </th>
+                                        <th>
+                                            Ip
+                                        </th>
+                                        <th>
+                                            Is Signup
+                                        </th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in response.data">
+
+
+
+                                        <td>{{data.affiliate_referrals_id}}</td>
+                                        <td><a href="#/client-profile.html?clientId={{data.clientId}}">{{data.fname}} {{data.lname}}</a></td>
+
+                                        <td>
+                                            {{data.date_of_referral}}
+
+                                        </td>
+                                        <td>
+                                            {{data.ip}}
+
+                                        </td>
+                                        <td>  
+                                            <label class="text-success" ng-if="data.status == 1" >Signup</label>
+                                            <label class="text-danger" ng-if="data.status == 0" >No Signup
+                                            </label>
+
+
+
+
+                                        </td>
+
+
+
+
+
+
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    (function () {
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+    })();
+</script>
+<script>
+
+
+    $("#manageOrderPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js" data-ng-app="BillingApp"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js" data-ng-app="BillingApp"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" data-ng-app="BillingApp">
+<!--<![endif]-->
+	<!-- BEGIN HEAD -->
+	<head>
+		<title data-ng-bind="'Billing System | Client | ' + $state.current.data.pageTitle"></title>
+
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="Billing System, Client Area, Domains" name="description" />
+		<meta content="AllThatIsRam" name="author" />
+
+		<!-- BEGIN GLOBAL MANDATORY STYLES -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" />
+		<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="assets/css/simple-line-icons.min.css" rel="stylesheet" />
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="assets/css/uniform.default.css" rel="stylesheet" />
+		<!-- END GLOBAL MANDATORY STYLES -->
+
+		<!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
+		<link id="ng_load_plugins_before" />
+		<!-- END DYMANICLY LOADED CSS FILES -->
+
+		<!-- BEGIN THEME STYLES -->
+		<link href="assets/css/components-md.css" id="style_components" rel="stylesheet" />
+		<link href="assets/css/plugins-md.css" rel="stylesheet" />
+		<link href="assets/css/layout.css" rel="stylesheet" />
+		<link href="assets/css/light.css" rel="stylesheet" id="style_color" />
+		<link href="assets/css/custom.css" rel="stylesheet" />
+		<!-- END THEME STYLES -->
+
+		<link rel="shortcut icon" href="favicon.ico" />
+	</head>
+	<!-- END HEAD -->
+
+	<!-- BEGIN BODY -->
+	<body ng-controller="AppController" class="page-header-fixed page-sidebar-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-on-load" ng-class="{'page-sidebar-closed': settings.layout.pageSidebarClosed}">
+
+		<!-- BEGIN PAGE SPINNER -->
+		<div ng-spinner-bar class="page-spinner-bar">
+			<div class="bounce1"></div>
+			<div class="bounce2"></div>
+			<div class="bounce3"></div>
+		</div>
+		<!-- END PAGE SPINNER -->
+
+		<!-- BEGIN HEADER -->
+		<div data-ng-include="'tpl/header.html'" data-ng-controller="HeaderController" class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+		</div>
+		<!-- END HEADER -->
+
+		<div class="clearfix">
+		</div>
+
+		<!-- BEGIN CONTAINER -->
+		<div class="page-container">
+			<!-- BEGIN SIDEBAR -->
+			<div data-ng-include="'tpl/sidebar.html'" data-ng-controller="SidebarController" class="page-sidebar-wrapper">
+			</div>
+			<!-- END SIDEBAR -->
+			<div class="page-content-wrapper">
+				<div class="page-content">
+					<!-- BEGIN PAGE HEAD -->
+					<div data-ng-include="'tpl/page-head.html'" data-ng-controller="PageHeadController" class="page-head">
+					</div>
+					<!-- END PAGE HEAD -->
+					<!-- BEGIN ACTUAL CONTENT -->
+					<div ui-view class="fade-in-up">
+					</div>
+					<!-- END ACTUAL CONTENT -->
+				</div>
+			</div>
+		</div>
+		<!-- END CONTAINER -->
+
+		<!-- BEGIN FOOTER -->
+		<div data-ng-include="'tpl/footer.html'" data-ng-controller="FooterController" class="page-footer">
+		</div>
+		<!-- END FOOTER -->
+
+		<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+		<!-- BEGIN CORE JQUERY PLUGINS -->
+		<!--[if lt IE 9]>
+		<script src="assets/js/respond.min.js"></script>
+		<script src="assets/js/excanvas.min.js"></script> 
+		<![endif]-->
+		<script src="assets/js/lib/jquery.min.js"></script>
+		<script src="assets/js/lib/jquery-migrate.min.js"></script>
+		<script src="assets/js/lib/bootstrap.min.js"></script>
+		<script src="assets/js/lib/bootstrap-hover-dropdown.min.js"></script>
+		<script src="assets/js/lib/jquery.slimscroll.min.js"></script>
+		<script src="assets/js/lib/jquery.blockui.min.js"></script>
+		<script src="assets/js/lib/jquery.cokie.min.js"></script>
+		<script src="assets/js/lib/jquery.uniform.min.js"></script>
+		<!-- END CORE JQUERY PLUGINS -->
+
+		<!-- BEGIN CORE ANGULARJS PLUGINS -->
+		<script src="lib/angularjs/angular.min.js"></script>
+		<script src="lib/angularjs/angular-sanitize.min.js"></script>
+		<script src="lib/angularjs/angular-touch.min.js"></script>
+		<script src="lib/angularjs/plugins/angular-ui-router.min.js"></script>
+		<script src="lib/angularjs/plugins/ocLazyLoad.min.js"></script>
+		<script src="lib/angularjs/plugins/ui-bootstrap-tpls.min.js"></script>
+		<!-- END CORE ANGULARJS PLUGINS -->
+
+		<!-- BEGIN APP LEVEL ANGULARJS SCRIPTS -->
+		<script src="assets/js/app.js"></script>
+		<script src="assets/js/directives.js"></script>
+		<!-- END APP LEVEL ANGULARJS SCRIPTS -->
+
+		<!-- BEGIN  ANGULARJS SERVICE SCRIPTS -->
+		<script src="assets/js/service/authService.js"></script>
+		<!-- END  ANGULARJS SERVICE SCRIPTS -->
+
+		<!-- BEGIN APP LEVEL JQUERY SCRIPTS -->
+		<script src="assets/js/billing.js"></script>
+		<script src="assets/js/layout.js"></script>
+		<script src="assets/js/demo.js"></script>
+		<!-- END APP LEVEL JQUERY SCRIPTS -->
+
+		<script>
+			/* Init Billing's core jquery plugins and layout scripts */
+			$(document).ready(function () {
+				Billing.init(); // Run BillingApp
+				Billing.setAssetsPath('assets/'); // Set the assets folder path			
+			});
+		</script>
+		<!-- END JAVASCRIPTS -->
+	</body>
+	<!-- END BODY -->
+
+</html>

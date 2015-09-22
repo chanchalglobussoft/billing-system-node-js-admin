@@ -1,0 +1,295 @@
+<div ng-controller="DomainController" data-ng-init="init()">
+    <!-- BEGIN SEARCH CLIENT FORM -->
+    <div class="row">
+        <div class="col-md-3" id="searchDomainPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+
+                                <a href="#/add-client.html">
+                                    <span class="title">Add new Client</span>
+                                </a><br>
+
+
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+                                <a href="#/tld-register-domain.html">
+                                    <span class="title">Domain Price</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3 col-md-9" style="margin-right: 1%;">
+            <!--<div class="row">-->
+
+            <!-- END SEARCH CLIENT FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box">
+                        <div class="portlet-head">
+                            <h3>Namecheap Account Balance</h3>
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="row">
+
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <div class="dashboard-stat blue-madison">
+                                        <div class="visual">
+                                            <i class="fa fa-comments"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number ng-binding">
+                                                {{response.namecheap.AccountBalance + ' ' + response.namecheap.Currency}}
+                                            </div>
+                                            <div class="desc">
+
+                                            </div>
+                                        </div>
+                                        <div class="more">
+                                            Account Balance
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <div class="dashboard-stat red-intense">
+                                        <div class="visual">
+                                            <i class="fa fa-bar-chart-o"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number ng-binding">
+                                                {{response.namecheap.AvailableBalance + ' ' + response.namecheap.Currency}}
+                                            </div>
+                                            <div class="desc">
+
+                                            </div>
+                                        </div>
+                                         <div class="more">
+                                            Available Balance
+                                       </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <div class="dashboard-stat green-haze">
+                                        <div class="visual">
+                                            <i class="fa fa-shopping-cart"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number ng-binding">
+                                                {{response.namecheap.EarnedAmount + ' ' + response.namecheap.Currency}}
+                                            </div>
+                                            <div class="desc">
+
+                                            </div>
+                                        </div>
+                                        <div class="more">
+                                            Earned Amount
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <div class="dashboard-stat purple-plum">
+                                        <div class="visual">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                {{response.namecheap.FundsRequiredForAutoRenew + ' ' + response.namecheap.Currency}}
+                                            </div>
+                                            <div class="desc">
+
+                                            </div>
+                                        </div>
+                                        <div class="more">
+                                            Funds Required To Renew
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                                    <div class="dashboard-stat purple-plum">
+                                        <div class="visual">
+                                            <i class="fa fa-globe"></i>
+                                        </div>
+                                        <div class="details">
+                                            <div class="number">
+                                                {{response.namecheap.WithdrawableAmount + ' ' + response.namecheap.Currency}}
+                                            </div>
+                                            <div class="desc">
+
+                                            </div>
+                                        </div>
+                                      <div class="more">
+                                            Withdrawable Amount
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portlet box">
+                        <div class="panel-heading">
+                            <h3 class="pull-left">List Of Registered Domains</h3>
+                        </div>
+                        <!--                                <div style="margin-top: 17px;" class="pull-right col-md-4">
+
+                                                    </div>-->
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered table-striped table-hover" id="sample_1">
+                                        <thead>
+                                            <tr>
+
+                                                <th>
+                                                    ID
+                                                </th>
+                                                <th>
+                                                    Domain Name
+                                                </th>
+                                                <th>
+                                                    Registered By
+                                                </th>
+                                                <th>
+                                                    Created On
+                                                </th>
+                                                <th>
+                                                    Expire On
+                                                </th>
+                                                <th>
+                                                    Is Expired
+                                                </th>
+                                                <th>
+                                                    Is Locked
+                                                </th>
+                                                <th>
+                                                    AutoRenew
+                                                </th>
+                                                <th>
+                                                    WhoisGuard
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="user in response.data" >
+                                                <td>
+                                                    <label>{{user.ID}}</label>
+                                                </td>
+                                                <td>
+                                                    <label class="text-success"> <a href="http://{{user.Name}}" target="_blank">{{user.Name}}</a></label>
+                                                </td>
+                                                <td>
+                                                    <label class="text-danger"><a>{{user.User}}</a></label>
+                                                </td>
+                                                <td>
+                                                    <label>{{user.Created | date:"MM/dd/yyyy"}}</label>
+                                                </td>
+                                                <td>
+                                                    <label>{{user.Expires | date:"MM/dd/yyyy"}}   </label>
+                                                </td>
+                                                <td>
+                                                    <label class="text-success" ng-if="user.IsExpired == true">{{user.IsExpired}}</label>
+                                                    <label  class="text-danger" ng-if="user.IsExpired == false">{{user.IsExpired}}</label>
+
+                                                </td>
+                                                <td>
+                                                    <label  class="text-success" ng-if="user.IsLocked == true">  {{user.IsLocked}} </label>
+                                                    <label  class="text-danger" ng-if="user.IsLocked == false">{{user.IsLocked}} </label>
+                                                </td>
+                                                <td>
+                                                    <label class="text-success"  ng-if="user.AutoRenew == true" > {{user.AutoRenew}} </label>
+                                                    <label class="text-danger"  ng-if="user.AutoRenew == false" > {{user.AutoRenew}} </label>
+                                                </td>
+                                                <td>
+                                                    <label>{{user.WhoisGuard}}</label>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END SEARCH TABLE FORM -->
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+    .dashboard-stat .visual > i {
+        font-size: 75px
+    }
+    .dashboard-stat .details .number {
+        font-size: 20px;
+    }
+    .col-lg-2 {
+        width: 20%;
+    }
+</style>
+<script>
+    (function () {
+        // [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+        // 	new SelectFx(el);
+        // } );
+    })();
+    $("#searchDomainPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

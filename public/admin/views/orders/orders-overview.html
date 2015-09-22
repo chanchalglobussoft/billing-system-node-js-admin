@@ -1,0 +1,402 @@
+<div ng-controller="OrderOverviewController" id="orderOverview" class="margin-top-10" data-ng-init="init()">
+  <div class="row">
+    <div class="col-md-3" id="clientsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+      
+        <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Orders</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                          <b>
+                                    <a href="#/create-order.html">
+                                      <span class="title">Add new Order</span>
+                                    </a><br>
+                                    
+                                    <a href="#/manage-order.html">
+                                      <span class="title">Manage Orders</span>
+                                    </a><br>
+
+
+                                </b>
+                        </div>
+                    </div>
+           
+<!--      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+          <div class="portlet light ">
+            <div class="portlet-title">
+              <div class="caption caption-md">
+                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+              </div>
+            </div>
+            <div class="portlet-body">
+              <form action="#" class="form-horizontal">
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>Clients</option>
+                    <option>Orders</option>
+                    <option>Invoices</option>
+                    <option>Services</option>
+                    <option>Domains</option>
+                    <option>Tickets</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select class="form-control">
+                    <option>Client Name</option>
+                    <option>Company Name</option>
+                    <option>Email Address</option>
+                    <option>Address 1</option>
+                    <option>Address 2</option>
+                    <option>City</option>
+                    <option>State</option>
+                    <option>Pincode</option>
+                    <option>Country</option>
+                    <option>Phone No. </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="1" />
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="btn btn-primary" value="SEARCH" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>-->
+<!--      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+          <div class="portlet light">
+            <div class="portlet-title">
+              <div class="caption caption-md">
+                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+              </div>
+            </div>
+            <div class="portlet-body">
+              <ul class="list-unstyled">
+                <li>Admin</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+      <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 2%;">
+			<div class="row">
+
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="dashboard-stat blue-madison">
+						<div class="visual">
+							<i class="fa fa-comments"></i>
+						</div>
+						<div class="details">
+							<div class="number">
+							{{response.pending.count}}
+							</div>
+							<div class="desc">
+							Total Pending Orders
+							</div>
+						</div>
+<!--						<a class="more" href="javascript:;">
+						View more <i class="m-icon-swapright m-icon-white"></i>
+						</a>-->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="dashboard-stat red-intense">
+						<div class="visual">
+							<i class="fa fa-bar-chart-o"></i>
+						</div>
+						<div class="details">
+							<div class="number">
+								{{response.active.count}}
+							</div>
+							<div class="desc">
+								Total Active Orders
+							</div>
+						</div>
+<!--						<a class="more" href="javascript:;">
+						View more <i class="m-icon-swapright m-icon-white"></i>
+						</a>-->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="dashboard-stat green-haze">
+						<div class="visual">
+							<i class="fa fa-shopping-cart"></i>
+						</div>
+						<div class="details">
+							<div class="number">
+								{{response.fraud.count}}
+
+							</div>
+							<div class="desc">
+					     Fraud Orders
+							</div>
+						</div>
+<!--						<a class="more" ng-href="javascript:;">
+						View more <i class="m-icon-swapright m-icon-white"></i>
+						</a>-->
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<div class="dashboard-stat purple-plum">
+						<div class="visual">
+							<i class="fa fa-globe"></i>
+						</div>
+						<div class="details">
+							<div class="number">
+								{{response.cancelled.count}}
+							</div>
+							<div class="desc">
+							Cancelled Orders
+							</div>
+						</div>
+<!--						<a class="more" href="javascript:;">
+						View more <i class="m-icon-swapright m-icon-white"></i>
+						</a>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<!-- BEGIN PORTLET-->
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart font-green-haze hide"></i>
+								<span class="caption-subject font-green-haze bold uppercase">Orders Status By Date</span>
+								<!-- <a class="more pull-right" id="graphfill" href="javascript:;">
+								Toggel Graph <i class="m-icon-swapright m-icon-white"></i>
+								</a>
+								<a class="more pull-right" id="curve" href="javascript:;">
+								Toggel Curve <i class="m-icon-swapright m-icon-white"></i>
+								</a> -->
+							</div>
+						<!-- 	<div class="actions">
+								<div class="btn-group btn-group-devided">
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+										<a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="graphfill">Toggle Graph</a></label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+										<a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="curve">Toggle Curve</a></label>
+								</div>
+							</div> -->
+						</div>
+						<div class="portlet-body">
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div id="canvas-holder">
+
+										<canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="939" height="500" ></canvas>
+
+
+										<!-- <canvas id="chart-area" width="939" height="500"/> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- <div class="col-md-12 col-sm-12">
+
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart font-green-haze hide"></i>
+								<span class="caption-subject font-green-haze bold uppercase">Orders Summary</span>
+								<span class="caption-helper hide">weekly stats...</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="row">
+								<div class="col-md-12 col-sm-12">
+									<div id="canvas-holder">
+										<canvas id="chart-area" width="939" height="400"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+			</div>
+<!--			<div class="row">
+				<div class="col-md-6 col-sm-12">
+					 BEGIN PORTLET
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart font-green-haze hide"></i>
+								<span class="caption-subject font-green-haze bold uppercase">Top Five Clients By Order</span>
+								<span class="caption-helper hide">weekly stats...</span>
+							</div>
+
+						</div>
+						<div class="portlet-body">
+
+							<div class="table-scrollable table-scrollable-borderless">
+								<table class="table table-hover table-light">
+									<thead>
+									<tr class="uppercase">
+										<th >
+											Client Id
+										</th>
+										<th>
+											Client Name
+										</th>
+										<th>
+											Number of orders
+										</th>
+
+									</tr>
+									</thead>
+
+									<tr ng-repeat="data in response.topfiveorders" >
+										<td >
+											{{data.clientId}}
+										</td>
+										<td>
+											{{data.fname +' '+data.lname}}
+										</td>
+										<td>
+											{{data.count}}
+										</td>
+
+									</tr>
+
+								</table>
+							</div>
+
+
+
+						</div>
+					</div>
+					 END PORTLET
+				</div>
+				<div class="col-md-6 col-sm-12">
+					 BEGIN PORTLET
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<i class="icon-bar-chart font-green-haze hide"></i>
+								<span class="caption-subject font-green-haze bold uppercase">Member Activity</span>
+								<span class="caption-helper hide">weekly stats...</span>
+							</div>
+							<div class="actions">
+								<div class="btn-group btn-group-devided" data-toggle="buttons">
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm active" ng-click="dataByday(0)" >
+										<input type="radio" name="options" class="toggle" id="option1">Today</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm" ng-click="dataByday(1)" >
+										<input type="radio" name="options" class="toggle" id="option2">Week</label>
+									<label class="btn btn-transparent grey-salsa btn-circle btn-sm" ng-click="dataByday(2)" >
+										<input type="radio" name="options" class="toggle" id="option2">Month</label>
+								</div>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<div class="scroller" style="overflow-y: scroll;height: 232px;" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+							<div class="row number-stats margin-bottom-30">
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="stat-left">
+										<div class="stat-chart">
+											 do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break 
+											<div id="sparkline_bar"></div>
+										</div>
+										<div class="stat-number">
+											<div class="title">
+												Total Pending
+											</div>
+											<div class="number">
+												{{response.pending.count }}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6 col-xs-6">
+									<div class="stat-right">
+										<div class="stat-chart">
+											 do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break 
+											<div id="sparkline_bar2"></div>
+										</div>
+										<div class="stat-number">
+											<div class="title">
+												New
+											</div>
+											<div class="number">
+												719
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="table-scrollable table-scrollable-borderless table-responsive">
+								<table class="table table-hover table-light">
+									<thead>
+										<tr class="uppercase">
+											<th >
+												Client Id
+											</th>
+											<th>
+											Product Id
+											</th>
+											<th>
+											Description
+											</th>
+											<th>
+												Order Status
+											</th>
+											<th>
+											Ip
+											</th>
+										</tr>
+									</thead>
+
+									<tr ng-repeat="data in response.ordersData" >
+										<td >
+                                            {{data.clientId}}
+										</td>
+										<td>
+                                             {{data.productId}}
+										</td>
+										<td>
+                                             {{data.description}}
+										</td>
+										<td>
+											<span ng-if="data.orderStatus==1">Pending</span>
+											<span ng-if="data.orderStatus==2" >Active</span>
+											<span ng-if="data.orderStatus==3">Cancelled</span>
+											<span ng-if="data.orderStatus==4">Fraud</span>
+											<span ng-if="data.orderStatus==5">Completed</span>
+
+
+										</td>
+										<td>
+											{{data.ipaddress}}
+
+										</td>
+
+									</tr>
+
+								</table>
+							</div>
+							</div>
+						</div>
+					</div>
+					 END PORTLET
+				</div>
+			</div>-->
+		</div>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+
+	$("#clientsPortlet").mCustomScrollbar({theme:"minimal"});
+</script>

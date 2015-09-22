@@ -1,0 +1,58 @@
+
+  <div class="login-box" ng-controller="authController">
+    <div class="lb-header" ng-init="login=1">
+      <a ng-class="login?'active':''" href="" class="active" id="login-box-link" ng-click="login=1">Login</a>
+      <a ng-class="!login?'active':''" href="" id="signup-box-link" ng-click="login=0">Sign Up</a>
+    </div>
+    <div class="social-login" >
+      <a href="/auth/facebook">
+        <i class="fa fa-facebook fa-lg"></i>
+        Login in with facebook
+      </a>
+             <a href="/auth/google">
+               <i class="fa fa-google-plus fa-lg"></i>
+               log in with Google
+      </a>
+      <a href="/auth/twitter">
+               <i class="fa fa-twitter fa-lg"></i>
+        log in with twitter
+      </a>
+      <a href="/auth/linkedin">
+               <i class="fa fa-linkedin fa-lg"></i>
+        log in with linkedin
+             </a>
+       <a href="/auth/github">
+        <i class="fa fa-github fa-lg"></i>
+        log in with github
+      </a>
+    </div>`
+    <form class="email-login" ng-show="login" ng-submit="loginUser()">
+      <div class="u-form-group">
+        <input type="email" placeholder="Email" ng-model="user.email"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" placeholder="Password" ng-model="user.password"/> 
+      </div>
+      <div class="u-form-group">
+        <button type="submit">Log in</button>
+      </div>
+      <span class="error">{{error}}</span>
+      <div class="u-form-group">
+        <a href="#!/forgotpassword" class="forgot-password">Forgot password?</a>
+      </div>
+    </form>
+    <form class="email-signup" ng-show="!login">
+      <div class="u-form-group">
+        <input type="email" placeholder="Email"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" placeholder="Password"/>
+      </div>
+      <div class="u-form-group">
+        <input type="password" placeholder="Confirm Password"/>
+      </div>
+      <div class="u-form-group">
+        <button>Sign Up</button>
+      </div>
+    </form>
+  </div>

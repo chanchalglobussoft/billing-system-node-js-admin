@@ -1,0 +1,108 @@
+<div ng-controller="AFRTController" ng-init="init()" >
+    <div class="row">
+        <div ng-include="'views/report/support/support-report-side-bar.html'"></div>
+
+        <div class="col-md-9 col-md-offset-3" style="margin-left: 21%; margin-right: 1%; width: 79%;">
+            <div class="row">
+<!--                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div id="canvas-holder">
+                        <canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="939" height="500" ></canvas>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box">
+                        <div class="portlet-head">
+                            <h3>Support First Response Statistics</h3>
+                        </div>
+                        <div class="portlet-body">
+                             <div class="alert alert-info">
+                                <h4 style="color:blue;"><span>Total number of tickets generated:<span class="label" style="margin: 5px; background-color: blue;">&nbsp;{{totalTickets}}&nbsp;</span></span></h4>
+                                <h4 style="color:green;"><span>Total number of Admins:<span class="label" style="margin: 5px; background-color: green;">&nbsp;{{adminCount}}&nbsp;</span></h4>
+                            </div>
+                            
+                        <div role="tabpanel">
+                                <form>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                            <input type="text" class="form-control" placeholder="Search Support First Response Statistics" ng-model="searchAFRT">
+                                        </div>      
+                                    </div>
+                                </form>
+
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                             <td>
+                                                <a href="#" ng-click="sortType = 'adminId'; sortReverse = !sortReverse">
+                                                    Admin ID
+                                                    <span ng-show="sortType == 'adminId' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'adminId' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            
+                                             <td>
+                                                <a href="#" ng-click="sortType = 'adminName'; sortReverse = !sortReverse">
+                                                    Admin Name
+                                                    <span ng-show="sortType == 'adminName' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'adminName' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'noTickets'; sortReverse = !sortReverse">
+                                                    Number of tickets assigned
+                                                    <span ng-show="sortType == 'noTickets' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'noTickets' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="#" ng-click="sortType = 'art'; sortReverse = !sortReverse">
+                                                    Average First Response Time
+                                                    <span ng-show="sortType == 'art' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'art' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                                                                        <td>                                               
+                                                <a href="#" ng-click="sortType = 'deptId'; sortReverse = !sortReverse">
+                                                    Department ID
+                                                    <span ng-show="sortType == 'deptId' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'deptId' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                              <td>
+                                                <a href="#" ng-click="sortType = 'deptname'; sortReverse = !sortReverse">
+                                                    Department Name
+                                                    <span ng-show="sortType == 'deptname' && !sortReverse" class="fa fa-caret-down"></span>
+                                                    <span ng-show="sortType == 'deptname' && sortReverse" class="fa fa-caret-up"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </thead>                
+                                    <tbody>
+                                        <tr ng-repeat="tpa in ticketsPerAdmin| orderBy : sortType : sortReverse | filter : searchAFRT">
+                                        <td>{{tpa.adminId}}</td>
+                                        <td>{{tpa.fname}} {{tpa.lname}}</td>
+                                        <td> {{tpa.ticketCount}}</td>
+                                        <td> {{tpa.avgFirstRespTime / 3600| number:2 }} hrs</td>
+                                        <td> {{tpa.departmentId}}</td>
+                                        <td>
+                                            <span ng-if="tpa.departmentId == 1" > Sales Department </span>
+                                            <span ng-if="tpa.departmentId == 2" > Technical Support </span>
+                                        </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,554 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="supportTicketsPortlet" style="position:fixed; height: 427px !important; width:25%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Configuration</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">General Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Automation Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-note"></i>
+                                        <span class="title">Email Templates</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-list"></i>
+                                        <span class="title">Addon Modules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-badge"></i>
+                                        <span class="title">Client Groups</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Management</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                          <ul class="list-unstyled page-sidebar-menu">
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-user-follow"></i>
+                                      <span class="title">Administrator Users</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-basket"></i>
+                                      <span class="title">Administrator Roles</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-note"></i>
+                                      <span class="title">Two-Factor Authentication</span>
+                                  </a>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Payments</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">Currencies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Payment Gateways</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Tax Rules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Promotions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Clients</option>
+                                        <option>Orders</option>
+                                        <option>Invoices</option>
+                                        <option>Services</option>
+                                        <option>Domains</option>
+                                        <option>Tickets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Client Name</option>
+                                        <option>Company Name</option>
+                                        <option>Email Address</option>
+                                        <option>Address 1</option>
+                                        <option>Address 2</option>
+                                        <option>City</option>
+                                        <option>State</option>
+                                        <option>Pincode</option>
+                                        <option>Country</option>
+                                        <option>Phone No. </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="1" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="SEARCH" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>Admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <h2 class="caption-subject font-green-haze bold uppercase">Payment Gateways</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div role="tabpanel">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active">
+                                                <a data-target="#featured" aria-controls="summary" role="tab" data-toggle="tab">
+                                                    <i class="fa fa-star"></i>
+                                                    Featured Payment Gateways
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a data-target="#all" aria-controls="profile" role="tab" data-toggle="tab">
+                                                    <i class="fa fa-plus"></i>
+                                                    All Payment Gateways
+                                                </a>
+                                            </li>
+                                            <li role="presentation">
+                                                <a data-target="#manage" aria-controls="contacts" role="tab" data-toggle="tab">
+                                                    <i class="fa fa-wrench"></i>
+                                                    Manage Existing Gateways
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <!-- Tab panes -->
+                            					  <div class="tab-content">
+                            					      <div role="tabpanel" class="tab-pane active" id="featured">
+                            								    <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="partner-logo">
+                                                                        <img src="https://cdn.whmcs.com/assets/logos/paypal.gif" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 partner-features">
+                                                                    <div class="partner-headline">
+                                                                        PayPal is one of the simplest and quickest ways for your customers to pay.
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-11 col-sm-offset-1">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <i class="fa fa-check"></i> Get Paid On Time<br>
+                                                                                    <i class="fa fa-check"></i> Express Checkout Supported
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <i class="fa fa-check"></i> Automatic Subscription Billing<br>
+                                                                                    <i class="fa fa-check"></i> One-Click Refunds
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2 text-center partner-actions">
+                                                                    <button class="btn btn-info">Signup Now</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="well">
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="partner-logo">
+                                                                        <img src="https://upload.wikimedia.org/wikipedia/en/1/1f/Dwolla_logo.png" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7 partner-features">
+                                                                    <div class="partner-headline">
+                                                                        Dwolla is one of the simplest and quickest ways for your customers to pay.
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-11 col-sm-offset-1">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <i class="fa fa-check"></i> Get Paid On Time<br>
+                                                                                    <i class="fa fa-check"></i> Express Checkout Supported
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <i class="fa fa-check"></i> Automatic Subscription Billing<br>
+                                                                                    <i class="fa fa-check"></i> One-Click Refunds
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2 text-center partner-actions">
+                                                                    <button class="btn btn-info">Signup Now</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="all">
+                            								    <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p>Click on a payment gateway below to activate and begin using it. Already active payment gateways will appear in green.</p>
+                                                        <div class="row" style="margin-top:3%; margin-bottom:3%;">
+                                                            <div class="col-xs-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-success btn-sm btn-block" disabled="" type="submit"> Authorize.net </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-success btn-sm btn-block" disabled="" type="submit"> Authorize.net </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-success btn-sm btn-block" disabled="" type="submit"> Authorize.net </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-default btn-sm btn-block" type="submit"> Amazon Simple Pay (deprecated) </button>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-6 text-center" style="margin-bottom:5px;">
+                                                                        <button class="btn btn-success btn-sm btn-block" disabled="" type="submit"> Authorize.net </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p>Can't find the payment gateway you're looking for? Take a look at our App Store for gateways with third party modules.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane" id="manage">
+                            								    <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h4>1. Authorize.net <span class="text-danger">(Deactivate)</span> <i class="fa fa-arrow-circle-down"></i></h4>
+                                                        <div class="portlet light">
+                                                            <div class="portlet-body">
+                                                                <form class="form-horizontal">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Show on Order Form </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Display Name </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Login ID </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Transaction Key </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Test Mode </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Convert To For Processing </label>
+                                                                        <div class="col-md-8">
+                                                                            <select class="form-control">
+                                                                                <option>None</option>
+                                                                                <option>EUR</option>
+                                                                                <option>GBP</option>
+                                                                                <option>USD</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group text-center">
+                                                                        <button class="btn btn-primary">Save Changes</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h4>2. PayPal <span class="text-danger">(Deactivate)</span> <i class="fa fa-arrow-circle-up"></i> <i class="fa fa-arrow-circle-down"></i></h4>
+                                                        <div class="portlet light">
+                                                            <div class="portlet-body">
+                                                                <form class="form-horizontal">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Show on Order Form </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Display Name </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> PayPal Email </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Force One Time Payments </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                            Never show the subscription payment button
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Force Subscriptions </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                            Hide the one time payment button when a subscription can be created
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Require Shipping Address </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                            Tick this box to request a shipping address from a user on PayPal's site
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Client Address Matching </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                            Tick this box to force using client profile information entered into WHMCS at PayPal
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> API Username </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                            <span class="help-block">API Details are required for Refunds and Subscription cancellations</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> API Password </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> API Signature </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Sandbox Mode </label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="checkbox" class="" />
+                                                                            Tick to use PayPal’s Virtual Sandbox Test Environment - requires a separate Sandbox Test Account
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-4"> Convert To For Processing </label>
+                                                                        <div class="col-md-8">
+                                                                            <select class="form-control">
+                                                                                <option>None</option>
+                                                                                <option>EUR</option>
+                                                                                <option>GBP</option>
+                                                                                <option>USD</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group text-center">
+                                                                        <button class="btn btn-primary">Save Changes</button>
+                                                                        <span class="help-block">(You must enable IPN inside your PayPal account and set the URL to http://demo.whmcs.com)</span>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+    div.partner-logo {
+      background-color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      height: 100px;
+      overflow: hidden;
+      position: relative;
+    }
+    div.partner-logo img {
+      bottom: 0;
+      height: auto;
+      left: 0;
+      margin: auto;
+      max-height: 100%;
+      max-width: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+    }
+    div.partner-features {
+      color: #333;
+      padding-bottom: 15px;
+      padding-top: 15px;
+    }
+    div.partner-headline {
+      font-size: 1.2em;
+    }
+    div.partner-actions {
+      line-height: 100px;
+    }
+    .btn-sm {
+      font-size: 11px;
+    }
+</style>
+
+<script>
+
+</script>
+<!-- BEGIN MAIN JS & CSS -->

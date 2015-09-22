@@ -1,0 +1,243 @@
+<style>
+    /***
+    Invoice page
+    ***/
+    .invoice table {
+        margin: 30px 0 30px 0;
+    }
+
+    .invoice .invoice-logo {
+        margin-bottom: 20px;
+    }
+
+    .invoice .invoice-logo p {
+        padding: 5px 0;
+        font-size: 26px;
+        line-height: 28px;
+        text-align: right;
+    }
+
+    .invoice .invoice-logo p span {
+        display: block;
+        font-size: 14px;
+    }
+
+    .invoice .invoice-logo-space {
+        margin-bottom: 15px;
+    }
+
+    .invoice .invoice-payment strong {
+        margin-right: 5px;
+    }
+
+    .invoice .invoice-block {
+        text-align: right;
+    }
+
+    .invoice .invoice-block .amounts {
+        margin-top: 20px;
+        font-size: 14px;
+    }
+    .portlet.light {
+        border-radius: 0% !important;
+    }
+</style>
+<div class="portlet light" ng-controller="InvoiceController" data-ng-init="init()">
+    <div class="portlet-body">
+                     <div class="actions" style="float: right;">
+                        <a class="btn btn-default btn-circle" onclick="goBack()">
+                            <i class="fa fa-angle-left"></i>
+                            <span class="hidden-480">
+                                Back </span>
+                        </a>
+                        <div class="btn-group">
+                            <a data-toggle="dropdown" href="javascript:;" class="btn btn-default btn-circle">
+                                <i class="fa fa-cog"></i>
+                                <span class="hidden-480">
+                                    Tools </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;">
+                                        Export to Excel </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        Export to CSV </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        Export to XML </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        Print Invoice </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+        <div class="invoice">
+
+            <div class="row invoice-logo">
+                <h1 class="text-center"><strong>Invoice</strong></h1>
+                <div class="col-xs-6 invoice-logo-space">
+
+                    <img alt="" class="img-responsive" src="../../assets/images/demo1.png">
+                </div>
+                <div class="col-xs-6">
+                    <p>
+                        <strong>Invoice No:</strong>{{response.invoiceDetails.invoiceId}} <br/><span>
+                            <strong>Date:</strong>{{response.invoiceDetails.InvoiceDate}} </span>
+                    </p>
+                </div>
+
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-xs-4">
+                    <h3>Client:</h3>
+                    <ul class="list-unstyled">
+                        <li>
+                            <strong>Name:</strong>&nbsp;{{response.invoiceDetails.fname}} &nbsp;{{response.invoiceDetails.lname}}
+                        </li>
+                        <li>
+                            <strong>Address1:</strong>&nbsp;{{response.invoiceDetails.address1}}
+                        </li>
+                        <li>
+                            <strong>Address2:</strong>&nbsp;{{response.invoiceDetails.address2}}
+                        </li>
+                        <li>
+                            <strong>Region:</strong>&nbsp;{{response.invoiceDetails.state}}
+                        </li>
+                        <li>
+                            <strong>Country:</strong>&nbsp;{{response.invoiceDetails.CountryName}}
+                        </li>
+                        <li>
+                            <strong>Postal Code:</strong>&nbsp;{{response.invoiceDetails.zipcode}}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-4 invoice-payment  pull-right">
+                    <h3>Payment Details:</h3>
+                    <ul class="list-unstyled">
+                        <li>
+                            <strong>TransactionId#:</strong> {{response.invoiceDetails.transactionId}}
+                        </li>
+                        <li>
+                            <strong>Payment Gateway#:</strong> N/A
+                        </li>
+                        <li>
+
+
+                            <strong>Transaction Status#:</strong> <label class="text-success" ng-if="response.invoiceDetails.transactionsStatus == 1" >Successful</label>
+                            <label class="text-danger" ng-if="response.invoiceDetails.transactionsStatus == 2" >Failed</label>
+                            <label class="text-warning" ng-if="response.invoiceDetails.transactionsStatus == 3" >Pending</label>
+                            <label class="text-info" ng-if="response.invoiceDetails.transactionsStatus == 4" >Incomplete</label>
+
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Product Code
+                                </th>
+                                <th>
+                                    Product
+                                </th>
+                                <th class="hidden-480">
+                                    Description
+                                </th>
+                                <th class="hidden-480">
+                                    Cost
+                                </th>
+                                <th class="hidden-480">
+                                    Payment Type
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {{response.invoiceDetails.productId}}
+                                </td>
+                                <td>
+                                    {{response.invoiceDetails.productName}}
+                                </td>
+                                <td class="hidden-480">
+
+                                    {{response.invoiceDetails.description}}
+                                </td>
+                                <td class="hidden-480"> &#36;
+                                    {{response.invoiceDetails.amount}}
+                                </td>
+                                <td class="hidden-480">
+                                    Yearly
+                                </td>
+                                <td> &#36;
+                                    {{response.invoiceDetails.amount}}
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="well">
+                        <address>
+
+                            <strong><h2>Poweruphosting Inc.</h2></strong><br>
+                            225 South Olive St. Los Angeles<br>
+                            Los Angeles, United States<br>
+                            <abbr title="Phone">P:</abbr> (234) 145-1810 </address>
+                        <address>
+                            <strong>Full Name</strong><br>
+                            <a href="mailto:support@poweruphosting.com">
+                                support@poweruphosting.com </a>
+                        </address>
+                    </div>
+                </div>
+                <div class="col-xs-8 invoice-block">
+                    <ul class="list-unstyled amounts">
+                        <li>
+                            <strong>Sub - Total amount:</strong>  &#36;
+                            {{response.invoiceDetails.amount}}
+                        </li>
+                        <li>
+                            <strong>Discount:</strong> NIL
+                        </li>
+                        <li>
+                            <strong>Service Tax:</strong>{{response.stax}}%
+                        </li>
+                        <li>
+                            <strong>Grand Total:</strong>  &#36;
+                            {{response.totalPrice | number: 2}}
+                        </li>
+                    </ul>
+                    <br>
+                    <a onclick="javascript:window.print();" class="btn btn-lg blue hidden-print margin-bottom-5">
+                        Print <i class="fa fa-print"></i>
+                    </a>
+                    <!-- <a class="btn btn-lg green hidden-print margin-bottom-5">
+                    Submit Your Invoice <i class="fa fa-check"></i> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

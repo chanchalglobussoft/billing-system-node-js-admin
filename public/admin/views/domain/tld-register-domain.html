@@ -1,0 +1,66 @@
+<div  ng-controller="RegistertldController" data-ng-init="init()">
+    <div ng-include="'views/settings/settings-sidebar.html'"></div>
+
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3" >
+            <div class="row">
+                <div>
+                    <h1>Current Price Margin:{{response.percentage}} %</h1>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
+                    <div class="portlet box blue-hoki">
+                        <div class="portlet-title ">
+                            
+                            <div class="form-inline pull-left">   
+                                <div class="form-group" style="margin-top: 1%">
+                                <!--<label for="setprice">Set margin</label>-->
+                                <input type="text" class="form-control" name="increase" ng-model="session.increase" placeholder="Value in %" />
+                                <input type="submit" class="btn btn-danger" value="Increase in %"  ng-click='increase(session.increase)'/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-inline pull-right" >
+                                <div class="form-group" style="margin-top: 1%">
+                                    <label for="search">Search:</label>
+                                    <input type="text" placeholder="Search .." ng-model="test" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="portlet-body">
+
+                            <table class="table table-striped table-bordered table-hover" cellspacing="0" style="width:100%;" datatable="">
+                                <thead>
+                                    <tr>
+                                        <th>Tld</th>
+                                        <th>NameCheap Price</th>
+                                        <th>Our Price</th>
+                                        <th>Max Duration</th>
+                                        <th>PromotionPrice</th>
+
+                                    </tr>
+                                </thead>
+
+
+
+                                <tbody>
+                                    <tr ng-repeat="domain in response.data| filter:test ">
+
+                                        <td>{{domain.TldName}}</td>
+                                        <td>${{domain.namecheapPrice| number:2}}</td>
+                                        <td>${{domain.MyPrice| number:2}}</td>
+                                        <td>{{domain.MaximumDuration}}</td>
+                                        <td>${{domain.PromotionPrice| number:2}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>

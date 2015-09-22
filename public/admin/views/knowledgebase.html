@@ -1,0 +1,308 @@
+<!-- BEGIN PAGE BREADCRUMB -->
+<!--<ul class="page-breadcrumb breadcrumb">-->
+	<!--<li>-->
+		<!--<a href="#">Home</a><i class="fa fa-circle"></i>-->
+	<!--</li>-->
+  <!--<li>-->
+		<!--<a href="#">Support</a><i class="fa fa-circle"></i>-->
+	<!--</li>-->
+	<!--<li class="active">-->
+    <!--Knowledge Base-->
+	<!--</li>-->
+<!--</ul>-->
+<!-- END PAGE BREADCRUMB -->
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" class="margin-top-10">
+	<div class="row">
+		<div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="knowledgebasePortlet" style="position:fixed; height: 427px !important; width:25%;">
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">support</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<ul class="list-unstyled page-sidebar-menu">
+								<li>
+									<a href="#">
+										<i class="icon-user-follow"></i>
+										<span class="title">Announcements</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Downloads</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-note"></i>
+										<span class="title">KnowledgeBase</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-list"></i>
+										<span class="title">Open New Ticket</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-badge"></i>
+										<span class="title">Predefined Replies</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">filter tickets</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<form action="#" class="form-horizontal">
+								<div class="form-group">
+                  <label class="control-label">Status</label>
+									<select class="form-control">
+										<option>-- Any --</option>
+										<option>Awaiting Reply (3)</option>
+                    <option>Flagged Tickets (0)</option>
+                    <option>All Active Tickets (3)</option>
+                    <option>Open (3)</option>
+                    <option>Answered (3)</option>
+                    <option>Customer Reply (3)</option>
+                    <option>On Hold (3)</option>
+                    <option>In Progress (3)</option>
+                    <option>Closed (3)</option>
+									</select>
+								</div>
+								<div class="form-group">
+                  <label class="control-label">Department</label>
+									<select class="form-control">
+										<option>-- Any --</option>
+										<option>Sale Department</option>
+										<option>Technical Support</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="1" placeholder="Subject/Message" />
+								</div>
+                <div class="form-group">
+									<input type="email" class="form-control" name="1" placeholder="Email Address" />
+								</div>
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="Filter" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+      <div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">Network Issues</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+              <ul class="list-unstyled page-sidebar-menu">
+								<li>
+									<a href="#">
+										<i class="icon-user-follow"></i>
+										<span class="title">Open</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Scheduled</span>
+									</a>
+								</li>
+                <li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Resolved</span>
+									</a>
+								</li>
+                <li>
+									<a href="#">
+										<i class="icon-basket"></i>
+										<span class="title">Create New</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+      <div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<form action="#" class="form-horizontal">
+								<div class="form-group">
+									<select class="form-control">
+										<option>Clients</option>
+										<option>Orders</option>
+										<option>Invoices</option>
+										<option>Services</option>
+										<option>Domains</option>
+										<option>Tickets</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<select class="form-control">
+										<option>Client Name</option>
+										<option>Company Name</option>
+										<option>Email Address</option>
+										<option>Address 1</option>
+										<option>Address 2</option>
+										<option>City</option>
+										<option>State</option>
+										<option>Pincode</option>
+										<option>Country</option>
+										<option>Phone No. </option>
+									</select>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" name="1" />
+								</div>
+								<div class="form-group">
+									<input type="submit" class="btn btn-primary" value="SEARCH" />
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption caption-md">
+								<span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<ul class="list-unstyled">
+								<li>Admin</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9 col-md-offset-3">
+			<div class="row">
+        <div class="col-md-12">
+          <div ng-controller="TabsDemoCtrl">
+            <tabset justified="true">
+						  <tab heading="Add Category">
+                <div class="row">
+                  <div class="col-md-12">
+                    <form action="" class="form-horizontal">
+                      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+      										<span class="input input--nao">
+      				             	<input class="input__field input__field--nao" type="text" id="input-1" name="fName" ng-model="session.fName" required />
+      				              <label class="input__label input__label--nao" for="input-1">
+      				               	<span class="input__label-content input__label-content--nao">Category Name</span>
+      				              </label>
+      				              <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+      					              <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+      				              </svg>
+      				             </span>
+                          </div>
+                          <div class="form-group">
+        										<span class="input input--nao">
+        				             	<input class="input__field input__field--nao" type="text" id="input-1" name="fName" ng-model="session.fName" required />
+        				              <label class="input__label input__label--nao" for="input-1">
+        				                <span class="input__label-content input__label-content--nao">Description</span>
+        				              </label>
+        				              <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        					              <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
+        				              </svg>
+        				            </span>
+                          </div>
+                          <div class="form-group">
+      											<div class="ac-custom ac-checkbox ac-checkmark" autocomplete="off" style="padding-top:8%;">
+      												<ul>
+      													<li>
+      														<input id="check1" name="check1" ng-model="session.check1" type="checkbox" />
+      														<label for="check1">Tick to Hide</label>
+      													</li>
+      												<ul>
+      											</div>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                              <div class="form-group text-center col-md-offset-3 col-md-6">
+                                <button class="button button--itzel button--text-thick" style="width:400px;max-width:400px;" value="Add New Announcement">
+                                  <i class="button__icon icon icon-user" style="margin-top: -2%;"></i><span>Add Category</span>
+                                </button>
+                              </div>
+                          </div>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </tab>
+						  <tab heading="Add Download">
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <p>You cannot add an download to the top level category </p>
+                  </div>
+                </div>
+              </tab>
+						</tabset>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <strong> No Articles Found </strong>
+        </div>
+      </div>
+		</div>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script src="assets/js/svgcheckbx.js"></script>
+<style>
+  .nav.nav-tabs.nav-justified {
+    width: 40%;
+  }
+</style>
+<script>
+  // Tabs demo controller
+  function TabsDemoCtrl($scope) {
+    $scope.tabs = [
+        { title:'Dynamic Title 1', content:'Dynamic content 1' },
+        { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+      ];
+
+      /*
+      $scope.alertMe = function() {
+        setTimeout(function() {
+          alert('You\'ve selected the alert tab!');
+        });
+      };
+      */
+  }
+  $("#knowledgebasePortlet").mCustomScrollbar({theme:"minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

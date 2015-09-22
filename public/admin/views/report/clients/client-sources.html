@@ -1,0 +1,150 @@
+
+<div ng-controller="ClientSourceController" ng-init="init()" >
+    <div ng-include="'views/report/clients/clients-report-side-bar.html'"></div>
+    <div class="row">
+
+
+
+
+        <div class="col-md-9 col-md-offset-3" style="margin-left: 21%; margin-right: 1%; width: 79%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div id="canvas-holder" class="text-center" style="width:750px;">
+                        <center>	<canvas tc-chartjs-doughnut chart-options="baroption" chart-data="bardata" chart-legend="doughnutChart1"></canvas></center>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- END SEARCH ORDERS FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="portlet box">
+
+                        <div class="portlet-head">
+                            <h3>Client's Sources </h3>
+
+                        </div>
+                        <div class="portlet-body">
+
+
+
+                            <table class="table table-bordered table-striped table-hover" id="sample_1">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Client Id
+                                        </th>
+
+                                        <th>
+                                            Client Name
+                                        </th>
+                                        <th>
+                                            Source Name
+                                        </th>
+                                        <th>
+                                            Source Type
+                                        </th>
+                                        <th>
+                                            Client's Current Status
+                                        </th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in datatab">
+
+
+
+
+                                        <td>
+                                            {{data.clientId}}
+
+                                        </td>
+
+                                        <td>
+                                            <a href="#/client-profile.html?clientId={{data.clientId}}">{{data.fname + ' ' + data.lname}}</a>
+                                        </td>
+
+                                        <td>
+                                            <label class="text-success">	{{data.source_name}}</label>
+
+                                        </td>
+
+                                        <td>
+                                            {{data.source}}
+                                        </td>
+                                        <td>
+                                            <label class="text-success" ng-if="data.status == 1" >Active</label>
+                                            <label class="text-danger" ng-if="data.status == 2" >Inactive</label>
+                                            <label class="text-warning" ng-if="data.status == 3" >Closed</label>
+                                            <label class="text-default" ng-if="data.status == 0" >Not Activated Yet</label>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+
+
+
+
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    (function () {
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+    })();
+</script>
+<script>
+
+
+    $("#manageOrderPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+    .tc-chart-js-legend {
+        list-style-type: none;
+        padding-left: 0px;
+        float: right;
+        position: absolute;
+        display: inline-flex;
+        margin-top: -554px;
+        margin-left: 342px;
+    }
+    .tc-chart-js-legend li {
+        display: block;
+        float: left;
+        clear:both;
+        padding:10px;
+    }
+    .tc-chart-js-legend li span {
+        width:25px;
+        height:25px;
+        display:block;
+        float:left;
+        margin-right:10px;
+    }
+</style>

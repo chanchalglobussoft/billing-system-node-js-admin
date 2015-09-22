@@ -1,0 +1,579 @@
+<style>
+    .cs-large .cs-options {
+        width: 150% !important;
+    }
+    .cs-large > span::after {
+        display: none !important;
+    }
+    .btn-group.tabletools-dropdown-on-portlet {
+        display: none;
+    }
+    .nav.nav-tabs.nav-justified {
+        width: 40%;
+    }
+    .note h2 {
+        text-align: center;
+        font-weight: bold;
+    }
+    #upload_link {
+        text-decoration:none;
+    }
+    #upload {
+        display:none
+    }
+    .multi.MultiFile-applied.MultiFile {
+        display: none;
+    }
+</style>
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="ActiveticketsController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3" id="supportTicketsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <span class="caption-subject font-green-haze bold uppercase">Support</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <b>
+                        <a href="#/support-overview.html">
+                            <span class="title">Support Overview</span>
+                        </a><br>
+
+                        <a href="#/on-hold-tickets.html">
+                            <span class="title">On Hold Tickets</span>
+                        </a><br>
+
+                    </b>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+
+
+            <span class="actions" style="float: right;">
+                <a class="btn btn-default btn-circle" onclick="goBack()">
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hidden-480">
+                        Back </span>
+                </a>
+            </span>
+
+
+            <div role="tabpanel">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a data-target="#mytickets" aria-controls="profile" role="tab" data-toggle="tab">My Tickets <span class="bold font-green-haze badge badge-default">{{response.mytickets.length}}</span></a>
+                    </li>
+                    <li role="presentation" >
+                        <a data-target="#activetickets" aria-controls="profile" role="tab" data-toggle="tab">Active Tickets <span class="bold font-green-haze badge badge-default">{{response.activetickets.length}}</span></a>
+                    </li>
+                    <li role="presentation" >
+                        <a data-target="#scheduledtickets" aria-controls="profile" role="tab" data-toggle="tab">Scheduled Tickets <span class="bold font-green-haze badge badge-default">{{response.scheduledtickets.length}}</span></a>
+                    </li>
+                    <li role="presentation" >
+                        <a data-target="#recentlyanswered" aria-controls="profile" role="tab" data-toggle="tab">Recently Answered Tickets <span class="bold font-green-haze badge badge-default">{{response.recentlyanswered.length}}</span></a>
+                    </li>
+                    <li role="presentation" >
+                        <a data-target="#onholdtickets" aria-controls="profile" role="tab" data-toggle="tab">On-hold Tickets <span class="bold font-green-haze badge badge-default">{{response.onholdtickets.length}}</span></a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="mytickets">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <div class="portlet-heading" ng-if="response.mytickets.length == 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <center><h2 class="caption-subject font-green-haze bold uppercase">There are no Tickets assigned to you</h2></center>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                    <div class="portlet-heading" ng-if="response.mytickets.length > 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <h2 class="caption-subject font-green-haze bold uppercase">My Tickets</h2>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                </div>
+
+                                <div class="portlet box " ng-if="response.mytickets.length > 0">
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-bordered table-hover" id="sample_1" style="border-collapse:collapse;">
+                                            <thead>
+                                            <th>
+                                                Ticket ID
+                                            </th>
+                                            <th>
+                                                Department
+                                            </th>
+                                            <th>
+                                                Subject
+                                            </th>
+                                            <th>
+                                                Submitter
+                                            </th>
+                                            <th>
+                                                Submitted On
+                                            </th>
+                                            <th>
+                                                Last Reply
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                                <!-- repeat the row -->
+                                                <tr ng-repeat="ticket in response.mytickets">
+                                                    <td>
+                                                        <span>  <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.ticketId}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-if="ticket.departmentId == 1" > Sales Department </span>
+                                                        <span ng-if="ticket.departmentId == 2" > Technical Support </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.subject}} </a>
+                                                    </td>
+                                                    <td>
+                                                        <span>  <a href="#/client-profile.html?clientId={{ticket.clientId}}">{{ticket.fname}} {{ticket.lname}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span>   {{ticket.ticketGeneratedDate}} </span>
+                                                    </td>
+                                                    <td>
+                                                        <label  ng-if="ticket.lastReplyDate == null" > <font color="#FF3333"> Not yet replied </font></label>
+                                                        {{ticket.lastReplyDate}}
+                                                    </td>
+                                                    <td class="center">
+                                                        <label  ng-if="ticket.status == 0" > <font color="#FF3333"> Awaiting Reply </font></label>
+                                                        <label  ng-if="ticket.status == 1" > <font color="#993333"> Flagged Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 2" > <font color="green"> Active Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 3" > <font color="blue"> Open</font></label>
+                                                        <label  ng-if="ticket.status == 4" > <font color="orange"> Answered</font></label>
+                                                        <label  ng-if="ticket.status == 5" > <font color="#9966FF"> Customer-Reply</font></label>
+                                                        <label  ng-if="ticket.status == 6" > <font color="#FF0066"> On Hold</font></label>
+                                                        <label  ng-if="ticket.status == 7" > <font color="#00FFCC"> In Progress</font></label>
+                                                        <label  ng-if="ticket.status == 8" > <font color="#666699"> Closed</font></label>
+                                                    </td>
+                                                </tr>
+                                                <!-- repeat the row upto here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="activetickets">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <div class="portlet-heading" ng-if="response.activetickets.length == 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <center><h2 class="caption-subject font-green-haze bold uppercase">There are no Active Tickets</h2></center>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                    <div class="portlet-heading" ng-if="response.activetickets.length > 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <h2 class="caption-subject font-green-haze bold uppercase">Active Tickets</h2>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                </div>
+
+                                <div class="portlet box ">
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-bordered table-hover" >
+                                            <thead>                                                    
+                                            <th>
+                                                Ticket ID
+                                            </th>
+                                            <th>
+                                                Department
+                                            </th>
+                                            <th>
+                                                Subject
+                                            </th>
+                                            <th>
+                                                Submitter
+                                            </th>
+                                            <th>
+                                                Submitted On
+                                            </th>
+                                            <th>
+                                                Last Reply
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                                <!-- repeat the row -->
+                                                <tr ng-repeat="ticket in response.activetickets">
+                                                    <!--                                        <td>
+                                                                                                <input type="checkbox" class="checkboxes" value="1"/>
+                                                                                            </td>
+                                                                                            <td class="text-center">
+                                                                                                <a href="#">
+                                                                                                    <i class="fa fa-flag-checkered"></i>
+                                                                                                </a>
+                                                                                            </td>-->
+                                                    <td>
+                                                        <span>  <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.ticketId}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-if="ticket.departmentId == 1" > Sales Department </span>
+                                                        <span ng-if="ticket.departmentId == 2" > Technical Support </span>
+                                                    </td>
+
+                                                    <td >
+                                                        <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.subject}} </a>
+                                                    </td>
+                                                    <td>
+                                                        <span>  <a href="#/client-profile.html?clientId={{ticket.clientId}}">{{ticket.fname}} {{ticket.lname}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>   {{ticket.ticketGeneratedDate}} </span>
+                                                    </td>
+                                                    <td>
+                                                        <label  ng-if="ticket.lastReplyDate == null" > <font color="#FF3333"> Not yet replied </font></label>
+                                                        {{ticket.lastReplyDate}}
+                                                    </td>
+                                                    <td class="center">
+                                                        <label  ng-if="ticket.status == 0" > <font color="#FF3333"> Awaiting Reply </font></label>
+                                                        <label  ng-if="ticket.status == 1" > <font color="#993333"> Flagged Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 2" > <font color="green"> Active Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 3" > <font color="blue"> Open</font></label>
+                                                        <label  ng-if="ticket.status == 4" > <font color="orange"> Answered</font></label>
+                                                        <label  ng-if="ticket.status == 5" > <font color="#9966FF"> Customer-Reply</font></label>
+                                                        <label  ng-if="ticket.status == 6" > <font color="#FF0066"> On Hold</font></label>
+                                                        <label  ng-if="ticket.status == 7" > <font color="#00FFCC"> In Progress</font></label>
+                                                        <label  ng-if="ticket.status == 8" > <font color="#666699"> Closed</font></label>
+                                                    </td>
+                                                </tr>
+                                                <!-- active tickets the row upto here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="scheduledtickets">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <div class="portlet-heading" ng-if="response.scheduledtickets.length == 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <center><h2 class="caption-subject font-green-haze bold uppercase">There are no Scheduled Tickets</h2></center>
+                                            </div>                            
+                                        </div>                      
+
+                                    </div>  
+                                    <div class="portlet-heading" ng-if="response.scheduledtickets.length > 0">
+                                        <div class="portlet-title">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <h2 class="caption-subject font-green-haze bold uppercase"> Scheduled Tickets</h2>
+                                            </div>                            
+                                        </div>                      
+
+                                    </div>  
+                                </div>
+                                <div class="portlet box " ng-if="response.scheduledtickets.length > 0">
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+
+                                            <th>
+                                                Ticket ID
+                                            </th>
+                                            <th>
+                                                Department
+                                            </th>
+                                            <th>
+                                                Subject
+                                            </th>
+                                            <th>
+                                                Submitter
+                                            </th>
+                                            <th>
+                                                Submitted On
+                                            </th>
+                                            <th>
+                                                Last Reply
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                                <!-- repeat the row -->
+                                                <tr ng-repeat="ticket in response.scheduledtickets">
+
+                                                    <td>
+                                                        <span>  <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.ticketId}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-if="ticket.departmentId == 1" > Sales Department </span>
+                                                        <span ng-if="ticket.departmentId == 2" > Technical Support </span>
+                                                    </td>
+                                                    <td>
+                                                        <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.subject}} </a>
+                                                    </td>
+                                                    <td>
+                                                        <span>  <a href="#/client-profile.html?clientId={{ticket.clientId}}">{{ticket.fname}} {{ticket.lname}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>  {{ticket.ticketGeneratedDate}} </span>
+                                                    </td>
+                                                    <td>
+                                                        <label  ng-if="ticket.lastReplyDate == null" > <font color="#FF3333"> Not yet replied </font></label>
+                                                        {{ticket.lastReplyDate}}
+                                                    </td>
+                                                    <td class="center">
+                                                        <label  ng-if="ticket.status == 0" > <font color="#FF3333"> Awaiting Reply </font></label>
+                                                        <label  ng-if="ticket.status == 1" > <font color="#993333"> Flagged Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 2" > <font color="green"> Active Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 3" > <font color="blue"> Open</font></label>
+                                                        <label  ng-if="ticket.status == 4" > <font color="orange"> Answered</font></label>
+                                                        <label  ng-if="ticket.status == 5" > <font color="#9966FF"> Customer-Reply</font></label>
+                                                        <label  ng-if="ticket.status == 6" > <font color="#FF0066"> On Hold</font></label>
+                                                        <label  ng-if="ticket.status == 7" > <font color="#00FFCC"> In Progress</font></label>
+                                                        <label  ng-if="ticket.status == 8" > <font color="#666699"> Closed</font></label>
+                                                    </td>
+                                                </tr>
+                                                <!-- repeat the row upto here -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="recentlyanswered">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <div class="portlet-heading">
+                                        <div class="portlet-title" ng-if="response.recentlyanswered.length == 0">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <center>  <h2 class="caption-subject font-green-haze bold uppercase">There are no recently answered tickets</h2> </center>
+                                            </div>                            
+                                        </div>                        
+                                        <div class="portlet-title" ng-if="response.recentlyanswered.length > 0">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <h2 class="caption-subject font-green-haze bold uppercase">Recently Answered Tickets</h2>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                </div>
+                                <div class="portlet box ">
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-bordered table-hover" >
+                                            <thead>
+                                            <th>
+                                                Ticket ID
+                                            </th>
+                                            <th>
+                                                Department
+                                            </th>
+                                            <th>
+                                                Subject
+                                            </th>
+                                            <th>
+                                                Submitter
+                                            </th>
+                                            <th>
+                                                Submitted On
+                                            </th>
+                                            <th>
+                                                Last Reply
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            </thead>
+                                            <tbody>                                               
+                                                <tr  ng-repeat="ticket in response.recentlyanswered">
+                                                    <td>
+                                                        <span>  <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.ticketId}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-if="ticket.departmentId == 1" > Sales Department </span>
+                                                        <span ng-if="ticket.departmentId == 2" > Technical Support </span>
+                                                    </td>
+                                                    <td>
+                                                        <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.subject}} </a>
+                                                    </td>
+                                                    <td>
+                                                        <span>  <a href="#/client-profile.html?clientId={{ticket.clientId}}">{{ticket.fname}} {{ticket.lname}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span>   {{ticket.ticketGeneratedDate}} </span>
+                                                    </td>
+                                                    <td>
+                                                        <label  ng-if="ticket.lastReplyDate == null" > <font color="#FF3333"> Not yet replied </font></label>
+                                                        {{ticket.lastReplyDate}}
+                                                    </td>
+                                                    <td class="center">
+                                                        <label  ng-if="ticket.status == 0" > <font color="#FF3333"> Awaiting Reply </font></label>
+                                                        <label  ng-if="ticket.status == 1" > <font color="#993333"> Flagged Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 2" > <font color="green"> Active Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 3" > <font color="blue"> Open</font></label>
+                                                        <label  ng-if="ticket.status == 4" > <font color="orange"> Answered</font></label>
+                                                        <label  ng-if="ticket.status == 5" > <font color="#9966FF"> Customer-Reply</font></label>
+                                                        <label  ng-if="ticket.status == 6" > <font color="#FF0066"> On Hold</font></label>
+                                                        <label  ng-if="ticket.status == 7" > <font color="#00FFCC"> In Progress</font></label>
+                                                        <label  ng-if="ticket.status == 8" > <font color="#666699"> Closed</font></label>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>            
+                            </div>
+                        </div>            
+                    </div>
+
+                    <!--onhold tickets addition-->
+
+                    <div role="tabpanel" class="tab-pane" id="onholdtickets">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-10">
+                                    <div class="portlet-heading">
+                                        <div class="portlet-title" ng-if="response.onholdtickets.length == 0">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <center>  <h2 class="caption-subject font-green-haze bold uppercase">There are no On hold tickets</h2> </center>
+                                            </div>                            
+                                        </div>                        
+                                        <div class="portlet-title" ng-if="response.onholdtickets.length > 0">
+                                            <div class="caption caption-md" id="mySupportTickets">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <h2 class="caption-subject font-green-haze bold uppercase">On hold tickets</h2>
+                                            </div>                            
+                                        </div>                        
+                                    </div>  
+                                </div>
+                                <div class="portlet box ">
+                                    <div class="portlet-body">
+                                        <table class="table table-striped table-bordered table-hover" >
+                                            <thead>
+
+                                            <th>
+                                                Ticket ID
+                                            </th>
+                                            <th>
+                                                Department
+                                            </th>
+                                            <th>
+                                                Subject
+                                            </th>
+                                            <th>
+                                                Submitter
+                                            </th>
+                                            <th>
+                                                Submitted On
+                                            </th>
+                                            <th>
+                                                Last Reply
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            </thead>
+                                            <tbody>                                               
+                                                <tr ng-repeat="ticket in response.onholdtickets">
+
+                                                    <td>
+                                                        <span>  <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.ticketId}} </a></span>
+                                                    </td>
+                                                    <td>
+                                                        <span ng-if="ticket.departmentId == 1" > Sales Department </span>
+                                                        <span ng-if="ticket.departmentId == 2" > Technical Support </span>
+                                                    </td>
+                                                    <td>
+                                                        <a ng-href="#/view-ticket.html?ticketId={{ticket.ticketId}}">  {{ticket.subject}} </a>
+                                                    </td>
+                                                    <td>
+                                                        <span> <a href="#/client-profile.html?clientId={{ticket.clientId}}"> {{ticket.fname}} {{ticket.lname}}</a> </span>
+                                                    </td>
+                                                    <td>
+                                                        <span>   {{ticket.ticketGeneratedDate}} </span>
+                                                    </td>
+                                                    <td>
+                                                        <label  ng-if="ticket.lastReplyDate == null" > <font color="#FF3333"> Not yet replied </font></label>
+                                                        {{ticket.lastReplyDate}}
+                                                    </td>
+                                                    <td class="center">
+                                                        <label  ng-if="ticket.status == 0" > <font color="#FF3333"> Awaiting Reply </font></label>
+                                                        <label  ng-if="ticket.status == 1" > <font color="#993333"> Flagged Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 2" > <font color="green"> Active Ticket </font></label>
+                                                        <label  ng-if="ticket.status == 3" > <font color="blue"> Open</font></label>
+                                                        <label  ng-if="ticket.status == 4" > <font color="orange"> Answered</font></label>
+                                                        <label  ng-if="ticket.status == 5" > <font color="#9966FF"> Customer-Reply</font></label>
+                                                        <label  ng-if="ticket.status == 6" > <font color="#FF0066"> On Hold</font></label>
+                                                        <label  ng-if="ticket.status == 7" > <font color="#00FFCC"> In Progress</font></label>
+                                                        <label  ng-if="ticket.status == 8" > <font color="#666699"> Closed</font></label>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>            
+                            </div>
+                        </div>            
+                    </div>
+
+                </div><!--</div>    Tab-content ends-->        
+
+
+
+            </div>
+        </div>
+        
+   
+
+        <script>
+            $("#supportTicketsPortlet").mCustomScrollbar({theme: "minimal"});
+        </script>
+

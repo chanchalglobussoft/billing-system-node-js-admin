@@ -1,0 +1,295 @@
+<div ng-controller="CartController" ng-init="init()">
+    <!-- BEGIN SEARCH CLIENT FORM -->
+    <div class="row">
+        <div class="col-md-3" id="addClientPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Clients</option>
+                                        <option>Orders</option>
+                                        <option>Invoices</option>
+                                        <option>Services</option>
+                                        <option>Domains</option>
+                                        <option>Tickets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Client Name</option>
+                                        <option>Company Name</option>
+                                        <option>Email Address</option>
+                                        <option>Address 1</option>
+                                        <option>Address 2</option>
+                                        <option>City</option>
+                                        <option>State</option>
+                                        <option>Pincode</option>
+                                        <option>Country</option>
+                                        <option>Phone No. </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="1" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="SEARCH" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>Admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+            <h2>Your Orders</h2>
+
+            <div class="row">
+                <div class="col-md-offset-1 col-xs-8 margin-top-20">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h5><span class="glyphicon glyphicon-shopping-cart"></span>Orders</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="bs-example" data-example-id="bordered-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>ProductId</th>
+                                            <th>Product Name</th>
+                                            <th>Product Description</th>
+                                            <th>Duration</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" >
+                                                <span ng-if="response.clientId != 0"><a href="#"  data-toggle="modal" data-target="#AddClientModal">{{response.fname}} {{response.lname}}</a> </span>
+                                                <span ng-if="response.clientId == 0"><a href="#"  data-toggle="modal" data-target="#AddClientModal" ng-click="getAllClients()">Add Client</a> </span>
+                                            </th>
+                                            <td>{{response.productId}}</td>
+                                            <td>{{response.productType}}</td>
+                                            <td>{{response.domainName}}</td>
+                                            <td>{{response.duration}}</td>
+                                            <td>${{response.pricePerYear| number : 2}}</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row text-center">
+                                <div class="col-xs-9">
+                                    <h4 class="text-right">Total <strong>${{response.totalprice| number : 2}}</strong></h4>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" class="btn btn-success btn-block" ng-click="pay()">
+                                        Pay
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- END SEARCH CLIENT FORM -->
+
+    <!-- END MAIN CONTENT -->
+    <!-- BEGIN MAIN JS & CSS -->
+
+
+
+    <!-- AddClient Modal -->
+    <div class="modal fade" id="AddClientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Client</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="margin-top-20">
+                        <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                                <label class="control-label col-sm-2" for="inputSuccess3">Name</label>
+                                <!--                                <div class="input-group col-sm-10">
+                                                                          <div class="input-group-addon" style="width: 5%;"><i class="fa fa-search"></i></div>
+                                                                          <input type="text" class="form-control col-sm-12" placeholder="Search Clients" ng-model="name" >
+                                                                      </div>-->
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSuccess3" placeholder="Search" name="query" ng-model="name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!--                        <table class="table table-bordered margin-top-20">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Select</th>
+                                                            <th>Client Id</th>
+                                                            <th>Client Name</th>
+                                                            <th>Wallet Balance</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="data in response.client">
+                                                            <th scope="row"><input type="radio"  name="groupName"  ng-model="response.myvalue" value="{{data}}"></input></th>
+                                                            <td>{{data.clientId}}</td>
+                                                            <td>{{data.fname + " " + data.lname}}</td>
+                                                            <td>${{data.current_balance}}</td>
+                                                        </tr>
+                        
+                                                    </tbody>
+                                                </table>-->
+
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Select    
+                                    </td>
+                                    <td>Client ID
+                                    </td>
+                                    <td>Client Name
+                                    </td>                                    
+                                    <td>Wallet Balance
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in response.client| orderBy:sortType:sortReverse | filter:name  | filter : paginate">
+                                    <th scope="row"><input type="radio"  name="groupName"  ng-model="response.myvalue" value="{{data}}"/></th>
+                                    <td>{{data.clientId}}</td>
+                                    <td>{{data.fname}} {{data.lname}}</td>
+                                    <td>${{data.current_balance}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div align="center">
+                            <pagination total-items="totalItems" ng-model="currentPage"
+                                        max-size="5" boundary-links="true"
+                                        items-per-page="numPerPage" class="pagination-sm">
+                            </pagination>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/js/svgcheckbx.js"></script>
+<script>
+                        (function () {
+                            [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                                new SelectFx(el);
+                            });
+                        })();
+                        $("#addClientPortlet").mCustomScrollbar({theme: "minimal"});
+</script>

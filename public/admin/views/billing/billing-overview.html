@@ -1,0 +1,459 @@
+<div ng-controller="BillingoverViewController" id="orderOverview" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 " id="clientsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <span class="caption-subject font-green-haze bold uppercase">Billing</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <b>
+                        <a href="#/manage-transactions.html">
+                            <span class="title">Manage Transactions</span>
+                        </a><br>
+
+                        <a href="#/manage-invoices.html">
+                            <span class="title">Manage Invoices</span>
+                        </a><br>
+
+                        <a href="#/gateway-logs.html">
+                            <span class="title">Gateway Logs</span>
+                        </a><br>
+
+
+                    </b>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 2%;">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.pending.count}}
+                            </div>
+                            <div class="desc">
+                                Sucessful Transactions
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.active.count}}
+                            </div>
+                            <div class="desc">
+                                Failed Transactions
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.fraud.count}}
+
+                            </div>
+                            <div class="desc">
+                                Pending Transactions
+                            </div>
+                        </div>
+<!--                        <a class="more" ng-href="javascript:;">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-plum">
+                        <div class="visual">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                {{response.cancelled.count}}
+                            </div>
+                            <div class="desc">
+                                Incomplete Transactions
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                            View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase"> total Income by date($k)</span>
+                                <!-- <a class="more pull-right" id="graphfill" href="javascript:;">
+                                Toggel Graph <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                                <a class="more pull-right" id="curve" href="javascript:;">
+                                Toggel Curve <i class="m-icon-swapright m-icon-white"></i>
+                                </a> -->
+                            </div>
+                           <!--  <div class="actions">
+                                <div class="btn-group btn-group-devided">
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="graphfill">Toggle Graph</a></label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="curve">Toggle Curve</a></label>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div id="canvas-holder">
+
+                                        <canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="939" height="500" ></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-md-12 col-sm-12">
+
+                        <div class="portlet light ">
+                                <div class="portlet-title">
+                                        <div class="caption caption-md">
+                                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                                <span class="caption-subject font-green-haze bold uppercase">Orders Summary</span>
+                                                <span class="caption-helper hide">weekly stats...</span>
+                                        </div>
+                                </div>
+                                <div class="portlet-body">
+                                        <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                        <div id="canvas-holder">
+                                                                <canvas id="chart-area" width="939" height="400"/>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Top Five Clients By Income</span>
+                                <span class="caption-helper hide">weekly stats...</span>
+                            </div>
+                            <div class="actions">
+                                <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                                <input type="radio" name="options" class="toggle" id="option1">Today</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                                <input type="radio" name="options" class="toggle" id="option2">Week</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                                <input type="radio" name="options" class="toggle" id="option2">Month</label>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                    <tr class="uppercase">
+                                        <th >
+                                            Client Id
+                                        </th>
+                                        <th>
+                                            Client Name
+                                        </th>
+                                        <th>
+                                            TotalAmount
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tr ng-repeat="data in response.top" >
+                                        <td >
+                                            {{data.clientId}}
+                                        </td>
+                                        <td>
+                                            <a href="#/client-profile.html?clientId={{data.clientId}}"> {{data.fname}} {{data.lname}} </a>
+                                        </td>
+                                        <td>
+                                            ${{data.amount |number:2 }}
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+
+
+                            <!-- <div id="sales_statistics" class="portlet-body-morris-fit morris-chart" style="height: 260px">
+                            </div> -->
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">Last 5 Transactions</span>
+                                <span class="caption-helper hide">weekly stats...</span>
+                            </div>
+                            <div class="actions">
+                                <!-- <div class="btn-group btn-group-devided" data-toggle="buttons">
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                                <input type="radio" name="options" class="toggle" id="option1">Today</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                                <input type="radio" name="options" class="toggle" id="option2">Week</label>
+                                        <label class="btn btn-transparent grey-salsa btn-circle btn-sm">
+                                                <input type="radio" name="options" class="toggle" id="option2">Month</label>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row number-stats margin-bottom-30">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="stat-left">
+                                        <div class="stat-chart">
+                                            <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                            <div id="sparkline_bar"></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="stat-right">
+                                        <div class="stat-chart">
+                                            <!-- do not line break "sparkline_bar" div. sparkline chart has an issue when the container div has line break -->
+                                            <div id="sparkline_bar2"></div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-scrollable table-scrollable-borderless">
+                                <table class="table table-hover table-light">
+                                    <thead>
+                                        <tr class="uppercase">
+                                            <th >
+                                               Transaction Id
+                                            </th>
+                                            <th>
+                                               ClientId
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                               Date
+                                            </th>
+                                            <th>
+                                               Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="data in response.transaction" >
+
+                                        <td>
+                                          {{data.transactionId}}
+                                        </td>
+                                        <td>
+                                            {{data.clientId}}
+
+                                        </td>
+                                        <td>
+                                             {{data.amount | number:2}}
+                                        </td>
+                                        <td>
+                                              {{data.date}}
+                                        </td>
+                                        <td>
+
+
+                                            <span ng-if="data.status==1"> Successful</span>
+                                            <span ng-if="data.status==2">Fail </span>
+                                            <span ng-if="data.status==3">Pending </span>
+                                            <span ng-if="data.status==4"> Incomplete</span>
+
+
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PORTLET-->
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <!-- BEGIN Portlet PORTLET-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption font-green-sharp">
+                                <i class="icon-share font-green-sharp"></i>
+                                <span class="caption-subject bold uppercase">Services Billed {{response.time}}</span>
+                            </div>
+                            <div class="actions">
+                                <div class="btn-group btn-group-devided">
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active" ng-click="getservices(0)">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="graphfill">Today</a></label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active" ng-click="getservices(1)">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="curve">This Month</a></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="inputs"><b>Search: </b>
+                                <div class="portlet-input input-inline input-large">
+                                    <div class="input-icon right">
+                                        <i class="icon-magnifier"></i>
+                                        <input type="text" class="form-control input-circle" placeholder="search..."  ng-model="test">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="portlet-body">
+
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                    <tr>
+
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            ClientId
+                                        </th>
+                                        <th>
+                                            Client Name
+                                        </th>
+                                        <th>
+                                            Product/Service
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Order Id
+                                        </th>
+                                        <th>
+                                            Invoice Id
+                                        </th>
+                                        <th>
+                                            TransactionId
+                                        </th>
+                                        <th>
+                                            Transaction Status
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="user in response.services | filter:test"  >
+
+
+                                        <td>
+                                            <label>{{user.date}} </label>
+                                        </td>
+                                        <td>
+                                            <label>{{user.clientId}} </label>
+                                        </td>
+                                        <td>
+                                            <label><a href="#/client-profile.html?clientId={{user.clientId}}"> {{user.fname}} {{user.lname}}</a> </label>
+                                        </td>
+                                        <td>
+                                            <label> {{user.productName}} </label>
+                                        </td>
+
+                                        <td>
+                                            <label> &#36;{{user.amount | number:2}} </label>
+                                        </td>
+                                        <td><a ng-href="#/view-orders.html?orderId={{user.orderId}} ">{{user.orderId}} </a>
+
+                                        </td>
+                                        <td><a ng-href="#/invoice.html?invoiceId={{user.invoiceId}} ">{{user.invoiceId}} </a>
+
+                                        </td>
+                                        <td>
+                                            {{user.transactionId}}
+                                        </td>
+                                        <td>
+                                            <label class="text-success" ng-if="user.status==1" >Successful</label>
+                                            <label class="text-danger" ng-if="user.status==2" >Fail</label>
+                                            <label class="text-warning" ng-if="user.status==3" >Pending</label>
+                                            <label class="text-info" ng-if="user.status==4" >Incomplete</label>
+                                        </td>
+
+
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END Portlet PORTLET-->
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    // Index.init();
+    // Tasks.initDashboardWidget();
+    $("#clientsPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS --> -->

@@ -1,0 +1,90 @@
+<!-- BEGIN MAIN CONTENT -->
+
+<!-- CSS
+       <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
+       <link rel="stylesheet" href="assets/css/app.min.css">
+
+       <!-- Modernizr -->
+       <!--<script src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
+
+       <!-- Google fonts -->
+       <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+
+
+       <script src="assets/js/classie.js"></script>
+               <script src="assets/js/app.min.js"></script>
+
+
+<div class="loginPage">
+    <div ng-controller="AuthenticationController">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="container">
+            <!-- <a href="index.html" title="#" class="back btn-effect">
+                <span class="sprite icon"></span> Back
+            </a> -->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                  <form name="submitForm" class="loginRegistrationForm" novalidate ng-submit="submit()">
+
+                        <h1 class="text-center">Login</h1>
+                        <div class="input">
+                            <input type="text" placeholder="Email" class="form-control input-field" name="userEmail" ng-model="session.userEmail">
+                            <label class="input-label">
+                                <!-- <span class="input-label-content">Email Address</span> -->
+                            </label>
+                        </div>
+                        <div class="input">
+                            <input type="password" placeholder="Password" class="form-control input-field"  name="password" ng-model="session.password">
+                            <label class="input-label">
+                                <!-- <span class="input-label-content">Password</span> -->
+                            </label>
+                        </div>
+                        <!-- <a href="forgotPassword.html" title="#" class="forgotPassword">Forgot your password?</a> -->
+                        <button type="submit" class="btn btn-lg btn-yellow btn-effect">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+
+.page-header.ng-scope {
+  display: none;
+}
+.page-head.ng-scope {
+  display: none;
+}
+.page-content {
+  padding: 0 !important;
+  min-height:100% !important;
+    height:100%;
+}
+.page-content .container-fluid {
+  padding: 0;
+}
+.loginPage {
+  height:700px;
+}
+.input-label-content {
+  display: none !important;
+}
+</style>
+<script>
+
+    // $("body").addClass("loginPage");
+
+
+
+
+</script>
+
+
+<!-- BEGIN MAIN JS & CSS -->

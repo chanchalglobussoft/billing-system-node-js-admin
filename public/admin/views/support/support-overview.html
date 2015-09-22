@@ -1,0 +1,176 @@
+<style>
+    h4.block {
+    }
+    .note h2 {
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+<div ng-controller="SupportController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 " id="supportOverviewPortlet" style="position:fixed; height: 450px !important; width:20%;">
+
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <span class="caption-subject font-green-haze bold uppercase">Support</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <b>
+                        <a href="#/support-tickets.html">
+                            <span class="title">Support Tickets</span>
+                        </a><br>
+
+                        <a href="#/on-hold-tickets.html">
+                            <span class="title">On Hold Tickets</span>
+                        </a><br>
+
+                    </b>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right:3%;" >
+
+
+            <div class="row">
+
+                <form name="submitForm" class="row well" novalidate ng-submit="rangeTickets()">
+                    <div class="col-md-5 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label"> Date Range Search</label>
+                            <span>
+                                <input type="checkbox" ng-model="dateSwitch">
+                            </span>
+                            <div class="input-group" >
+                                <input class="form-control"  type="daterange" ng-model="session.datesrange" ranges="ranges" ng-disabled="!dateSwitch || daysAgoSwitch">
+                                <span class="input-group-btn">
+                                    <button class="btn default" type="button" disabled><i class="fa fa-calendar"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12">
+                        <div class="form-group">
+                            <label class="control-label"> Days ago Search</label>
+                            <span>
+                                <input type="checkbox" ng-model="daysAgoSwitch" >
+                            </span>
+                            <div class="input-group" >
+                                <input class="form-control"  ng-model="session.daysAgo" ng-disabled="!daysAgoSwitch || dateSwitch" type="text">
+                                <span class="input-group-btn">
+                                    <button class="btn default cancelClass" type="button" ng-click="session.daysAgo = ''" ng-disabled="!daysAgoSwitch"><i class="fa fa-times"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-12">                   
+                        <div class="form-group">                        
+                            <div class="input-group" style="margin-top: 18%;">
+                                <input class="btn btn-danger" type="submit" value="Overview of Range" ng-disabled="!dateSwitch" ng-if="dateSwitch">
+                                <input class="btn btn-danger" type="submit" value="Overview of Days" ng-disabled="!daysAgoSwitch" ng-if="daysAgoSwitch">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+             <div class="caption" ng-if="response.data">
+                 <span class="caption-subject bold uppercase font-green-haze"> Overview of Support Tickets</span>
+             </div>
+            
+            <table class="table table-bordered table-striped" ng-if="response.data" style="font-weight: bold;text-align: center; font-size: 14px;">
+                <thead >
+                    <tr> 
+                        <td class="active">
+                            No. of Tickets
+                        </td>
+                        <td class="success">
+                            Client Replies
+                        </td>
+                        <td class="warning">
+                            Staff Replies
+                        </td>
+                        <td class="info">
+                            Tickets Without Replies
+                        </td>
+                        <td class="danger">
+                            Average First Response
+                        </td>
+                    </tr> 
+                </thead>                
+                <tbody>
+                    <tr>
+                        <td class="active">{{response.data.newTicketsCount.count}}</td>
+                        <td class="success">{{response.data.clientRepliesCount.count}}</td>
+                        <td class="warning">{{response.data.adminRepliesCount.count}}</td>
+                        <td class="info">{{response.data.noRepliesCount.count}}</td>
+                        <td class="danger">{{response.data.avgFirstResponseTime.totalRespTime / 3600| number:2 }} hrs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+<!--            <div class="row" ng-if="response.data">
+                
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light tasks-widget">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green-haze"></i>
+                                <span class="caption-subject bold uppercase font-green-haze"> Average first reply time</span>
+                            </div>
+                            <div class="tools">
+                                <a title="" data-original-title="" href="javascript:;" class="collapse">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <center>
+                                <div id="canvas-holder">
+                                    <center>	
+                                        <canvas class="classUnk" tc-chartjs-doughnut chart-options="baroption" chart-data="bardata" chart-legend="doughnutChart1"   width="100" height="100">                                            
+                                        </canvas>
+                                    </center>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-sm-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="icon-bar-chart font-green-haze"></i>
+                                <span class="caption-subject bold uppercase font-green-haze">tickets submitted by hour</span>
+
+                            </div>
+                            <div class="tools">
+                                <a title="" data-original-title="" href="javascript:;" class="collapse">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <center>
+                                <div id="canvas-holder">
+                                    <canvas tc-chartjs-bar chart-options="opt" chart-data="dat" chart-legend="barChart1"></canvas>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>-->
+
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+
+<script>
+    $("#supportOverviewPortlet").mCustomScrollbar({theme: "minimal"});
+</script>

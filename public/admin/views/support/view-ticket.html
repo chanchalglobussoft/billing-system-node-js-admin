@@ -1,0 +1,522 @@
+<style>
+    .commentBox {
+        border: 1px solid #ccc;
+        border-radius: 0 !important;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.22);
+        margin: 1%;
+    }
+</style>
+
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="TicketviewController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3" id="supportTicketsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <span class="caption-subject font-green-haze bold uppercase">Support</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <b>
+
+                        <a href="#/support-overview.html">
+                            <span class="title">Support Overview</span>
+                        </a><br>
+
+                        <a href="#/support-tickets.html">
+                            <span class="title">Support Tickets</span>
+                        </a><br>
+
+                        <a href="#/on-hold-tickets.html">
+                            <span class="title">On Hold Tickets</span>
+                        </a><br>
+
+                    </b>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 2%;">
+                        <div class="actions" style="float: right;">
+                        <a class="btn btn-default btn-circle" onclick="goBack()">
+                            <i class="fa fa-angle-left"></i>
+                            <span class="hidden-480">
+                                Back </span>
+                        </a>
+            </div>
+
+            <div class="row">
+                <!-- Open form here -->
+                <form name="ticketReponseForm">
+                    <div class="col-md-12">
+                        <div class="portlet box">
+                            <div class="portlet-body" style="padding:2%;">
+                                <div class="row">
+                                    <div class="col-md-8 form-inline">
+                                        <strong> Ticket Id :&nbsp<span style="color:#F3565D">{{response.data[0].ticketId}}</span></strong><br>
+                                        <strong> Ticket Submitter :&nbsp<a href="#/client-profile.html?clientId={{response.data[0].submitter}}" >{{response.data[0].clientFname}} {{response.data[0].clientLname}} </a></strong><br>
+                                        <span><span  style="float: right;"><select  ng-model="selectedItem" ng-options="item as item.name for item in items" ng-change="changeStatus()"></select>
+                                                <a href="#" ng-click="closeTicket()"> Close </a></span><span><strong> Ticket Description :</strong>&nbsp{{response.data[0].subject}} 
+                                            </span></span>
+                                    </div>
+                                    <div class="col-md-4 form-inline" style="border: 1px dotted; padding-top: 3px; padding-bottom: 3px;">
+                                        <span class="pull-right" ><strong>Ticket was generated on : </strong>  {{response.data[0].ticketGeneratedDate}}</span>
+                                        <span class="pull-right" ng-if="response.data[0].lastReplyDate != null" style="color:#4DB3A4"><strong> [ {{ticketGeneratedDate}} ]</strong></span>
+                                        <span class="pull-right" ng-if="response.data[0].lastReplyDate != null" ><strong>Last Replied On : </strong>  {{response.data[0].lastReplyDate}}</span>
+                                        <span class="pull-right" ng-if="response.data[0].lastReplyDate == null" style="color:#4DB3A4"><strong>[ {{ticketGeneratedDate}} ]</strong></span><br><br>
+                                        <span class="pull-right" ng-if="response.data[0].lastReplyDate == null" style="color:#F3565D"><strong>[ Not Yet Replied ]</strong></span>
+                                        <span class="pull-right" ng-if="response.data[0].lastReplyDate != null" style="color:#F3565D"><strong> [ {{lastReplyDate}} ]</strong></span><br><br>
+                                        <span class="pull-right" ng-if="response.data[0].lastStatusChangeDate == null" style="color:#F3565D"><strong>[ Ticket Status Not Yet Changed ]</strong></span>
+                                        <span class="pull-right" ng-if="response.data[0].lastStatusChangeDate != null" ><strong>Ticket status changed on : </strong>{{response.data[0].lastStatusChangeDate}}</span>
+                                        <span class="pull-right" ng-if="response.data[0].lastStatusChangeDate != null" style="color:#4DB3A4"><strong> [ {{lastStatusDate}} ]</strong></span><br>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <tabset justified="true">
+                                            <tab heading="Add Reply">
+                                                <div class="row" >
+                                                    <div class="col-md-12">
+                                                        <textarea id="addReplyText" class="form-control" placeholder="Write you reply here..." rows="4" ng-model="reply.replyToTicket">
+                                                             <span class="bold insertedReply" ng-if="response.reply">{{response.reply}}</span>
+                                                        </textarea>
+                                                    </div>                                                            
+                                                    <label class="control-label">Tools</label>
+                                                    <div class="form-group">
+                                                        <select class="form-control select-inline" name="postaction" ng-model="selectedreplyOptions" ng-change="selectedreplyOptionsOnChange(selectedreplyOptions)" ng-options="item as item.name for item in replyOptions" style="width: 37%;"></select> 
+                                                        
+                                                        <span style="float:right; margin-top: -3%;"> 
+                                                            <a class="btn btn-primary" href="#"  data-toggle="modal" data-target="#InsertPredefinedReply" > Insert Predefined Reply</a>
+                                                            <!--<input type="button" id="insertpredef" class="btn btn-default btn-sm" value="Insert Predefined Reply" ng-click="insertPredefinedReply()">-->
+                                                            <!--<input type="button" class="btn btn-default btn-sm" value="Insert Knowledgebase Link" ng-click="insertKbLink()">--> 
+                                                            <a  class="btn btn-warning" href="#"  data-toggle="modal" data-target="#InsertKnowledgebaseLink" > Insert Knowledgebase Link</a>
+                                                            <input type="submit" id="postreplybutton" class="btn btn-danger" name="postreply" value="Add Response »" ng-click="addReply()">
+                                                        </span>
+                                                    </div>                                                  
+                                                    <label class="control-label">Attachments</label>
+                                                    <div class="form-group" >
+                                                        <div class="col-sm-8" id="addMoreAttachments" >
+                                                            <!--<input id="primeAttachment" style="height:1%" type="file" class="form-control adminAttachments" name="file" onchange="primeFileAttached(), angular.element(this).scope().uploadFile(this.files)">-->
+                                                            <input  id="primeAttachment" class="form-control adminAttachments" style="height:1%" ngf-select="" ng-model="picFile" name="file" accept="image/*" type="file" onchange="primeFileAttached()" >
+                                                            <!--<input  id="primeAttachment" class="form-control adminAttachments" style="height:1%"  name="file" type="file" onchange="primeFileAttached()" file-model="myFile">-->
+                                                            <!--<input id="primeAttachment" style="height:1%" type="file" class="form-control" name="attachments[]" onchange='primeFileAttached(), angular.element(this).scope().fileToUpload()' multiple >-->
+                                                            <!--<button ng-click="getAllAttachements()">Get all files</button>-->
+                                                            
+
+                                                            <span id="removePrimeAttachment"></span>
+                                                            <!--<div class="button" ngf-select ngf-change="upload($file)">Upload on file change</div>-->
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <a class="btn btn-success btn-xs" id="addfileupload" onclick="addMoreAttachments()"><i class="fa fa-plus"></i> Add More</a>
+                                                        </div>
+                                                    </div>
+                                                </div>                                              
+<!--                                                <div class="row">
+                                                    <label class="control-label">Add Billing Entry</label>
+                                                    <div class="form-group">                                                         
+                                                        <div class="form-inline">
+                                                            <input type="text" class="form-control" placeholder="To invoice, enter a description" size="50" name="billingdescription" ng-model="billingDescription.desc"> @ <input type="text" class="form-control" placeholder="Amount" size="10" name="billingamount" ng-model="billingDescription.amount"> 
+                                                            <select class="form-control select-inline" ng-model="selectedBillingEntryOptions" ng-change="selectedBillingEntryOptionsOnChange(selectedBillingEntryOptions)" ng-options="item as item.name for item in billingEntryOptions" >
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                                            </tab>
+
+                                            <tab heading="Add Note">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <textarea id="addNoteText" class="form-control" placeholder="Write your note here..." rows="4" ng-model="reply.replyNote">                                                           
+                                                        </textarea>
+                                                    </div>
+
+                                                    <div align="center">
+                                                        <input type="submit" id="postreplybutton" class="btn btn-primary" name="postreply" value="Add Note »" ng-click="addNote()" >
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:2%;" >
+                                    <div class="col-md-12">
+                                        <div class="caption-subject font-green-haze bold uppercase">Private Staff Notes </div>
+                                        <div class="alert-danger" style="color:gray; border:dotted; margin-top: 2%"> <div id="adminName"><strong>Admin Demo </strong><span style="float:right">Posted on 29/07/2015 at 07:20 </span></div>
+                                            <div align="right"><a onclick="doDeleteNote();
+                                                            return false" href="#"><img border="0" alt="Delete Ticket Note" src="assets/img/delete.gif"></a></div>
+
+                                            <div id="adminAddedNote" >
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="alert-danger" style="color:gray; border:dotted; margin-top: 2%"> <div id="adminName"><strong>Admin Demo </strong><span style="float:right">Posted on 29/07/2015 at 07:20 </span></div>
+                                            <div align="right"><a onclick="doDeleteNote();
+                                                            return false" href="#"><img border="0" alt="Delete Ticket Note" src="assets/img/delete.gif"></a></div>
+
+                                            <div id="adminAddedNote" >
+                                               Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                            </tab>
+
+                                            <tab heading="Custom Fields">No Custom Fields Setup for this Department</tab>
+                                            <tab heading="Other Tickets">All tickets generated by this client</tab>
+                                            <tab heading="Client Log">All logs of this client</tab>
+                                            <tab heading="Options">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <form class="form-horizontal" action="">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Department</label>
+                                                                        <select class="form-control">
+                                                                            <option>Sales Department</option>
+                                                                            <option>Technical Support</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Subject</label>
+                                                                        <input type="text" class="form-control" value="Is my server under attack?" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Status</label>
+                                                                        <select class="form-control">
+                                                                            <option>Open</option>
+                                                                            <option>Answered</option>
+                                                                            <option>Customer-Reply</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">CC Recipients</label>
+                                                                        <input type="text" class="form-control" />
+                                                                        <small>(Comma Separated)</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Client ID</label>
+                                                                        <input type="text" class="form-control" value="1" />
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Flag</label>
+                                                                        <select class="form-control">
+                                                                            <option>None</option>
+                                                                            <option>Admin Demo</option>
+                                                                            <option>Sales Demo</option>
+                                                                            <option>Support Demo</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Priority</label>
+                                                                        <select class="form-control">
+                                                                            <option>High</option>
+                                                                            <option>Medium</option>
+                                                                            <option>Low</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label class="control-label">Merge Ticket</label>
+                                                                        <input type="text" class="form-control" />
+                                                                        <small>(# to combine)</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </tab>
+                                            <tab heading="Log">All logs of this client</tab>
+                                        </tabset>
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="row" style="margin-top:2%;">
+                                    <div class="col-md-12">
+                                        <table class="table table-bordered table-striped" ng-if="productServices.length > 0">
+                                            <thead>
+                                                <tr>
+                                                    <td>
+                                                        <a href="#" ng-click="sortType = 'product';
+                                                                    sortReverse = !sortReverse">
+                                                            Product/Service
+                                                            <span ng-show="sortType == 'product' && !sortReverse" class="fa fa-caret-down"></span>
+                                                            <span ng-show="sortType == 'product' && sortReverse" class="fa fa-caret-up"></span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" ng-click="sortType = 'amount';
+                                                                    sortReverse = !sortReverse">
+                                                            Amount
+                                                            <span ng-show="sortType == 'amount' && !sortReverse" class="fa fa-caret-down"></span>
+                                                            <span ng-show="sortType == 'amount' && sortReverse" class="fa fa-caret-up"></span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" ng-click="sortType = 'signupdate';
+                                                                    sortReverse = !sortReverse">
+                                                            Signup Date
+                                                            <span ng-show="sortType == 'signupdate' && !sortReverse" class="fa fa-caret-down"></span>
+                                                            <span ng-show="sortType == 'signupdate' && sortReverse" class="fa fa-caret-up"></span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" ng-click="sortType = 'duedate';
+                                                                    sortReverse = !sortReverse">
+                                                            Next Due Date
+                                                            <span ng-show="sortType == 'duedate' && !sortReverse" class="fa fa-caret-down"></span>
+                                                            <span ng-show="sortType == 'duedate' && sortReverse" class="fa fa-caret-up"></span>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="#" ng-click="sortType = 'status';
+                                                                    sortReverse = !sortReverse">
+                                                            Status
+                                                            <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
+                                                            <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
+                                                        </a>
+                                                    </td>                                            
+                                                </tr>
+                                            </thead>                
+                                            <tbody>
+                                                <tr ng-repeat="product in productServices| orderBy:sortType:sortReverse">
+                                                    <td>{{product.productName}}</td>
+                                                    <td>{{product.price}}</td>
+                                                    <td>{{product.datePaid| date:"dd-MMM-yyyy" }}</td>
+                                                    <td>{{product.dueDate| date:"dd-MMM-yyyy" }}</td>                                           
+                                                    <td>
+                                                        <span ng-if="product.status == 0" > Inactive </span>
+                                                        <span ng-if="product.status == 1" > Active </span>
+                                                        <span ng-if="product.status == 2" > Terminated </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div ng-if="productServices.length == 0" align="center"> <alert><strong> <a href="#">{{response.data[0].clientFname}}{{response.data[0].clientLname}}</a> has no product or services registered !</strong> </alert></div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:2%;">
+                                    <div class="col-md-12">
+
+                                        <div class="portlet row alert-info">
+                                            <div class="portlet-body">
+                                                <div class="col-md-3">
+                                                    <!--<div class="pull-right">-->
+                                                        <h3><a href="#/client-profile.html?clientId={{response.data[0].submitter}}" >{{response.data[0].clientFname}} {{response.data[0].clientLname}}</a></h3>
+                                                        <i>Client</i>
+                                                        <!--<div class="form-inline" style="margin-top:2%;" align="center">-->
+                                                            <!--<button class="btn btn-info">Edit</button>-->
+                                                            <!--<button class="btn btn-danger">Delete</button>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                </div>
+                                                <div class="col-md-9" style="border-left: 1px solid;">
+                                                    <small class="text-muted">Posted on Aug 27, 2015 7:08:07 PM</small>
+                                                    <span class="quoteicon" style="float:right">
+                                                        <a href="#" onclick="quoteTicket()"><img border="0" src="assets/img/quote.png">
+                                                        </a>
+                                                    </span>
+                                                    <div style="margin-top:3%;">
+                                                        <p>This is a demo reply from the client !!!!</p>
+
+                                                        <p>Can you help me?</p>
+
+                                                        <p>Clients can reply !</p>
+
+                                                        <p>----------------------------</p>
+                                                        <strong>IP Address: 208.74.120.226</strong>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--<div ng-repeat="reply in allTicketReplies">{{ allTicketReplies }}</div>-->
+
+                                        <div class="portlet row alert-warning" ng-repeat="reply in allTicketReplies">
+                                            <div class="portlet-body">
+                                                <div class="col-md-3">
+                                                    <div class="pull-right">
+                                                        <h3><a href="#">{{reply.adminfname}} {{reply.adminlname}}</a></h3>
+                                                        <i>Admin</i>
+                                                        <div class="form-inline" style="margin-top:2%;">
+                                                            <button class="btn btn-info" ng-click="editThisReply(reply._id)">Edit</button>
+                                                            <button class="btn btn-danger" ng-click="deleteThisReply(reply._id)">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9" style="border-left: 1px solid;">
+                                                    <small class="text-muted">Posted on {{reply.date | date:'medium'}}</small>
+                                                    <span class="quoteicon" style="float:right">
+                                                        <a href="#" onclick="quoteTicket()"><img border="0" src="assets/img/quote.png">
+                                                        </a>
+                                                    </span>
+                                                    <div style="margin-top:3%;">
+                                                        <p> </p> 
+                                                        <p>{{reply.repliedText}}</p>
+                                                        
+                                                         <p>----------------------------------------------</p>
+                                                        <strong>IP Address: {{reply.adminIPaddress}}</strong>
+                                              
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <!--<div ng-repeat-end=""></div>-->
+
+<!--{{allTicketReplies}}-->
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- close the form here -->
+            </div>
+        </div>
+    </div>
+    
+         
+        <div class="modal fade" id="InsertPredefinedReply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Insert Predefined Reply</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="margin-top-20">
+                        <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                               
+                                <div class="col-sm-12">
+                                    <input type="text" class="form-control" id="inputSuccess3" type="search" placeholder="Search your predefined replies" name="query" ng-model="name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table table-bordered margin-top-20">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%;">#</th>
+                                    <th>Reply</th>                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in allAdminReplies | filter:name  | filter : paginateReplies" >
+                                 <th scope="row"><input type="radio"  name="groupName"  ng-model="response.myPredefinedReply" value="{{data}}"></th>
+                                    <td>{{data.reply}}</td>                                
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        
+                          <div align="center">
+                            <pagination total-items="totalAdminReplies" ng-model="currentPageReplies"
+                                        max-size="5" boundary-links="true"
+                                        items-per-page="numPerPage" class="pagination-sm">
+                            </pagination>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addPredefinedReply()">Insert Reply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal fade" id="InsertKnowledgebaseLink" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Client</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="margin-top-20">
+                        <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                                <label class="control-label col-sm-2" for="inputSuccess3">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSuccess3" type="search" placeholder="Search" name="query" ng-model="name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table table-bordered margin-top-20">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Client Id</th>
+                                    <th>Client Name</th>
+                                    <th>Wallet Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in response.client | filter:name  | filter : paginateClients" >
+                                    <th scope="row"><input type="radio"  name="groupName"  ng-model="response.myvalue" value="{{data}}"></th>
+                                    <td>{{data.clientId}}</td>
+                                    <td>{{data.fname}} {{data.lname}}</td>
+                                    <td>${{data.current_balance| number:2}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        
+                          <div align="center">
+                            <pagination total-items="totalClientItems" ng-model="currentPageClient"
+                                        max-size="5" boundary-links="true"
+                                        items-per-page="numPerPage" class="pagination-sm">
+                            </pagination>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<script>
+    // Scripts to handle multiple attachments by Syed Arshad   
+    function addMoreAttachments()
+    {
+        $('#addMoreAttachments').append('<div class="additionalAttachments " ><input style="height:1%" type="file" class="form-control adminAttachments" name="file" >  <a style="float:right" id="removeUpload"><i class="fa fa-minus"></i> Remove</a></div>');
+    }
+
+    function primeFileAttached()
+    {
+        $("#clearPrimeUpload").remove(); //To remove the old trace of the Remove link ;)
+        $('#removePrimeAttachment').append('<a style="float:right" id="clearPrimeUpload"><i class="fa fa-minus"></i> Remove</a></div>');
+    }
+
+    $(document).on('click', '#removeUpload', function () {
+        $(this).parent('div').remove();       
+    });
+
+    $(document).on('click', '#clearPrimeUpload', function () {
+        $("#primeAttachment").val("");
+        $("#clearPrimeUpload").remove();
+    });
+
+</script>

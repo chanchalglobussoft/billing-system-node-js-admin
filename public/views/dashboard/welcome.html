@@ -1,0 +1,71 @@
+
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" ng-init="init()">
+	<!-- BEGIN DASHBOARD STATS -->
+	<div class="row" style="margin-top:5%;">
+		<div class="col-md-4">
+			<div class="portlet light">
+				<div class="portlet-body tiles">
+					<div class="tile" style="width:100% !important; height: auto;">
+						<div class="tile-body" style="color: #000;">
+							<i class="icon-envelope" style="font-size: 90px;"></i>
+						</div>
+						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
+							<h3>Confirm Email</h3>
+							<p>If you didn’t receive your conﬁrmation email, please check your spam folder.</p>
+							<button class="btn btn-info" ng-click="resend()">Resend</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="portlet light">
+				<div class="portlet-body tiles">
+					<div class="tile" style="width:100% !important; height: auto;">
+						<div class="tile-body" style="color: #000;">
+							<i class="icon-credit-card" style="font-size: 90px;"></i>
+						</div>
+						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
+							<h3>Update Billing</h3>
+							<p>You will need to update your billing profile before you launch your first droplet.</p>
+							<button class="btn btn-info" ng-disabled="verifyemail">Get Started</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="portlet light">
+				<div class="portlet-body tiles">
+					<div class="tile" style="width:100% !important; height: auto;">
+						<div class="tile-body" style="color: #000;">
+							<i class="icon-drop" style="font-size: 77px;"></i>
+						</div>
+						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
+							<h3>Create Droplet</h3>
+							<p>Select your droplet size, location, distribution, and launch in 55 seconds!</p>
+							<button class="btn btn-info" ng-disabled="payment">Create Droplet</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END DASHBOARD STATS -->
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+</script>
+
+<style>
+	.page-sidebar-wrapper {
+		display: none;
+	}
+	.page-content {
+		margin-left: 0 !important;
+	}
+</style>
+<!-- BEGIN MAIN JS & CSS -->

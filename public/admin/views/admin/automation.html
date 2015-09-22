@@ -1,0 +1,603 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="supportTicketsPortlet" style="position:fixed; height: 427px !important; width:25%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Configuration</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">General Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Automation Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-note"></i>
+                                        <span class="title">Email Templates</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-list"></i>
+                                        <span class="title">Addon Modules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-badge"></i>
+                                        <span class="title">Client Groups</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Management</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                          <ul class="list-unstyled page-sidebar-menu">
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-user-follow"></i>
+                                      <span class="title">Administrator Users</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-basket"></i>
+                                      <span class="title">Administrator Roles</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-note"></i>
+                                      <span class="title">Two-Factor Authentication</span>
+                                  </a>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Payments</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">Currencies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Payment Gateways</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Tax Rules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Promotions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Clients</option>
+                                        <option>Orders</option>
+                                        <option>Invoices</option>
+                                        <option>Services</option>
+                                        <option>Domains</option>
+                                        <option>Tickets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Client Name</option>
+                                        <option>Company Name</option>
+                                        <option>Email Address</option>
+                                        <option>Address 1</option>
+                                        <option>Address 2</option>
+                                        <option>City</option>
+                                        <option>State</option>
+                                        <option>Pincode</option>
+                                        <option>Country</option>
+                                        <option>Phone No. </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="1" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="SEARCH" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>Admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <h2 class="caption-subject font-green-haze bold uppercase">Automation Settings</h2>
+                                <p>To enable the automation features to run, make sure you set up a cron job to run once per day at the time you want invoices to be sent out and accounts suspended (eg. 9am).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="text-center">
+                                  <p>Create the following Cron Job using PHP:</p>
+                                  <center><input type="text" class="form-control" style="width:70%;" value="php -q /home/globdev11/public_html/members/admin/cron.php" readonly="" /></center>
+                                </div>
+                                <div class="div-or">
+                                  <hr class="hr-or">
+                                  <span class="span-or">or</span>
+                              	</div>
+                                <div class="text-center">
+                                  <p>Create the following Cron Job using GET:</p>
+                                  <center><input type="text" class="form-control" style="width:70%;" value="GET http://globusoftdev.poweruphosting.net/members/admin/cron.php" readonly="" /></center>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Automatic Module Functions</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Enable Suspension</td>
+                                      <td class="fieldarea"><input type="checkbox" checked="" name="autosuspend"> Tick this box to enable automatic suspension</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Suspend Days</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="5" name="days"> Enter the number of days after the due payment date you want to wait before suspending the account</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Enable Unsuspension</td>
+                                      <td class="fieldarea"><input type="checkbox" checked="" name="autounsuspend"> Tick this box to enable automatic unsuspension on payment</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Enable Termination</td>
+                                      <td class="fieldarea"><input type="checkbox" name="autotermination"> Tick this box to enable automatic termination</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Termination Days</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="30" name="autoterminationdays"> Enter the number of days after the due payment date you want to wait before terminating the account</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Billing Settings</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Invoice Generation</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="14" name="createinvoicedays">
+                                        Enter the default number of days before the due payment date to generate invoices (<a onclick="showadvinvoice();return false" href="#">Advanced Settings</a>)
+                                        <div align="center" style="display:none;" id="advinvoicesettings">
+                                          <br>
+                                          <b>Per Billing Cycle Settings</b><br>
+                                          This allows you to specify for certain cycles to generate further or less in advance of the due date than the default specified above:<br>
+                                          <table width="650" cellspacing="1" bgcolor="#cccccc">
+                                            <tbody>
+                                              <tr bgcolor="#efefef" style="text-align:center;font-weight:bold">
+                                                <td>Monthly</td>
+                                                <td>Quarterly</td>
+                                                <td>Semi-Annually</td>
+                                                <td>Annually</td>
+                                                <td>Biennially</td>
+                                                <td>Triennially</td>
+                                              </tr>
+                                              <tr bgcolor="#ffffff">
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegenmonthly"></td>
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegenquarterly"></td>
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegensemiannually"></td>
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegenannually"></td>
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegenbiennially"></td>
+                                                <td><input type="text" class="form-control" value="" size="10" name="invoicegentriennially"></td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          (Leave blank to use default setting for a cycle)
+                                          <br><br>
+                                          <b>Domain Settings</b><br>
+                                          Enter the number of days before the renewal date to generate invoices for domain renewals below:<br>
+                                          <input type="text" class="form-control" size="3" value="" name="createdomaininvoicedays"> (Leave blank to use default setting)<br><br>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Payment Reminder Emails</td>
+                                      <td class="fieldarea"><label><input type="checkbox" checked="" name="invoicesendreminder"> Tick to activate overdue subscription reminders and invoice payment reminders</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Invoice Unpaid Reminder</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="7" name="invoicesendreminderdays"> Enter the number of days before the invoice due date you would like to send a reminder (0 to disable)</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">First Overdue Reminder</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="1" name="invoicefirstoverduereminder"> Enter the number of days after the invoice due date you would like to send the first overdue notice (0 to disable)</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Second Overdue Reminder</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="0" name="invoicesecondoverduereminder"> Enter the number of days after the invoice due date you would like to send the second overdue notice (0 to disable)</td>
+                                      </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Third Overdue Reminder</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="0" name="invoicethirdoverduereminder"> Enter the number of days after the invoice due date you would like to send the third (final) overdue notice (0 to disable)</td>
+                                      </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Add Late Fee Days</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="5" value="5" name="addlatefeedays"> Enter the number of days after the due payment date you want to add the late fee</td>
+                                      </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Overage Billing Charges</td>
+                                      <td class="fieldarea"><label><input type="radio" checked="" value="1" name="overagebillingmethod"> Calculate &amp; invoice on the last day of the month independantly from the related product</label><br><label><input type="radio" value="2" name="overagebillingmethod"> Calculate on the last day of the month but include on the next invoice to generate for the client</label></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Credit Card Charging Settings</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Process Days Before Due</td>
+                                      <td class="fieldarea"><input type="text" size="3" class="form-control" value="0" name="ccprocessdaysbefore"> Enter the number of days before the due payment date you want to attempt to capture the payment</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Attempt Only Once</td>
+                                      <td class="fieldarea"><label><input type="checkbox" name="ccattemptonlyonce"> Tick this box to only attempt the payment automatically once and if it fails, don't attempt it again</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Retry Every Week For</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="0" name="ccretryeveryweekfor"> Enter the number of weeks to retry failed CC processing attempts for weekly</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">CC Expiry Notices Date</td>
+                                      <td class="fieldarea"><input type="text" size="3" class="form-control" value="25" name="ccdaysendexpirynotices"> Enter the day of the month that you want to send credit card expiry notices for the upcoming month</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Do Not Remove CC on Expiry</td>
+                                      <td class="fieldarea"><label><input type="checkbox" name="donotremovecconexpiry"> Tick this box to not remove credit card details when the expiry date passes</label></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Currency Auto Update Settings</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Exchange Rates</td>
+                                      <td class="fieldarea"><label><input type="checkbox" checked="" name="currencyautoupdateexchangerates"> Tick this box to attempt to auto update exchange rates daily</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Product Prices</td>
+                                      <td class="fieldarea"><label><input type="checkbox" name="currencyautoupdateproductprices"> Tick this box to update product prices using the current exchange rate daily</label></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Domain Reminder Settings</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">
+                                        First Renewal Notice
+                                      </td>
+                                      <td class="fieldarea">
+                                        <input type="text" class="form-control" size="3" value="30">
+                                        Enter the number of days
+                                        <select class="form-control">
+                                          <option selected="selected" value="before">before</option>
+                                          <option value="after">after</option>
+                                        </select> the renewal date to send the first reminder (0 to disable)
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">
+                                        Second Renewal Notice
+                                      </td>
+                                      <td class="fieldarea">
+                                        <input type="text" class="form-control" size="3" value="7">
+                                        Enter the number of days
+                                        <select class="form-control">
+                                          <option selected="selected" value="before">before</option>
+                                          <option value="after">after</option>
+                                        </select> the renewal date to send the second reminder (0 to disable)
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">
+                                        Third Renewal Notice
+                                      </td>
+                                      <td class="fieldarea">
+                                        <input type="text" class="form-control" size="3" value="3">
+                                        Enter the number of days
+                                        <select class="form-control">
+                                          <option value="before">before</option>
+                                          <option selected="selected" value="after">after</option>
+                                        </select> the renewal date to send the third reminder (0 to disable)
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">
+                                        Fourth Renewal Notice
+                                      </td>
+                                      <td class="fieldarea">
+                                        <input type="text" class="form-control" size="3" value="0">
+                                        Enter the number of days
+                                        <select class="form-control">
+                                          <option selected="selected" value="before">before</option>
+                                          <option value="after">after</option>
+                                        </select> the renewal date to send the fourth reminder (0 to disable)
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">
+                                        Fifth Renewal Notice
+                                      </td>
+                                      <td class="fieldarea">
+                                        <input type="text" class="form-control" size="3" value="0">
+                                        Enter the number of days
+                                        <select class="form-control">
+                                          <option selected="selected" value="before">before</option>
+                                          <option value="after">after</option>
+                                        </select> the renewal date to send the fifth reminder (0 to disable)
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Support Ticket Settings</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Close Inactive Tickets</td>
+                                      <td class="fieldarea"><input type="text" class="form-control" size="3" value="0" name="closeinactivetickets"> Time (in hours) of inactivity after which ticket is closed (0 to disable)</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Miscellaneous</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td class="fieldlabel">Cancellation Requests</td>
+                                      <td class="fieldarea"><label><input type="checkbox" checked="" name="autocancellationrequests"> Tick this box to automatically terminate accounts with cancellation requests when due</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Update Usage Statistics</td>
+                                      <td class="fieldarea"><label><input type="checkbox" checked="" name="updatestatusauto"> Tick this box to update automatically when the cron runs</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Client Status Update</td>
+                                      <td class="fieldarea">
+                                        <label><input type="radio" value="1" name="autoclientstatuschange"> Disabled - never auto change client status</label> <br>
+                                        <label><input type="radio" checked="" value="2" name="autoclientstatuschange"> Change client status based on active/inactive products</label> <br>
+                                        <label><input type="radio" value="3" name="autoclientstatuschange"> Change client status based on active/inactive products and not logged in for longer than 3 months</label>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-bottom:3%;">
+              <button class="btn btn-default" type="submit">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+  .div-or {
+    position: relative;
+    font-size: 18px;
+    color: #aaa;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 60%;
+    left: 20%;
+  }
+  .span-or {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    margin-left: -25px;
+    background-color: #fff;
+    width: 50px;
+    text-align: center;
+  }
+  .hr-or {
+    background-color: #cdcdcd;
+    height: 1px;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  table.form td.fieldlabel {
+    background-color: #fff;
+    text-align: right;
+  }
+  table.form td {
+    font-size: 12px !important;
+  }
+  table.form td label {
+    font-size: 12px !important;
+  }
+  table.form td.fieldarea {
+    background-color: #efefef;
+    text-align: left;
+  }
+  table.form td .form-control {
+    width: auto !important;
+    display: initial;
+  }
+</style>
+<script>
+    // TableAdvanced.init();
+    // TableManaged.init();
+    $("#supportTicketsPortlet").mCustomScrollbar({theme: "minimal"});
+
+    function showadvinvoice() {
+        $("#advinvoicesettings").slideToggle();
+    }
+</script>
+<!-- BEGIN MAIN JS & CSS -->

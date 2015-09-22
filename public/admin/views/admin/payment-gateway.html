@@ -1,0 +1,307 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="GeneralPageController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="supportTicketsPortlet" style="position:fixed; height: 427px !important; width:25%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Configuration</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">General Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Automation Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-note"></i>
+                                        <span class="title">Email Templates</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-list"></i>
+                                        <span class="title">Addon Modules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-badge"></i>
+                                        <span class="title">Client Groups</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Management</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                          <ul class="list-unstyled page-sidebar-menu">
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-user-follow"></i>
+                                      <span class="title">Administrator Users</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-basket"></i>
+                                      <span class="title">Administrator Roles</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-note"></i>
+                                      <span class="title">Two-Factor Authentication</span>
+                                  </a>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Payments</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">Currencies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Payment Gateways</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Tax Rules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Promotions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Clients</option>
+                                        <option>Orders</option>
+                                        <option>Invoices</option>
+                                        <option>Services</option>
+                                        <option>Domains</option>
+                                        <option>Tickets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Client Name</option>
+                                        <option>Company Name</option>
+                                        <option>Email Address</option>
+                                        <option>Address 1</option>
+                                        <option>Address 2</option>
+                                        <option>City</option>
+                                        <option>State</option>
+                                        <option>Pincode</option>
+                                        <option>Country</option>
+                                        <option>Phone No. </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="1" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="SEARCH" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>Admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <h2 class="caption-subject font-green-haze bold uppercase">Payment Gateways</h2>
+                                <p>This is where you configure the payment methods/gateways you want to offer &amp; accept from your clients. If the gateway you want to use is not listed here, then you can build your own modules for WHMCS - the docs for which can be found @ <a href="#">http://docs.whmcs.com/Creating_Modules</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <label class="control-label">Activate Module:</label>
+                  <select class="form-control">
+                    <option>ACH Direct</option>
+                    <option>Activate Module</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                  </select><br/>
+                  <button type="submit" class="btn btn-default">Activate</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>1. PayPal</h4>
+                    <div class="portlet light">
+                        <div class="portlet-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <table class="table table-responsive form" width="100%" cellspacing="2" cellpadding="3" border="0">
+                                  <tbody>
+                                    <tr>
+                                      <td width="200" class="fieldlabel">Show on Order Form</td>
+                                      <td class="fieldarea"><input type="checkbox" checked="" ></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Display Name</td>
+                                      <td class="fieldarea"><input type="text" value="PayPal" size="30" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">PayPal Email</td>
+                                      <td class="fieldarea"><input type="text" value="" size="40" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Force One Time Payments</td>
+                                      <td class="fieldarea"><label><input type="checkbox" > Never show the subscription payment button</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Force Subscriptions</td>
+                                      <td class="fieldarea"><label><input type="checkbox" > Hide the one time payment button when a subscription can be created</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Require Shipping Address</td>
+                                      <td class="fieldarea"><label><input type="checkbox" > Tick this box to request a shipping address from a user on PayPal's site</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">Client Address Matching</td>
+                                      <td class="fieldarea"><label><input type="checkbox" > Tick this box to force using client profile information entered into WHMCS at PayPal</label></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">API Username</td>
+                                      <td class="fieldarea"><input type="text" value="" size="40" class="form-control"> API fields only required for refunds</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">API Password</td>
+                                      <td class="fieldarea"><input type="text" value="" size="40" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel">API Signature</td>
+                                      <td class="fieldarea"><input type="text" value="" size="70" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                      <td class="fieldlabel"></td>
+                                      <td class="fieldarea"><input type="submit" class="btn btn-default" value="Save Changes"><br/> (You must enable IPN inside your PayPal account and set the URL to http://globusoftdev.poweruphosting.net/members)</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+  table.form td.fieldlabel {
+    background-color: #fff;
+    text-align: right;
+  }
+  table.form td {
+    font-size: 12px !important;
+  }
+  table.form td label {
+    font-size: 12px !important;
+  }
+  table.form td.fieldarea {
+    background-color: #efefef;
+    text-align: left;
+  }
+  table.form td .form-control {
+    width: auto !important;
+    display: initial;
+  }
+  select.form-control {
+    width: auto;
+  }
+</style>
+<script>
+    // TableAdvanced.init();
+    // TableManaged.init();
+    $("#supportTicketsPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

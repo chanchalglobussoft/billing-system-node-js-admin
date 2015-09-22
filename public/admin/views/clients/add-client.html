@@ -1,0 +1,286 @@
+<div ng-controller="DashboardController"  data-ng-init="init()">
+    <!-- BEGIN SEARCH CLIENT FORM -->
+    <div class="row">
+        <div class="col-md-3" id="addClientPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Clients</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/clients-overview.html">
+                                    <span class="title">Clients Overview</span>
+                                </a><br>
+
+                                <a href="#/client-search.html">
+                                    <span class="title">Clients Search</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Domains</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/search-domain.html">
+                                    <span class="title">Domain Search</span>
+                                </a><br>
+
+                                <a href="#/reg-domain.html">
+                                    <span class="title">Register Domain</span>
+                                </a><br>
+                            </b>
+                        </div>
+                    </div>
+
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Others</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/cancellations.html">
+                                    <span class="title">View Cancellation Requests</span>
+                                </a><br>
+                                <a href="#/mass-mail.html">
+                                    <span class="title">Mass Mail</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
+            <form name="submitForm" novalidate ng-submit="submit()" autocomplete="off">
+                <div role="tabpanel">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="form-group">
+                            <label class="control-label"> First Name </label>
+                            <span class="error" ng-show="submitForm.fName.$error.required" style="color:red">*</span>
+                            <input type="text" class="form-control" name="fName" ng-model="session.fName" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Last Name </label>
+                            <input type="text" class="form-control" name="lName"  ng-model="session.lName"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Company Name </label>
+                            <span class="error" ng-show="submitForm.cmpyName.$error.required" style="color:red">*</span>
+                            <input type="text" class="form-control" name="cmpyName" ng-model="session.cmpyName" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Email Address  </label>
+                            <span class="error" ng-show="submitForm.email.$error.required" style="color:red">*</span>
+                            <input type="email"   class="form-control" name="email" ng-model="session.eMail"  required />
+                            <span style="color:red" ng-show="submitForm.email.$dirty && submitForm.email.$invalid">
+                                <span ng-show="submitForm.email.$error.email">Invalid email address.</span>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Password  </label>
+                            <span class="error" ng-show="submitForm.passWd.$error.required" style="color:red">*</span>
+                            <input type="text" class="form-control" name="passWd" ng-model="session.passWd" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Security Question </label>
+                            <select class="form-control" ng-model="session.secQues">
+                                <option value="">Select a Security Question</option>
+                                <option ng-repeat="question in securityQuestions" value="{{question.sqID}}">{{question.question}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Security Answer</label>
+                            <input type="text" class="form-control" disabled ng-if="!session.secQues"/>
+                            <input type="text" class="form-control" name="secAns" ng-model="session.secAns" ng-if="session.secQues"/>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="control-label"> Late Fees </label><br>
+                            <input type="checkbox" name="applyLateFees"  ng-model="session.applyLateFees"  ng-true-value="1" ng-false-value="0"/> Don't Apply Late Fees
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"> Overdue Notices </label><br>
+                            <input type="checkbox" name="sendOverDueMails" ng-model="session.sendOverDueMails" ng-true-value="1" ng-false-value="0"/> Don't Send Overdue Emails
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"> Tax Exempt </label><br>
+                            <input type="checkbox" name="taxExempt" ng-model="session.taxExempt" ng-true-value="1"
+                                   ng-false-value="0"/> Don't Apply Tax to Invoices
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"> Separate Invoices </label><br>
+                            <input type="checkbox" name="seprateInvoices" ng-model="session.seprateInvoices" ng-true-value="1" ng-false-value="0"/> Separate Invoices for Services
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"> Disable CC Processing </label><br>
+                            <input type="checkbox" name="ccprocessing" ng-model="session.ccprocessing" ng-true-value="'1'" ng-false-value="0"/> Disable Automatic CC Processing
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+                        <div class="form-group">
+                            <label class="control-label">Address 1</label>
+                            <input type="text" class="form-control" name="address1" ng-model="session.address1"/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Address 2</label>
+                            <input type="text" class="form-control" name="address2"  ng-model="session.address2"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <input type="text" class="form-control" name="city" ng-model="session.city"/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> State/Region</label>
+                            <input type="text" class="form-control" name="state" ng-model="session.state"/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Zip Code</label>
+                            <span style="color:red" ng-show="submitForm.zip.$error.minlength">
+                                5 digits are required!</span>
+                            <input type="text" class="form-control" name="zip" ng-model="session.zip" ng-pattern="/^\d+$/" ng-minlength="5"/>
+                            <span style="color:red" ng-show="submitForm.zip.$error.pattern">
+                                Not valid zip!</span>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Country </label>
+                            <select class="form-control" ng-model="session.countryID" ng-change="selectedCountry(session.countryID)">
+                                <option value="">Select a Country </option>
+                                <option ng-repeat="country in countries" value="{{country.id_countries}}">{{country.name}}</option>
+                            </select>
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Currency </label>
+                            <select class="form-control" ng-model="session.currencyID" ng-change="selectedCountry(session.currencyID)">
+                                <option value="">Select Currency </option>
+                                <option ng-repeat="currency in currencies" value="{{currency.id_countries}}">{{currency.currency_code}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Phone No</label>
+                            <span class="error" ng-show="submitForm.phone.$error.required" style="color:red">*</span>
+                            <span style="color:red" ng-show="submitForm.phone.$error.minlength">
+                                10 digits are required!</span>
+                            <input type="text" name="phone" class="form-control" ng-model="session.phone"  required ng-pattern="/^\d+$/" ng-minlength="10">
+                            <span style="color:red" ng-show="submitForm.phone.$error.pattern">
+                                Not valid number!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Payment Method </label>
+                            <select ng-model="session.payMethod"  class="form-control" ng-options="key1 as value for (key1 , value) in paymentMethods">
+                                 <option value=""> Select a Payment Method </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"> Language </label>
+                            <input class="form-control" name="lang"  ng-model="session.lang">
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"> Status </label>
+                            <select ng-model="session.status"  class="form-control" ng-options="key1 as value for (key1 , value) in status">
+                                <option value=""> Select Client Status </option>
+                            </select>
+
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label">Admin Note</label>
+                            <textarea class="form-control" name="about" rows="5" ng-model="session.about"></textarea>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                        <div class="form-group text-center margin-top-20">
+                            <input type="submit" class="btn btn-danger col-md-offset-3 col-md-6 "  ng-disabled="submitForm.$invalid" value="ADD CLIENT" />
+                        </div>
+                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+            </form>
+        </div>
+    </div>
+    <!-- END SEARCH CLIENT FORM -->
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+
+<script src="assets/js/svgcheckbx.js"></script>
+<script>
+                                (function () {
+                                    [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                                        new SelectFx(el);
+                                    });
+                                })();
+                                $("#addClientPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script>
+ function emailAlreadyExits()
+    {
+        swal({
+	  title: "Registration Error",
+	  text: "Sorry, E-mail ID exits in our Database already, Please use another E-mail ID for registration !",
+	  confirmButtonClass: 'btn-danger',
+	  confirmButtonText: 'OK'
+	});
+    }
+ function registrationSuccess()
+    {
+        swal({
+	  title: "Registration Successful",
+	  text: "Client has been added to the database",
+	  confirmButtonClass: 'btn-success',
+	  confirmButtonText: 'OK'
+	});
+    }
+</script>
+<!-- BEGIN MAIN JS & CSS -->

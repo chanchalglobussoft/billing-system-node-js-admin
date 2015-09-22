@@ -1,0 +1,116 @@
+
+<div ng-controller="AnnualIncomeController" ng-init="init(1000)" >
+    <div class="row">
+        <div ng-include="'views/report/income/income-report-side-bar.html'"></div>
+        <div class="col-md-9 col-md-offset-3" style="margin-left: 21%; margin-right: 1%; width: 79%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div id="canvas-holder">
+
+                        <canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="939" height="500" ></canvas>
+
+                        <div style="display: inline-flex;  margin-top: -45px;" class="pull-right">
+                            <h4 style="color:rgb(115, 132, 170);"><span class="label" style="margin: 5px; background-color: rgb(115, 132, 170);">&nbsp;</span>Profit</h4>
+                            <h4 style="color:rgb(227, 91, 90);"><span class="label" style="margin: 5px; background-color:rgb(227, 91, 90);">&nbsp;</span>Income</h4>
+                            <h4 style="color:rgb(68, 182, 174);"><span class="label" style="margin: 5px; background-color:rgb(68, 182, 174);">&nbsp;</span>Refund</h4>
+                        </div>
+                        <!-- <canvas id="chart-area" width="939" height="500"/> -->
+                    </div>
+                </div>
+            </div>
+            <!-- END SEARCH ORDERS FORM -->
+            <!-- BEGIN SEARCH TABLE FORM -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box">
+                        <div class="portlet-head">
+                            <h3>Clients Report</h3>
+                        </div>
+                        <div class="portlet-body">
+                            <div style="display: inline-flex;">
+                                <h4 style="color:blue;"><span class="label" style="margin: 5px; background-color: blue;">&nbsp;</span>Total Income:<span>{{paid | number:2}}</span></h4>
+                                <h4 style="color:red;"><span class="label" style="margin: 5px; background-color: red;">&nbsp;</span>Total Refund:<span>{{refund | number:2}}</span></h4>
+                                <h4 style="color:green;"><span class="label" style="margin: 5px; background-color: green;">&nbsp;</span>Profit:<span>{{profit | number:2}}</span></h4>
+                            </div>
+
+
+                            <div class="pull-right col-md-4" style="margin-bottom: 10px;">
+                                <div class="form-inline">
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="search">Search:</label>-->
+                                        <!--<input type="text" class="form-control" ng-model="test" placeholder="Search ..">-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+
+                                <table class="table table-striped table-bordered table-hover"  id="sample_1">
+                                    <thead>
+                                        <tr>
+
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Amount
+                                            </th>
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="data in datatab">
+
+
+
+                                            <td>{{data.date}}</td>
+                                            <td>{{data.amount  | number:2}}</td>
+
+                                            <td>
+                                                <label class="text-success" ng-if="data.paymentType == 0" >Paid</label>
+                                                <label class="text-danger" ng-if="data.paymentType == 1" >Refund</label>
+
+
+                                            </td>
+                                            <td>
+
+                                                <span ng-if="data.status==1"> Sucess</span>
+                                                <span ng-if="data.status==2">Fail </span>
+                                                <span ng-if="data.status==3">Pending </span>
+                                                <span ng-if="data.status==4"> Incomplete</span>
+
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    (function () {
+        [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+            new SelectFx(el);
+        });
+    })();
+</script>
+<script>
+
+    $("#manageOrderPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

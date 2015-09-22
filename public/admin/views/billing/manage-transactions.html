@@ -1,0 +1,319 @@
+<div ng-controller="billFilterController" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 " id="billTransPortlet" style="position:fixed; height: 450px !important; width:20%;">
+
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption caption-md">
+                        <span class="caption-subject font-green-haze bold uppercase">Billing</span>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <b>
+                        <a href="#/billing-overview.html">
+                            <span class="title">Billing Overview</span>
+                        </a><br>
+
+
+                        <a href="#/manage-invoices.html">
+                            <span class="title">Manage Invoices</span>
+                        </a><br>
+
+                        <a href="#/gateway-logs.html">
+                            <span class="title">Gateway Logs</span>
+                        </a><br>
+                    </b>
+                </div>
+            </div>           
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 2%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+
+                    <form name="submitForm" class="row well" novalidate ng-submit="submit()">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="form-group">
+                                <label class="control-label"> Client Name </label>
+                                <input class="form-control" type="text" name="cName" ng-model="session.cName"/ >
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"> Amount </label>
+                                <input type="text" class="form-control" name="amount" ng-model="session.amount"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"> Invoice No</label>
+                                <input class="form-control" type="text" name="invoiceNo" value=""  ng-model="session.invoiceNo"/ >
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label"> Order No</label>
+                                <input class="form-control" type="text" name="invoiceNo" value=""  ng-model="session.orderNo"/ >
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+
+                            <div class="form-group">
+                                <label class="control-label"> Transaction Status</label>
+                                <select ng-model="session.status"  class="form-control" ng-options="status as value for (status , value) in response.status"><option value=""> Any </option></select>
+                                <!-- <input type="text" class="form-control" name="status" ng-model="session.status" /> -->
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label"> Payment Method </label>
+                                <select ng-model="session.gateway"  class="form-control" ng-options="gateway as value for (gateway , value) in response.paymentGateway"> <option value=""> Any </option> </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label"> Days ago Search</label>
+                                <span>
+                                    <input type="checkbox" ng-model="daysAgoSwitch">
+                                </span>
+                                <div class="input-group" >
+                                    <input class="form-control"  ng-model="session.daysAgo" ng-disabled="!daysAgoSwitch" type="text">
+                                    <span class="input-group-btn">                                        
+                                        <button class="btn default cancelClass" type="button" ng-click="session.daysAgo = ''" ng-disabled="!daysAgoSwitch"><i class="fa fa-times"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label"> Date Range Search</label>
+                                <span>
+                                    <input type="checkbox" ng-model="dateSwitch">
+                                </span>
+                                <div class="input-group" >
+                                    <input class="form-control"  type="daterange" ng-model="session.datesrange" ranges="ranges" ng-disabled="!dateSwitch">
+                                    <span class="input-group-btn">
+                                        <button class="btn default" type="button" disabled><i class="fa fa-calendar"></i></button>                                        
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <div class="form-group text-center margin-top-20">
+                                <input type="submit" class="btn btn-danger col-md-offset-3 col-md-6"  value="SEARCH" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END SEARCH TRANSACTION FORM -->
+            <!-- BEGIN TRANSACTION TABLE FORM -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet box" ng-if="response.data">
+                        <div class="portlet-head">
+                            <h3>Billing Transaction Results</h3>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group col-sm-12 form-inline" style="margin-bottom: 3%;">
+                            <div class="input-group">
+                                <div class="input-group-addon" style="width: 6%;"><i class="fa fa-search"></i></div>
+                                <input type="text" class="form-control" placeholder="Search Transactions" ng-model="searchTransactions">
+                            </div>
+
+                            <div class="btn-group" >
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Export Table <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li id="tablePDF"><a href="#">PDF</a></li>
+                                    <li id="tableCSV"><a href="#">CSV</a></li>
+                                    <li id="tableExcel"><a href="#">Excel</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li id="tablePrint"><a href="#">Print</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="input-group" style="float: right">
+                                <div class="input-group-addon"><i class="fa fa-list-ol"></i>
+                                    <select ng-model="numPerPage">
+                                        <option value="10">10 rows</option>
+                                        <option value ="20">20 rows</option>
+                                        <option value ="30">30 rows</option>
+                                        <option value ="40">40 rows</option>
+                                        <option value ="50">50 rows</option>
+                                        <option value ="100">100 rows</option>
+                                        <option value ="100000">All rows</option>
+                                    </select></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-scrollable">
+
+
+
+                    <table class="table table-bordered table-striped table-hover" id="transactionsTable">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'cname';
+                                                sortReverse = !sortReverse">
+                                        Client Name
+                                        <span ng-show="sortType == 'cname' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'cname' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'payM';
+                                                sortReverse = !sortReverse">
+                                        Payment Method
+                                        <span ng-show="sortType == 'payM' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'payM' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'description';
+                                                sortReverse = !sortReverse">
+                                        Description
+                                        <span ng-show="sortType == 'description' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'description' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'oID';
+                                                sortReverse = !sortReverse">
+                                        Order Id
+                                        <span ng-show="sortType == 'oID' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'oID' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'invoiceID';
+                                                sortReverse = !sortReverse">
+                                        Invoice Id
+                                        <span ng-show="sortType == 'invoiceID' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'invoiceID' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="#" ng-click="sortType = 'amount';
+                                                sortReverse = !sortReverse">
+                                        Amount
+                                        <span ng-show="sortType == 'amount' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'amount' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="#" ng-click="sortType = 'tDate';
+                                                sortReverse = !sortReverse">
+                                        Transaction Date
+                                        <span ng-show="sortType == 'tDate' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'tDate' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a href="#" ng-click="sortType = 'tStatus';
+                                                sortReverse = !sortReverse">
+                                        Transaction status
+                                        <span ng-show="sortType == 'tStatus' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'tStatus' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in response.data| orderBy:sortType:sortReverse | filter:searchTransactions  | filter : paginate">
+                                <td>
+                                    <label> <a href="#/client-profile.html?clientId={{user.clientId}}">{{user.fname}} {{user.lname}} </a></label>
+                                </td>
+                                <td>
+                                    <label  ng-if="user.paymentMethod == null" >N/A</label>
+                                    <label  ng-if="user.paymentMethod == 0" >Wallet</label>
+                                    <label  ng-if="user.paymentMethod == 1" >Paypal</label>
+                                    <label  ng-if="user.paymentMethod == 2" >Bitcoin</label>
+                                </td>
+                                <td>
+                                    <label> {{user.description}} </label>
+                                </td>
+                                <td>
+                                    <a ng-href="#/view-orders.html?orderId={{user.orderId}} ">{{user.orderId}} </a>
+                                </td>
+                                <td>
+                                    <a ng-href="#/invoice.html?invoiceId={{user.invoiceId}}">{{user.invoiceId}} </a>
+
+                                </td>
+                                <td>
+                                    <label> {{user.amount| number:2}} </label>
+                                </td>
+                                <td>
+                                    <label>  {{user.transactionsDate}} </label>
+                                </td>
+                                <td>
+                                    <label class="text-success" ng-if="user.status == 1" >Successful</label>
+                                    <label class="text-danger" ng-if="user.status == 2" >Fail</label>
+                                    <label class="text-warning" ng-if="user.status == 3" >Pending</label>
+                                    <label class="text-info" ng-if="user.status == 4" >Incomplete</label>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div align="center">
+                    <pagination total-items="totalItems" ng-model="currentPage"
+                                boundary-links="true"
+                                items-per-page="numPerPage" class="pagination-sm">
+                    </pagination>
+                </div>
+
+
+
+            </div>
+            <!-- END TRANSACTION TABLE FORM -->
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+//    ComponentsPickers.init();
+    $("#billTransPortlet").mCustomScrollbar({theme: "minimal"});
+     $( "#tablePDF" ).click(function() {
+      $('#transactionsTable').tableExport({
+        type:'pdf',
+        escape:'false',
+         pdfFontSize:'8'
+      });
+    });
+    $( "#tableCSV" ).click(function() {
+      $('#transactionsTable').tableExport({type:'csv',escape:'false'});
+    });
+    $( "#tableExcel" ).click(function() {
+      $('#transactionsTable').tableExport({type:'excel',escape:'false'});
+    });
+    $( "#tablePrint" ).click(function() {
+	    $("#transactionsTable").print({
+                                append : "Billing System - Transactions",
+                                prepend : "Billing System"
+      });
+    });
+    
+     function noTransactions()
+    {
+        swal({
+	  title: "Transaction Not Found",
+	  text: "Sorry, there are no transactions available with the entered filters",
+	  confirmButtonClass: 'btn-danger',
+	  confirmButtonText: 'OK'
+	});
+    }
+</script>
+<!-- BEGIN MAIN JS & CSS -->

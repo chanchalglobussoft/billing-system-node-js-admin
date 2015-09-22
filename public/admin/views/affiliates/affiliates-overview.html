@@ -1,0 +1,183 @@
+
+<div ng-controller="AffiliatesController" class="margin-top-10" id="orderOverview" ng-init="init()">
+
+<div ng-include="'views/affiliates/affiliates-side-bar.html'"></div>
+     
+<div class="col-md-offset-3" style="margin-left: 25%; margin-right: 1%;">
+
+     <div class="row">
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number ng-binding">
+                           {{response.data[0].affiliates_count}}
+                            </div>
+                            <div class="desc">
+                            Total Affiliates
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat red-intense">
+                        <div class="visual">
+                            <i class="fa fa-bar-chart-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number ng-binding">
+                                 {{response.total}}
+                            </div>
+                            <div class="desc">
+                                Total Hits
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-shopping-cart"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number ng-binding">
+                               {{response.data[2].affiliates_status}}
+
+                            </div>
+                            <div class="desc">
+                         Total Signups
+                            </div>
+                        </div>
+<!--                        <a class="more" ng-href="javascript:;" href="unsafe:javascript:;">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-plum">
+                        <div class="visual">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number ng-binding">
+                               {{response.percentage | number:2}}%
+                            </div>
+                            <div class="desc">
+                           % Of Worthy Referrals
+                            </div>
+                        </div>
+<!--                        <a class="more" href="javascript:;">
+                        View more <i class="m-icon-swapright m-icon-white"></i>
+                        </a>-->
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">No Of Hits </span>
+                                <!-- <a class="more pull-right" id="graphfill" href="javascript:;">
+                                Toggel Graph <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                                <a class="more pull-right" id="curve" href="javascript:;">
+                                Toggel Curve <i class="m-icon-swapright m-icon-white"></i>
+                                </a> -->
+                            </div>
+                          <!--   <div class="actions">
+                                <div class="btn-group btn-group-devided">
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="graphfill">Toggle Graph</a></label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="curve">Toggle Curve</a></label>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div id="canvas-holder">
+
+                                        <canvas tc-chartjs-line chart-options="options" chart-data="data" chart-legend="lineChart1"  width="939" height="300" ></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <!-- BEGIN PORTLET-->
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <span class="caption-subject font-green-haze bold uppercase">No Of Signups </span>
+                                <!-- <a class="more pull-right" id="graphfill" href="javascript:;">
+                                Toggel Graph <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                                <a class="more pull-right" id="curve" href="javascript:;">
+                                Toggel Curve <i class="m-icon-swapright m-icon-white"></i>
+                                </a> -->
+                            </div>
+                          <!--   <div class="actions">
+                                <div class="btn-group btn-group-devided">
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="graphfill">Toggle Graph</a></label>
+                                    <label class="btn btn-transparent grey-salsa btn-circle btn-sm active">
+                                        <a href="javascript:;" style="color:#FFF;text-decoration:none;" class="" id="curve">Toggle Curve</a></label>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="portlet-body">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <div id="canvas-holder">
+
+                                        <canvas tc-chartjs-line chart-options="options2" chart-data="data2" chart-legend="lineChart1"  width="939" height="300" ></canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+
+            
+
+
+
+            </div>
+    </div>
+
+
+
+</div>
+<!-- END MAIN CONTENT -->
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    // Index.init();
+    // Tasks.initDashboardWidget();
+    $("#ReportPortlet").mCustomScrollbar({theme: "minimal"});
+</script>

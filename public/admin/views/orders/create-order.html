@@ -1,0 +1,254 @@
+<div ng-controller="CreateorderController" ng-init="init()">
+    <!-- BEGIN SEARCH CLIENT FORM -->
+    <div class="row">
+        <div class="col-md-3" id="addClientPortlet" style="position:fixed; height: 450px !important; width:20%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Orders</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <b>
+                                <a href="#/orders-overview.html">
+                                    <span class="title">Order Overview</span>
+                                </a><br>
+                                <a href="#/manage-order.html">
+                                    <span class="title">Manage Orders</span>
+                                </a><br>
+
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 2%;">
+            <h2>Create Order</h2>
+
+            <div class="row">
+                <div class="col-md-offset-1 col-xs-8 margin-top-20">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h5><span class="glyphicon glyphicon-shopping-cart"></span>Orders</h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="bs-example" data-example-id="bordered-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Client Name</th>
+                                            <th>Product Id</th>
+                                            <th>Product Name</th>
+                                            <th>Product Description</th>
+                                            <th>Duration</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row" >
+                                                <span ng-if="response.clientId != 0"><a href="#"  data-toggle="modal" data-target="#AddClientModal" >{{response.fname}} {{response.lname}}</a> </span>
+                                                <!--                                                <span ng-if="response.clientId != 0"><a href="#"  data-toggle="modal" data-target="#AddClientModal" >{{response.fname}} {{response.lname}}</a> <a href="#" ng-click="response.clientId = null">X</a> </span>-->
+
+                                                <span ng-if="response.clientId == 0"><a href="#"  data-toggle="modal" data-target="#AddClientModal" ng-click="getAllClients()">Add Client</a> </span>
+                                            </td>
+                                            <td>{{response.productId}}</td>
+                                            <td>
+                                                <!--<span ng-if="response.productId!=0"><a href="#"  data-toggle="modal" data-target="#AddProductModal">{{response.fname+" "+response.lname}}</a> </span>-->
+                                                <span ng-if="!response.productName" ><a href="#"  data-toggle="modal" data-target="#AddProductModal" ng-click="getAllProducts()">Add Products</a> </span>
+                                                <span ng-if="response.productName" ><a href="#"  data-toggle="modal" data-target="#AddProductModal">{{response.productName}}</a> </span>                                             
+                                                <!--<span ng-if="response.productName" ><a href="#"  data-toggle="modal" data-target="#AddProductModal">{{response.productName}}</a> </a> <a href="#" >X</a> </span>-->                                             
+
+                                            </td>
+
+
+                                            <td>{{response.productDescription}}</td>
+                                            <td>
+                                                <input type="number" ng-model="duration" palceholder="duration" required>
+                                            </td>
+                                            <td>{{response.price| number:2}}</td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row text-center">
+                                <div class="col-xs-6">
+                                    <h4 class="text-right">Total <strong>${{response.price}}</strong></h4>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" class="btn btn-success btn-block" disabled="" ng-if="response.price == null">
+                                        Pay
+                                    </button>
+                                    <button type="button" class="btn btn-success btn-block" ng-click="pay()" ng-if="response.price">
+                                        Pay
+                                    </button>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="button" class="btn btn-danger btn-block" disabled="" ng-if="response.price == null">
+                                        Create Order
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-block" ng-click="withoutpayment()" ng-if="response.price" >
+                                        Create Order
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <!-- END SEARCH CLIENT FORM -->
+
+    <!-- END MAIN CONTENT -->
+    <!-- BEGIN MAIN JS & CSS -->
+
+
+    <!-- Add Product  Modal -->
+    <div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModal">Add Product</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="margin-top-20">
+                        <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                                <label class="control-label col-sm-2" for="inputSuccess4" >Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSuccess4"  placeholder="Search" name="query" ng-model="product" >
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status1" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table table-bordered margin-top-20">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Product Id</th>
+                                    <th>Product Name</th>
+                                    <th>Product Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in response.product  | filter:product  | filter : paginateProducts" >
+                                    <th scope="row"><input type="radio"  name="product"  ng-model="response.selectProduct" value="{{data}}"></th>
+                                    <td>{{data.productId}}</td>
+                                    <td>{{data.productName}}</td>
+                                    <td>${{data.price| number:2}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div align="center">
+                            <pagination total-items="totalProductsItems" ng-model="currentPageProducts"
+                                        max-size="5" boundary-links="true"
+                                        items-per-page="numPerPage" class="pagination-sm">
+                            </pagination>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addproduct()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- AddClient Modal -->
+    <div class="modal fade" id="AddClientModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add Client</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="margin-top-20">
+                        <form class="form-horizontal">
+                            <div class="form-group has-success has-feedback">
+                                <label class="control-label col-sm-2" for="inputSuccess3">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputSuccess3" type="search" placeholder="Search" name="query" ng-model="name">
+                                    <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top: 10px;"></span>
+                                    <span id="inputSuccess3Status" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table table-bordered margin-top-20">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Client Id</th>
+                                    <th>Client Name</th>
+                                    <th>Wallet Balance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="data in response.client | filter:name  | filter : paginateClients" >
+                                    <th scope="row"><input type="radio"  name="groupName"  ng-model="response.myvalue" value="{{data}}"></th>
+                                    <td>{{data.clientId}}</td>
+                                    <td>{{data.fname}} {{data.lname}}</td>
+                                    <td>${{data.current_balance| number:2}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        
+                          <div align="center">
+                            <pagination total-items="totalClientItems" ng-model="currentPageClient"
+                                        max-size="5" boundary-links="true"
+                                        items-per-page="numPerPage" class="pagination-sm">
+                            </pagination>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="add()">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="assets/js/svgcheckbx.js"></script>
+<script>
+                        (function () {
+                            [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
+                                new SelectFx(el);
+                            });
+                        })();
+                        $("#addClientPortlet").mCustomScrollbar({theme: "minimal"});
+</script>

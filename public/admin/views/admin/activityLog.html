@@ -1,0 +1,266 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="ActiveticketsController" class="margin-top-10" data-ng-init="init()">
+    <div class="row">
+        <div class="col-md-3 page-sidebar navbar-collapse collapse ng-scope" id="supportTicketsPortlet" style="position:fixed; height: 427px !important; width:25%;">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Configuration</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">General Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Automation Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-note"></i>
+                                        <span class="title">Email Templates</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-list"></i>
+                                        <span class="title">Addon Modules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-badge"></i>
+                                        <span class="title">Client Groups</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Management</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                          <ul class="list-unstyled page-sidebar-menu">
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-user-follow"></i>
+                                      <span class="title">Administrator Users</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-basket"></i>
+                                      <span class="title">Administrator Roles</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#">
+                                      <i class="icon-note"></i>
+                                      <span class="title">Two-Factor Authentication</span>
+                                  </a>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Payments</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled page-sidebar-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-user-follow"></i>
+                                        <span class="title">Currencies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Payment Gateways</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Tax Rules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-basket"></i>
+                                        <span class="title">Promotions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light ">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">advanced search</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <form action="#" class="form-horizontal">
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Clients</option>
+                                        <option>Orders</option>
+                                        <option>Invoices</option>
+                                        <option>Services</option>
+                                        <option>Domains</option>
+                                        <option>Tickets</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>Client Name</option>
+                                        <option>Company Name</option>
+                                        <option>Email Address</option>
+                                        <option>Address 1</option>
+                                        <option>Address 2</option>
+                                        <option>City</option>
+                                        <option>State</option>
+                                        <option>Pincode</option>
+                                        <option>Country</option>
+                                        <option>Phone No. </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="1" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" value="SEARCH" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <span class="caption-subject font-green-haze bold uppercase">Staff Online</span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <ul class="list-unstyled">
+                                <li>Admin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-md-offset-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <div class="caption caption-md">
+                                <i class="icon-bar-chart font-green-haze hide"></i>
+                                <h2 class="caption-subject font-green-haze bold uppercase">System Activity Log</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="portlet box blue-hoki">
+                        <div class="portlet-body">
+                            <div class="row" style="margin-top:2%;">
+                              <div class="col-md-12">
+                                <table class="table table-responsive table-hover">
+                                  <thead>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Username</th>
+                                    <th>IP Address</th>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Failed Admin Login Attempt - IP: 108.162.216.33</td>
+                                      <td>System</td>
+                                      <td>108.162.216.33</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Modified Quote - <a href="#">Quote ID: 2</a></td>
+                                      <td>Admin</td>
+                                      <td>108.162.222.22</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Failed Admin Login Attempt - IP: 108.162.216.33</td>
+                                      <td>System</td>
+                                      <td>108.162.216.33</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Modified Quote - <a href="#">Quote ID: 2</a></td>
+                                      <td>Admin</td>
+                                      <td>108.162.222.22</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Failed Admin Login Attempt - IP: 108.162.216.33</td>
+                                      <td>System</td>
+                                      <td>108.162.216.33</td>
+                                    </tr>
+                                    <tr>
+                                      <td>10/06/2015 09:23</td>
+                                      <td>Modified Quote - <a href="#">Quote ID: 2</a></td>
+                                      <td>Admin</td>
+                                      <td>108.162.222.22</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<script>
+    // TableAdvanced.init();
+    // TableManaged.init();
+    $("#supportTicketsPortlet").mCustomScrollbar({theme: "minimal"});
+</script>
+<!-- BEGIN MAIN JS & CSS -->
