@@ -16,10 +16,10 @@
 
 		<!-- BEGIN GLOBAL MANDATORY STYLES -->
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" />
-		<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-		<link href="assets/css/simple-line-icons.min.css" rel="stylesheet" />
-		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-		<link href="assets/css/uniform.default.css" rel="stylesheet" />
+		<link href="client/assets/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="client/assets/css/simple-line-icons.min.css" rel="stylesheet" />
+		<link href="client/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="client/assets/css/uniform.default.css" rel="stylesheet" />
 		<!-- END GLOBAL MANDATORY STYLES -->
 
 		<!-- BEGIN DYMANICLY LOADED CSS FILES(all plugin and page related styles must be loaded between GLOBAL and THEME css files ) -->
@@ -27,11 +27,11 @@
 		<!-- END DYMANICLY LOADED CSS FILES -->
 
 		<!-- BEGIN THEME STYLES -->
-		<link href="assets/css/components-md.css" id="style_components" rel="stylesheet" />
-		<link href="assets/css/plugins-md.css" rel="stylesheet" />
-		<link href="assets/css/layout.css" rel="stylesheet" />
-		<link href="assets/css/light.css" rel="stylesheet" id="style_color" />
-		<link href="assets/css/custom.css" rel="stylesheet" />
+		<link href="client/assets/css/components-md.css" id="style_components" rel="stylesheet" />
+		<link href="client/assets/css/plugins-md.css" rel="stylesheet" />
+		<link href="client/assets/css/layout.css" rel="stylesheet" />
+		<link href="client/assets/css/light.css" rel="stylesheet" id="style_color" />
+		<link href="client/assets/css/custom.css" rel="stylesheet" />
 		<!-- END THEME STYLES -->
 
 		<link rel="shortcut icon" href="favicon.ico" />
@@ -50,7 +50,7 @@
 		<!-- END PAGE SPINNER -->
 
 		<!-- BEGIN HEADER -->
-		<div data-ng-include="'tpl/header.html'" data-ng-controller="HeaderController" class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
+		<div data-ng-include="'client/views/tpl/header.html'" data-ng-controller="HeaderController" class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
 		</div>
 		<!-- END HEADER -->
 
@@ -60,13 +60,13 @@
 		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
 			<!-- BEGIN SIDEBAR -->
-			<div data-ng-include="'tpl/sidebar.html'" data-ng-controller="SidebarController" class="page-sidebar-wrapper">
+			<div data-ng-include="'client/views/tpl/sidebar.html'" data-ng-controller="SidebarController" class="page-sidebar-wrapper">
 			</div>
 			<!-- END SIDEBAR -->
 			<div class="page-content-wrapper">
 				<div class="page-content">
 					<!-- BEGIN PAGE HEAD -->
-					<div data-ng-include="'tpl/page-head.html'" data-ng-controller="PageHeadController" class="page-head">
+					<div data-ng-include="'client/views/tpl/page-head.html'" data-ng-controller="PageHeadController" class="page-head">
 					</div>
 					<!-- END PAGE HEAD -->
 					<!-- BEGIN ACTUAL CONTENT -->
@@ -79,7 +79,7 @@
 		<!-- END CONTAINER -->
 
 		<!-- BEGIN FOOTER -->
-		<div data-ng-include="'tpl/footer.html'" data-ng-controller="FooterController" class="page-footer">
+		<div data-ng-include="'client/views/tpl/footer.html'" data-ng-controller="FooterController" class="page-footer">
 		</div>
 		<!-- END FOOTER -->
 
@@ -87,48 +87,48 @@
 
 		<!-- BEGIN CORE JQUERY PLUGINS -->
 		<!--[if lt IE 9]>
-		<script src="assets/js/respond.min.js"></script>
-		<script src="assets/js/excanvas.min.js"></script> 
+		<script src="client/assets/js/respond.min.js"></script>
+		<script src="client/assets/js/excanvas.min.js"></script> 
 		<![endif]-->
-		<script src="assets/js/lib/jquery.min.js"></script>
-		<script src="assets/js/lib/jquery-migrate.min.js"></script>
-		<script src="assets/js/lib/bootstrap.min.js"></script>
-		<script src="assets/js/lib/bootstrap-hover-dropdown.min.js"></script>
-		<script src="assets/js/lib/jquery.slimscroll.min.js"></script>
-		<script src="assets/js/lib/jquery.blockui.min.js"></script>
-		<script src="assets/js/lib/jquery.cokie.min.js"></script>
-		<script src="assets/js/lib/jquery.uniform.min.js"></script>
+		<script src="client/assets/js/lib/jquery.min.js"></script>
+		<script src="client/assets/js/lib/jquery-migrate.min.js"></script>
+		<script src="client/assets/js/lib/bootstrap.min.js"></script>
+		<script src="client/assets/js/lib/bootstrap-hover-dropdown.min.js"></script>
+		<script src="client/assets/js/lib/jquery.slimscroll.min.js"></script>
+		<script src="client/assets/js/lib/jquery.blockui.min.js"></script>
+		<script src="client/assets/js/lib/jquery.cokie.min.js"></script>
+		<script src="client/assets/js/lib/jquery.uniform.min.js"></script>
 		<!-- END CORE JQUERY PLUGINS -->
 
 		<!-- BEGIN CORE ANGULARJS PLUGINS -->
-		<script src="lib/angularjs/angular.min.js"></script>
-		<script src="lib/angularjs/angular-sanitize.min.js"></script>
-		<script src="lib/angularjs/angular-touch.min.js"></script>
-		<script src="lib/angularjs/plugins/angular-ui-router.min.js"></script>
-		<script src="lib/angularjs/plugins/ocLazyLoad.min.js"></script>
-		<script src="lib/angularjs/plugins/ui-bootstrap-tpls.min.js"></script>
+		<script src="client/lib/angularjs/angular.min.js"></script>
+		<script src="client/lib/angularjs/angular-sanitize.min.js"></script>
+		<script src="client/lib/angularjs/angular-touch.min.js"></script>
+		<script src="client/lib/angularjs/plugins/angular-ui-router.min.js"></script>
+		<script src="client/lib/angularjs/plugins/ocLazyLoad.min.js"></script>
+		<script src="client/lib/angularjs/plugins/ui-bootstrap-tpls.min.js"></script>
 		<!-- END CORE ANGULARJS PLUGINS -->
 
 		<!-- BEGIN APP LEVEL ANGULARJS SCRIPTS -->
-		<script src="assets/js/app.js"></script>
-		<script src="assets/js/directives.js"></script>
+		<script src="client/config/app.js"></script>
+		<script src="client/config/directives.js"></script>
 		<!-- END APP LEVEL ANGULARJS SCRIPTS -->
 
 		<!-- BEGIN  ANGULARJS SERVICE SCRIPTS -->
-		<script src="assets/js/service/authService.js"></script>
+		<script src="client/assets/js/service/authService.js"></script>
 		<!-- END  ANGULARJS SERVICE SCRIPTS -->
 
 		<!-- BEGIN APP LEVEL JQUERY SCRIPTS -->
-		<script src="assets/js/billing.js"></script>
-		<script src="assets/js/layout.js"></script>
-		<script src="assets/js/demo.js"></script>
+		<script src="client/config/billing.js"></script>
+		<script src="client/assets/js/layout.js"></script>
+		<script src="client/assets/js/demo.js"></script>
 		<!-- END APP LEVEL JQUERY SCRIPTS -->
 
 		<script>
 			/* Init Billing's core jquery plugins and layout scripts */
 			$(document).ready(function () {
 				Billing.init(); // Run BillingApp
-				Billing.setAssetsPath('assets/'); // Set the assets folder path			
+				Billing.setAssetsPath('client/assets/'); // Set the client/assets folder path			
 			});
 		</script>
 		<!-- END JAVASCRIPTS -->
