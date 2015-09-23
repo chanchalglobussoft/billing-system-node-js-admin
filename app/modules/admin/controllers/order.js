@@ -2,7 +2,7 @@
 var express = require('express');
 var inspect = require('util').inspect;
 var moment = require('moment');
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../models/maria.js');
 var c = new connect.maria();
 
 exports.latestFindorders = function (req, res) {

@@ -4,8 +4,8 @@ var inspect = require('util').inspect;
 
 var async = require('async');
 
-var connect = require('../../../app/models/maria.js');
-var affiliate = require('../../models/admin/affiliatesettings.js');
+var connect = require('../../../models/maria.js');
+var affiliate = require('../models/affiliatesettings.js');
 
 var c = new connect.maria();
 

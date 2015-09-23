@@ -4,19 +4,18 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
+	errorHandler = require('../../../../controllers/errors.server.controller'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
-	User = mongoose.model('User'),
-	mandrill = require("../../../config/mandril.js"),
-	config = require("../../../config/config.js");
+	mandrill = require("../../../../../config/mandril.js"),
+	config = require("../../../../../config/config.js");
 var crypto = require('crypto');
 /**
  * connection to maria database
  */
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../../models/maria.js');
 var c = new connect.maria();
-var mariaq = require('../../../app/models/mariaq.js');
+var mariaq = require('../../../../models/mariaq.js');
 /**
  * jwt
  */

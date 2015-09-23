@@ -4,14 +4,14 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
+	errorHandler = require('../../../../controllers/errors.server.controller'),
 	mongoose = require('mongoose'),
-	passport = require('passport'),
-	User = mongoose.model('User');
+	passport = require('passport');
+	
 /**
  * connection to maria database
  */
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../../models/maria.js');
 var c = new connect.maria();
 
 

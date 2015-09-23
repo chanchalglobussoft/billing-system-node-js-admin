@@ -1,9 +1,9 @@
 'use strict';
 var express = require('express');
 var inspect = require('util').inspect;
-var affiliate = require('../../models/admin/affiliatesettings.js');
+var affiliate = require('../models/affiliatesettings.js');
 var moment = require('moment');
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../models/maria.js');
 var c = new connect.maria();
 
 exports.listall = function (req, res) {

@@ -4,7 +4,7 @@ var async = require('async');
 var util = require('util');
 var DatesHelper = require('./cutomDateFunctions.js');
 
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../models/maria.js');
 
 var c = new connect.maria();
 

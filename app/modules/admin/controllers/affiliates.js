@@ -1,7 +1,7 @@
 'use strict';
 var express = require('express');
 var inspect = require('util').inspect;
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../models/maria.js');
 var c = new connect.maria();
 
 

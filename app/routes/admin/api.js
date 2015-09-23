@@ -6,30 +6,30 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var config = require('../../../config.js');
-var namecheap = require('../../../app/controllers/admin/namecheap');
+var namecheap = require('../../../app/modules/admin/controllers/namecheap');
 var apiRoutes = express.Router();
 var async = require('async');
-var TicketReply = require('../../models/admin/ticketreply.js'); // 26/6/2015 Syed Arshad
+var TicketReply = require('../../modules/admin/models/ticketreply.js'); // 26/6/2015 Syed Arshad
 // var multer  = require('multer'); //Multer will take care of the file handling and HTML for handling form input.
 
 
 var connect = require('../../../app/models/maria.js');
-var clients = require('../../../app/controllers/admin/clients.js');
-var order = require('../../../app/controllers/admin/order.js');
-var tickets = require('../../../app/controllers/admin/tickets.js');
-var billing = require('../../../app/controllers/admin/billing.js');
-var profiles = require('../../../app/controllers/admin/profiles.js');
-var products = require('../../../app/controllers/admin/products.js');
-var reports = require('../../../app/controllers/admin/reports.js');
-var cart = require('../../../app/controllers/admin/cart.js');
-var admin = require('../../../app/controllers/admin/admin.js');
-var affiliates = require('../../../app/controllers/admin/affiliates.js');
-var affsettings = require('../../../app/controllers/admin/affiliatesSettings.js');
-var affpay = require('../../../app/controllers/admin/affiliatespay.js');
-var basicsettings = require('../../../app/controllers/admin/basicsettings.js');
-var clientprofile = require('../../../app/controllers/admin/clientprofile.js');
-var countries = require('../../../app/controllers/admin/countries.js');
-var secuQuestions = require('../../../app/controllers/admin/securityQuestions.js');
+var clients = require('../../../app/modules/admin/controllers/clients.js');
+var order = require('../../../app/modules/admin/controllers/order.js');
+var tickets = require('../../../app/modules/admin/controllers/tickets.js');
+var billing = require('../../../app/modules/admin/controllers/billing.js');
+var profiles = require('../../../app/modules/admin/controllers/profiles.js');
+var products = require('../../../app/modules/admin/controllers/products.js');
+var reports = require('../../../app/modules/admin/controllers/reports.js');
+var cart = require('../../../app/modules/admin/controllers/cart.js');
+var admin = require('../../../app/modules/admin/controllers/admin.js');
+var affiliates = require('../../../app/modules/admin/controllers/affiliates.js');
+var affsettings = require('../../../app/modules/admin/controllers/affiliatesSettings.js');
+var affpay = require('../../../app/modules/admin/controllers/affiliatespay.js');
+var basicsettings = require('../../../app/modules/admin/controllers/basicsettings.js');
+var clientprofile = require('../../../app/modules/admin/controllers/clientprofile.js');
+var countries = require('../../../app/modules/admin/controllers/countries.js');
+var secuQuestions = require('../../../app/modules/admin/controllers/securityQuestions.js');
 
 
 
@@ -38,7 +38,7 @@ var secuQuestions = require('../../../app/controllers/admin/securityQuestions.js
 //--------------------------------------------------------------------------------------------
 //var Log = require('../../models/logschema.js');
 var Logs = require('./logs.js');
-var Logger = require('../../models/admin/logger.js');
+var Logger = require('../../modules/admin/models/logger.js');
 //--------------------------------------------------------------------------------------------
 //  var Namecheap = require('namecheap'),
 //  namecheap = new Namecheap('abhishek', 'c07cee52aa3d47918bc597efbcfca80f', '103.234.94.162','sandbox');
@@ -420,7 +420,7 @@ module.exports = function(app) {
     // All new APIs goes below this: 01/07/2015 By:Syed Arshad
     //----------------------------------------------------------------------------------------------------------------------
 
-    // Adding Support section's Report API by Syed Arshad 9/7/2015 (Refer app/controllers/admin/reports.js for full APIs)
+    // Adding Support section's Report API by Syed Arshad 9/7/2015 (Refer app/modules/admin/controllers/reports.js for full APIs)
     apiRoutes.post('/calculateRTPT', reports.calculateRTPT);
     apiRoutes.post('/calculateART', reports.calculateART);
     apiRoutes.post('/calculateAFRT', reports.calculateAFRT);

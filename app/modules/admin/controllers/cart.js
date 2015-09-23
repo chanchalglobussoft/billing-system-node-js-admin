@@ -1,12 +1,12 @@
 
 'use strict';
 var express = require('express');
-var Logger = require('../../models/admin/logger.js');
+var Logger = require('../models/logger.js');
 var inspect = require('util').inspect;
 
 
 
-var connect = require('../../../app/models/maria.js');
+var connect = require('../../../models/maria.js');
 
 
 

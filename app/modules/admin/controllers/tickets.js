@@ -2,12 +2,12 @@
 var express = require('express');
 var inspect = require('util').inspect;
 var moment = require('moment');
-var Logger = require('../../models/admin/logger.js');
-var connect = require('../../../app/models/maria.js');
+var Logger = require('../models/logger.js');
+var connect = require('../../../models/maria.js');
 //var multer  = require('multer'); //Multer will take care of the file handling and HTML for handling form input.
 var c = new connect.maria();
 var mongoose = require('mongoose');
-var TicketReply = require('../../models/admin/ticketreply.js');
+var TicketReply = require('../models/ticketreply.js');
 //The disk storage engine gives full control on storing files to disk.
 //billing-system-node-js\trunk\public\assets\uploads\ticket-attachements
 //var storage = multer.diskStorage({

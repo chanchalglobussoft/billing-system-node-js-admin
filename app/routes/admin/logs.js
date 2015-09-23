@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var logRoutes = express.Router();
-var LogStatus = require('../../models/admin/logstatus.js');
-var Log = require('../../models/admin/logschema.js');
+var LogStatus = require('../../modules/admin/models/logstatus.js');
+var Log = require('../../modules/admin/models/logschema.js');
 
 module.exports = function (app) {
 

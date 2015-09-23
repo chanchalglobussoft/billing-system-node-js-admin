@@ -4,7 +4,7 @@ var inspect = require('util').inspect;
 
 
 
-var connect=require('../../../app/models/maria.js');
+var connect=require('../../../models/maria.js');
 
 
 

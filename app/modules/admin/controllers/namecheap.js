@@ -1,7 +1,7 @@
 //'use strict';
 //var _ = require('lodash');
-var domaindata = require('../../models/admin/mongodata.js');
-var tld = require('../../models/admin/tldmodel.js');
+var domaindata = require('../models/mongodata.js');
+var tld = require('../models/tldmodel.js');
 //console.log(domaindata);
 var request = require('request');
 var parser = require('xml2json');

@@ -2,8 +2,8 @@
 var express = require('express');
 var inspect = require('util').inspect;
 
-var connect = require('../../../app/models/maria.js');
-var affiliate = require('../../models/admin/affiliatesettings.js');
+var connect = require('../../../models/maria.js');
+var affiliate = require('../models/affiliatesettings.js');
 
 var c = new connect.maria();
 

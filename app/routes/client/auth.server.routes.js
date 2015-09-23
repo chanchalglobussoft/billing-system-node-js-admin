@@ -8,10 +8,10 @@ var mongoose = require('mongoose');
 var config = require('../../../config/config.js');
 var apiRoutes = express.Router();
 var async = require('async');
-var users = require('../../../app/controllers/client/user');
+var users = require('../../../app/modules/client/controllers/user/user');
 //var userss = require('../../../app/controllers/userss.server.controller');
 var mandrill = require('../../../config/mandril.js');
-var userss = require('../../../app/controllers/client.server.controller');
+var userss = require('../../../app/modules/client/controllers/user.server.controller');
 
 module.exports = function(app) {
     //every request to api must authenticated
