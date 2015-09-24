@@ -4,10 +4,10 @@ MetronicApp.controller('RoleController', ['$rootScope', '$scope', '$http', '$coo
         console.log(adminValueFromCookie);
         $scope.response = {};
 //        $scope.submit = function () {
-//            $http.post('/api/auth', {data: $scope.session}).
+//            $http.post('/admin/api/auth', {data: $scope.session}).
 //                    success(function (data, status, headers, config) {
 //                        if (data.code === 200) {
-//                            console.log("Successful login");                      
+//                            console.log("Successful login");
 //                            $cookies['token'] = data.token;
 //                            $cookieStore.put('adminId', data.admin.adminId);
 //                            $window.location.href = '#/dashboard.html';
@@ -27,10 +27,10 @@ MetronicApp.controller('AdminaccountController', ['$rootScope', '$scope', '$http
         console.log(adminValueFromCookie);
         $scope.response = {};
 //        $scope.submit = function () {
-//            $http.post('/api/auth', {data: $scope.session}).
+//            $http.post('/admin/api/auth', {data: $scope.session}).
 //                    success(function (data, status, headers, config) {
 //                        if (data.code === 200) {
-//                            console.log("Successful login");                      
+//                            console.log("Successful login");
 //                            $cookies['token'] = data.token;
 //                            $cookieStore.put('adminId', data.admin.adminId);
 //                            $window.location.href = '#/dashboard.html';
@@ -50,8 +50,8 @@ MetronicApp.controller('LogsettingController', ['$rootScope', '$scope', '$http',
         $scope.sortReverse = true;
         $scope.currentPage = 1;
         $scope.numPerPage = 10;
-       
-        
+
+
         $scope.paginate = function(value) {
           var begin, end, index;
           begin = ($scope.currentPage - 1) * $scope.numPerPage;
@@ -60,7 +60,7 @@ MetronicApp.controller('LogsettingController', ['$rootScope', '$scope', '$http',
           return (begin <= index && index < end);
         };
         //Pagination
-        
+
         $scope.$watch('searchLogs', function () {
             if (!$scope.searchLogs)
             {
@@ -70,7 +70,7 @@ MetronicApp.controller('LogsettingController', ['$rootScope', '$scope', '$http',
                 $scope.numPerPage = 100000; //maximum number of rows in table
             }
         });
-        
+
         $scope.init = function () {
             $http.get('/log/getStatus/?token=' + $cookies.token).
                     success(function (data) {
@@ -95,7 +95,7 @@ MetronicApp.controller('LogsettingController', ['$rootScope', '$scope', '$http',
                     }).error(function () {
                 console.log("Error in '/log/count-logs/");
             });
-            
+
             $http.get('/log/get-all-logs/?token=' + $cookies.token).
                     success(function (data) {
                         $scope.allLogs = data.Data;
@@ -140,8 +140,8 @@ MetronicApp.controller('LogsettingController', ['$rootScope', '$scope', '$http',
             });
 
         }
-        
 
-          
+
+
 
     }]);

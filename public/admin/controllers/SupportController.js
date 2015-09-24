@@ -179,7 +179,7 @@ MetronicApp.controller('SupportController', ['$rootScope', '$scope', '$http', '$
         $scope.rangeTickets = function () {
             if ($scope.session) {
 
-                $http.post('/api/tickets/range-overview', {data: $scope.session, adminId: adminValueFromCookie, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
+                $http.post('/admin/api/tickets/range-overview', {data: $scope.session, adminId: adminValueFromCookie, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
                         success(function (data, status, headers, config) {
                             $scope.response.data = data.Data;
                             console.log($scope.response.data);
@@ -346,7 +346,7 @@ MetronicApp.controller('TicketviewController', ['$rootScope', '$scope', '$http',
 
             console.log(data);
 
-//            $http.post('/api/file', {id: userid, image : postdata , multiple: multi}).success(function(result) {
+//            $http.post('/admin/api/file', {id: userid, image : postdata , multiple: multi}).success(function(result) {
 //                // $scope.uploadedImgSrc = result.src;
 //                // $scope.sizeInBytes = result.size;
 //               if(result.token){
@@ -433,7 +433,7 @@ MetronicApp.controller('TicketviewController', ['$rootScope', '$scope', '$http',
         }
 
         $scope.addReply = function () {
-            // 
+            //
             // var answer = confirm("The status of this ticket has changed since you started replying which could indicate another staff member has already replied. Are you sure you still want to submit this reply?")
             // if (answer) {
             //     console.log("Clicked ok");
@@ -505,7 +505,7 @@ MetronicApp.controller('TicketviewController', ['$rootScope', '$scope', '$http',
             console.log("Entered reply" + addReplyText);
             console.log("File" + JSON.stringify(files));
 
-            $http.post('/api/get-info', {
+            $http.post('/admin/api/get-info', {
                 token: $cookies.token,
                 adminId: adminValueFromCookie
             }).

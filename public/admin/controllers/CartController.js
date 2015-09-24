@@ -40,7 +40,7 @@ MetronicApp.controller('CartController', ['$rootScope', '$scope', '$http', '$coo
             $scope.response.clientId = 0;
 
             $scope.keyPress = function (keyCode) {
-                $http.post('/api/select-client', {
+                $http.post('/admin/api/select-client', {
                     data: $scope.name,
                     token: $cookies.token
                 }).
@@ -56,7 +56,7 @@ MetronicApp.controller('CartController', ['$rootScope', '$scope', '$http', '$coo
             }
 
             $scope.getAllClients = function () {
-                $http.post('/api/get-all-clients', {
+                $http.post('/admin/api/get-all-clients', {
                     token: $cookies.token
                 }).
                         success(function (data, status, headers, config) {
@@ -80,7 +80,7 @@ MetronicApp.controller('CartController', ['$rootScope', '$scope', '$http', '$coo
                 $scope.response.lname = selected_client.lname;
 
                 $scope.pay = function () {
-                    $http.post('/api/deduct-balance', {
+                    $http.post('/admin/api/deduct-balance', {
                         clientId: $scope.response.clientId,
                         amount: $scope.response.totalprice,
                         token: $cookies.token
@@ -88,7 +88,7 @@ MetronicApp.controller('CartController', ['$rootScope', '$scope', '$http', '$coo
                             success(function (data, status, headers, config) {
 //                                  console.log(data);
                                 if (data.code == 200) {
-                                    $http.post('/api/order-details', {
+                                    $http.post('/admin/api/order-details', {
                                         clientId: $scope.response.clientId,
                                         amount: $scope.response.totalprice,
                                         promocodes: "Null",

@@ -7,7 +7,7 @@ MetronicApp.controller('ClientController', ['$rootScope', '$scope', '$http', '$c
 
 
 
-            $http.get('/api/clientActivity/token?' + $cookies.token).
+            $http.get('/admin/api/clientActivity/token?' + $cookies.token).
                     success(function (data, status, headers, config) {
                         $scope.response.data = data.Data;
 
@@ -99,7 +99,7 @@ MetronicApp.controller('SearchController', ['$rootScope', '$scope', '$http', '$c
             };
 
 
-            $http.get('/api/testapi/listall?token=' + $cookies.token).
+            $http.get('/admin/api/testapi/listall?token=' + $cookies.token).
                     success(function (data) {
                         //  console.log(data);
                         $scope.response.data = data.Data;
@@ -119,7 +119,7 @@ MetronicApp.controller('SearchController', ['$rootScope', '$scope', '$http', '$c
         $scope.submit = function () {
             if ($scope.session) {
                 console.log($scope.session);
-                $http.post('/api/findclient', {
+                $http.post('/admin/api/findclient', {
                     data: $scope.session,
                     dateswitch: $scope.dateSwitch,
                     token: $cookies.token

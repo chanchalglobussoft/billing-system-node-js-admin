@@ -6,7 +6,7 @@ MetronicApp.controller('AffiliatesSettingsController', ['$rootScope', '$scope', 
     $scope.latestaffsetting = function() {
 
 
-        $http.post('/api/affiliate-latest-settings', {
+        $http.post('/admin/api/affiliate-latest-settings', {
 
             token: $cookies.token,
 
@@ -52,7 +52,7 @@ MetronicApp.controller('AffiliatesSettingsController', ['$rootScope', '$scope', 
 
                 // console.log($cookies.adminId);
 
-                $http.post('/api/affiliate-common-settings', {
+                $http.post('/admin/api/affiliate-common-settings', {
 
                     token: $cookies.token,
                     adminId: $cookies.adminId,
@@ -85,7 +85,7 @@ MetronicApp.controller('AffiliatesSettingsController', ['$rootScope', '$scope', 
 
 
 
-        $http.post('/api/affiliate-request', {
+        $http.post('/admin/api/affiliate-request', {
 
             token: $cookies.token
         }).
@@ -134,7 +134,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
 
 
 
-                    $http.post('/api/freeze-account', {
+                    $http.post('/admin/api/freeze-account', {
 
                         status: data,
                         token: $cookies.token,
@@ -168,7 +168,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
 
 
 
-                    $http.post('/api/transfer-commission', {
+                    $http.post('/admin/api/transfer-commission', {
 
                         amount: amount,
                         adminId: $cookies.adminId,
@@ -204,7 +204,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
                     }
 
                 }
-                //---------------------------------------------------------------------------        
+                //---------------------------------------------------------------------------
 
 
 
@@ -216,7 +216,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
 
                     // console.log($cookies.adminId);
 
-                    $http.post('/api/affiliate-advanced-settings', {
+                    $http.post('/admin/api/affiliate-advanced-settings', {
 
                         token: $cookies.token,
                         adminId: $cookies.adminId,
@@ -263,7 +263,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
 
 
 
-            $http.post('/api/affiliate-current-settings', {
+            $http.post('/admin/api/affiliate-current-settings', {
 
                 token: $cookies.token,
                 clientId: $scope.response.clientId
@@ -296,7 +296,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
     //------------------------------------------------------------------------------------------------------------
     $scope.afftraffic = function() {
 
-            $http.post('/api/affiliates-traffic-id', {
+            $http.post('/admin/api/affiliates-traffic-id', {
                 token: $cookies.token,
                 clientId: $scope.response.clientId
             }).
@@ -316,7 +316,7 @@ MetronicApp.controller('AffiliateProfileController', ['$rootScope', '$location',
 
     $scope.affsummery = function() {
 
-            $http.post('/api/affiliates-summery', {
+            $http.post('/admin/api/affiliates-summery', {
                 token: $cookies.token,
                 clientId: $scope.response.clientId
             }).
@@ -374,7 +374,7 @@ MetronicApp.controller('AffiliateInfoController', ['$rootScope', '$timeout', '$s
 
 
     $scope.init = function() {
-        $http.post('/api/affiliate-request', {
+        $http.post('/admin/api/affiliate-request', {
 
             token: $cookies.token
         }).
@@ -429,7 +429,7 @@ MetronicApp.controller('PromocodeSettingsController', ['$rootScope', '$timeout',
         console.log($scope.session)
 
 
-        $http.post('/api/insert-promocode', {
+        $http.post('/admin/api/insert-promocode', {
 
             token: $cookies.token,
             startdate: "2014-10-10 10:05:30",
@@ -456,7 +456,7 @@ MetronicApp.controller('PromocodeSettingsController', ['$rootScope', '$timeout',
 
     $scope.getpromocodes = function() {
 
-        $http.post('/api/promocodes-report', {
+        $http.post('/admin/api/promocodes-report', {
 
             token: $cookies.token,
 
@@ -493,7 +493,7 @@ if(data.code==200){
 
     $scope.remove=function(data){
 // alert(data);
- $http.post('/api/delete-promocode', {
+ $http.post('/admin/api/delete-promocode', {
 
             token: $cookies.token,
             promocode_id:data
@@ -513,7 +513,7 @@ if(data.code==200){   $scope.getpromocodes(); }
 
     $scope.getpromocode=function(data){
 
-         $http.post('/api/get-promocode', {
+         $http.post('/admin/api/get-promocode', {
 
             token: $cookies.token,
             promocode_id:data
@@ -536,7 +536,7 @@ $scope.updatepromocode=function(){
 
 
 
-         $http.post('/api/update-promocode', {
+         $http.post('/admin/api/update-promocode', {
 
             token: $cookies.token,
             data:$scope.response.edit

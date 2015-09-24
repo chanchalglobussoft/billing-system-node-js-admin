@@ -24,7 +24,7 @@ $scope.mydate = {date_start:'',
 $scope.init=function(){
 
 $scope.submit=function(){
-    $http.post('/api/transaction-history', {
+    $http.post('/admin/api/transaction-history', {
 
         token: $cookies.token,
         clientId: $scope.clientId
@@ -48,7 +48,7 @@ var b=moment($scope.date_end).unix();
   if($scope.date_start && $scope.date_end){
 
 
-  $http.post('/api/clients-statement', {
+  $http.post('/admin/api/clients-statement', {
 
       token: $cookies.token,
       start_date:a,
@@ -77,7 +77,7 @@ if(data.Data.length!=0){
 if(!$scope.date_start && !$scope.date_end){
 
 
-$http.post('/api/clients-statement-all', {
+$http.post('/admin/api/clients-statement-all', {
 
     token: $cookies.token,
 
@@ -117,7 +117,7 @@ alert("No Recods Found");
 MetronicApp.controller('ClientsByCountryController', ['$rootScope','$timeout', '$scope', '$http', '$cookies', 'settings', function($rootScope,$timeout, $scope, $http, $cookies, settings) {
 
 $scope.init=function(){
-  $http.post('/api/clients-country', {
+  $http.post('/admin/api/clients-country', {
 
       token: $cookies.token
 
@@ -144,7 +144,7 @@ $scope.init=function(){
 MetronicApp.controller('ClientsByIncomeController', ['$rootScope','$timeout', '$scope', '$http', '$cookies', 'settings', function($rootScope,$timeout, $scope, $http, $cookies, settings) {
 $scope.init=function(){
 
-          $http.post('/api/clients-income', {
+          $http.post('/admin/api/clients-income', {
 
               token: $cookies.token
 
@@ -174,7 +174,7 @@ MetronicApp.controller('ClientSourceController', ['$rootScope','$timeout', '$sco
     $scope.init = function(data) {
 
 
-        $http.post('/api/clients-source', {
+        $http.post('/admin/api/clients-source', {
 
             token: $cookies.token
 
@@ -323,7 +323,7 @@ MetronicApp.controller('ClientsReportController', ['$rootScope','$timeout', '$sc
     $scope.init = function(data) {
 
 
-        $http.post('/api/clients-report', {
+        $http.post('/admin/api/clients-report', {
 
             token: $cookies.token
 
@@ -440,7 +440,7 @@ MetronicApp.controller('ClientsReportController', ['$rootScope','$timeout', '$sc
         $scope.transaction = function(id) {
             console.log(id);
 
-            $http.post('/api/transaction-history', {
+            $http.post('/admin/api/transaction-history', {
 
                 token: $cookies.token,
                 clientId: id
@@ -472,7 +472,7 @@ MetronicApp.controller('NewCustomersController', ['$rootScope','$timeout', '$sco
 
     $scope.init = function(year) {
 
-        $http.post('/api/clients-reg', {
+        $http.post('/admin/api/clients-reg', {
 
             token: $cookies.token,
             data: year

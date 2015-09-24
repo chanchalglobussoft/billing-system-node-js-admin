@@ -6,7 +6,7 @@ MetronicApp.controller('DomainController', ['$rootScope', '$timeout', '$scope', 
 
         $scope.init = function () {
 
-            $http.post('/api/get-registered-domains', {//get all domains registered
+            $http.post('/admin/api/get-registered-domains', {//get all domains registered
                 data: $scope.session,
                 token: $cookies.token
             }).
@@ -33,7 +33,7 @@ MetronicApp.controller('DomainController', ['$rootScope', '$timeout', '$scope', 
             /*--------------------------------------------*/
 
 
-            $http.post('/api/namecheap-balance', {//get account balance from namechep
+            $http.post('/admin/api/namecheap-balance', {//get account balance from namechep
                 token: $cookies.token
             }).
                     success(function (data, status) {
@@ -56,7 +56,7 @@ MetronicApp.controller('DomainController', ['$rootScope', '$timeout', '$scope', 
         // console.log($scope.session);
         // //alert($scope.submitForm);
         // if ($scope.session) {
-        //     $http.post('/api/finddomain', {
+        //     $http.post('/admin/api/finddomain', {
         //         data: $scope.session,
         //         token: $cookies.token
         //     }).
@@ -113,7 +113,7 @@ MetronicApp.controller('CancelRequestController', ['$rootScope', '$scope', '$htt
         $scope.init = function () {
 
 
-//            $http.get('/api/getcancellations/?token=' + $cookies.token).
+//            $http.get('/admin/api/getcancellations/?token=' + $cookies.token).
 //                    success(function (data, status, headers, config) {
 //                        // console.log($scope.response.data);
 //                        $scope.response.data = data.Data;
@@ -125,7 +125,7 @@ MetronicApp.controller('CancelRequestController', ['$rootScope', '$scope', '$htt
 //                        // or server returns response with an error status.
 //                    });
 
-            $http.post('api/get-pending-cancellations',
+            $http.post('/admin/api/get-pending-cancellations',
                     {
                         adminId: adminValueFromCookie,
                         token: $cookies.token
@@ -135,7 +135,7 @@ MetronicApp.controller('CancelRequestController', ['$rootScope', '$scope', '$htt
                         $scope.pendingReqCount = data.Data.length;
                     });
 
-            $http.post('api/get-accepted-cancellations',
+            $http.post('/admin/api/get-accepted-cancellations',
                     {
                         adminId: adminValueFromCookie,
                         token: $cookies.token
@@ -150,7 +150,7 @@ MetronicApp.controller('CancelRequestController', ['$rootScope', '$scope', '$htt
         $scope.updateCancellationStatus = function (a, b) {
             var action = a;
             var cancellationId = b;
-            $http.post('api/updatedcancellations',
+            $http.post('/admin/api/updatedcancellations',
                     {
                         action: action,
                         cancellationId: cancellationId,
@@ -181,7 +181,7 @@ MetronicApp.controller('RegDomainController', ['$rootScope', '$scope', '$http', 
         $scope.init = function () {
 
 
-            $http.post('/api/get-percentage-increase', {
+            $http.post('/admin/api/get-percentage-increase', {
                 token: $cookies.token, //send token in every request
 
             }).
@@ -210,7 +210,7 @@ MetronicApp.controller('RegDomainController', ['$rootScope', '$scope', '$http', 
             var name = $scope.session.domain.replace('www.', '').trim(); //namechep api do not support www
             //console.log(name);
             $scope.loading = true;
-            $http.post('/api/getDomain', {
+            $http.post('/admin/api/getDomain', {
                 token: $cookies.token, //send token in every request
                 name: name
             }).
@@ -298,7 +298,7 @@ MetronicApp.controller('RegistertldController', ['$rootScope', '$scope', '$http'
         $scope.increase = function (data) {
             console.log(data);
             if (data) {
-                $http.post('/api/change-tld-price', {
+                $http.post('/admin/api/change-tld-price', {
                     token: $cookies.token, //send token in every request
                     value: data
 
@@ -322,7 +322,7 @@ MetronicApp.controller('RegistertldController', ['$rootScope', '$scope', '$http'
         $scope.init = function () {
 
 
-            $http.post('/api/get-percentage-increase', {
+            $http.post('/admin/api/get-percentage-increase', {
                 token: $cookies.token, //send token in every request
 
             }).
@@ -334,7 +334,7 @@ MetronicApp.controller('RegistertldController', ['$rootScope', '$scope', '$http'
                     });
 
 
-            $http.post('/api/get-tld-domain', {
+            $http.post('/admin/api/get-tld-domain', {
                 token: $cookies.token, //send token in every request
 
             }).
@@ -394,7 +394,7 @@ MetronicApp.controller('DomainRegistration', ['$rootScope', '$scope', '$http', '
             var description = "Domain#" + $location.$$search.domainName + "Duration#" + $scope.response.duration;
 
 
-            // $http.post('/api/create-order',{
+            // $http.post('/admin/api/create-order',{
             //   token:$cookies.token,
             //   clientId:$scope.response.clientId,
             //   description:description,
@@ -410,7 +410,7 @@ MetronicApp.controller('DomainRegistration', ['$rootScope', '$scope', '$http', '
 
 
 
-            $http.get('/api/getclient/' + $scope.response.clientId + '?token=' + $cookies.token, {
+            $http.get('/admin/api/getclient/' + $scope.response.clientId + '?token=' + $cookies.token, {
             }).
                     success(function (data, status, headers, config) {
 
@@ -435,7 +435,7 @@ MetronicApp.controller('DomainRegistration', ['$rootScope', '$scope', '$http', '
 
                 $scope.response.err = 0;
 
-                $http.post('/api/register-domain', {
+                $http.post('/admin/api/register-domain', {
                     token: $cookies.token, //send token in every request
                     data: $scope.session,
                     duration: $scope.response.duration,
@@ -447,7 +447,7 @@ MetronicApp.controller('DomainRegistration', ['$rootScope', '$scope', '$http', '
 
                             if (data.data.ApiResponse.Status == "OK") {
 
-                                $http.post('/api/update-client-info', {
+                                $http.post('/admin/api/update-client-info', {
                                     token: $cookies.token, //send token in every request
                                     data: $scope.session,
                                     clientID: $scope.response.clientId

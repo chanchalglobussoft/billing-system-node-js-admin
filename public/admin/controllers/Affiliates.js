@@ -19,9 +19,9 @@ MetronicApp.controller('AffiliatesController', ['$rootScope','$timeout', '$scope
 
 
 
-        $http.post('/api/get-signups',{token: $cookies.token}).
+        $http.post('/admin/api/get-signups',{token: $cookies.token}).
          success(function(data) {
-         
+
            //$scope.response.hits=data.Data;
              console.log(data.Data);
 
@@ -51,9 +51,9 @@ MetronicApp.controller('AffiliatesController', ['$rootScope','$timeout', '$scope
         });
 
 
-        $http.post('/api/get-affiliate-hits',{token: $cookies.token}).
+        $http.post('/admin/api/get-affiliate-hits',{token: $cookies.token}).
          success(function(data) {
-         
+
            //$scope.response.hits=data.Data;
             // console.log(data.Data);
 
@@ -90,12 +90,12 @@ MetronicApp.controller('AffiliatesController', ['$rootScope','$timeout', '$scope
         });
 
 
-        
+
 
         $scope.a = false;
         $scope.b = true;
 
-        
+
 
         // Chart.js Options
         $scope.options = {
@@ -107,7 +107,7 @@ MetronicApp.controller('AffiliatesController', ['$rootScope','$timeout', '$scope
         };
 
 
-        $http.post('/api/get-affiliates', {
+        $http.post('/admin/api/get-affiliates', {
             token: $cookies.token
         }).
         success(function(data) {
@@ -116,7 +116,7 @@ MetronicApp.controller('AffiliatesController', ['$rootScope','$timeout', '$scope
 
                 $scope.response.data = data.Data;
 
-              
+
                 $scope.response.total = parseInt($scope.response.data[1].affiliates_status) + parseInt($scope.response.data[2].affiliates_status);
                 $scope.response.percentage = (parseInt($scope.response.data[2].affiliates_status) / $scope.response.total) * 100;
             }
@@ -141,7 +141,7 @@ MetronicApp.controller('AffiliatessalesController', ['$rootScope','$timeout', '$
     $scope.response = {};
 $scope.init=function(){
 
-        $http.post('/api/affiliates-sales',{token: $cookies.token}).
+        $http.post('/admin/api/affiliates-sales',{token: $cookies.token}).
          success(function(data) {
             $scope.response.data=data.Data;
              console.log(data.Data);
@@ -217,9 +217,9 @@ $timeout(function () {
 
 
 }
-  
 
-    
+
+
 
 }]);
 
@@ -230,7 +230,7 @@ MetronicApp.controller('AffiliaterevenueController', ['$rootScope','$timeout', '
     $scope.response = {};
 $scope.init=function(){
 
-        $http.post('/api/affiliates-revenue',{token: $cookies.token}).
+        $http.post('/admin/api/affiliates-revenue',{token: $cookies.token}).
          success(function(data) {
             $scope.response.data=data.Data;
              console.log(data.Data);
@@ -331,9 +331,9 @@ $timeout(function () {
 
 }
 //
-  
 
-    
+
+
 
 }]);
 
@@ -347,7 +347,7 @@ MetronicApp.controller('AffiliatetrafficController', ['$rootScope','$timeout', '
     $scope.response = {};
 $scope.init=function(){
 
-        $http.post('/api/affiliates-traffic',{token: $cookies.token}).
+        $http.post('/admin/api/affiliates-traffic',{token: $cookies.token}).
          success(function(data) {
             $scope.response.data=data.Data;
              console.log(data.Data);
@@ -370,16 +370,10 @@ $timeout(function () {
 
 }
 //
-  
 
-    
+
+
 
 }]);
 
 //AffiliatetrafficController
-
-
-
-
-
-

@@ -3,10 +3,14 @@
     <div class="page-header-top fixed">
         <div class="container-fluid">
             <div class="page-logo">
+
                 <a href="#/dashboard.html" style="text-decoration:none;"><h2 class="font-green-haze bold uppercase">BILLING SYSTEM</h2></a>
             </div>
+
             <span data-ng-include="'views/tpl/page-head.html'" data-ng-controller="PageHeadController" class="page-head" style="position: fixed; z-index: 9;background: rgb(68, 77, 88) none repeat scroll 0% 0% ! important;">
             </span>
+
+
 
 
             <a href="javascript:;" class="menu-toggler"></a>
@@ -14,15 +18,26 @@
                 <ul class="nav navbar-nav pull-right">
 
                     <li class="dropdown dropdown-user dropdown-dark">
-                        <a href="javascript:;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="assets/images/avatar9.jpg">
+                        <a href="javascript;" class="dropdown-toggle" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+
                             <!--<img alt="" class="img-circle" src="assets/images/sidebar_inline_toggler_icon_grey.jpg">-->
                             <!--<span class="username username-hide-mobile" ng-if="response.adminDetails != null ">Yes</span>-->
                             <!--<span class="username username-hide-mobile" ng-if="response.adminDetails == null">No</span>-->
-                            <span class="username username-hide-mobile">Admin</span>
+                            <span class="username username-hide-mobile" style="color:#AEEB91" >Admin</span>
+                             <img alt="" class="img-circle" src="assets/images/admin.png">
 
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
+
+                            <!-- <li>
+                                <a href="#/admin-profile.html">
+                                    <i class="fa fa-user-secret" style="color:#AEEB91"></i> Profile Overview </a>
+                            </li> -->
+<!--
+                            <li>
+                                <a href="#/admin-account-settings.html">
+                                    <i class="fa fa-cog" style="color:#AEEB91"></i> Profile Settings </a>
+                            </li> -->
                             <!--                            <li>
                                                             <a href="#/profile/dashboard">
                                                                 <i class="icon-user"></i> My Profile </a>
@@ -47,7 +62,7 @@
                                                         </li>-->
                             <li>
                                 <a href="#/log-settings.html">
-                                    <i class="fa fa-list-alt"></i> Log Settings </a>
+                                    <i class="fa fa-outdent" style="color:#AEEB91"></i> Log Settings </a>
                             </li>
                             <li class="divider">
                             </li>
@@ -57,7 +72,7 @@
                                                         </li>-->
                             <li>
                                 <a href="#" ng-click="logout()">
-                                    <i class="icon-key"></i> Log Out </a>
+                                    <i class="fa fa-sign-out" style="color:#F3565D"></i> Log Out </a>
                             </li>
                         </ul>
                     </li>
@@ -71,6 +86,7 @@
         <!-- BEGIN HEADER MENU -->
         <div class="page-header-menu menu-header-fixed">
             <div class="container-fluid">
+
 
                 <div class="hor-menu">
                     <ul class="nav navbar-nav">
@@ -205,7 +221,7 @@
                                 </li>
 <!--                                <li>
                                     <a href="#/on-hold-tickets.html">
-                                         <i class="fa fa-columns"></i> 
+                                         <i class="fa fa-columns"></i>
                                         On hold Tickets
                                     </a>
                                 </li>-->

@@ -6,7 +6,7 @@ if($cookies.token){
 }
 
         $scope.submit = function () {
-            $http.post('/api/auth', {data: $scope.session}).
+            $http.post('/admin/api/auth', {data: $scope.session}).
                     success(function (data, status, headers, config) {
                         if (data.code === 200) {
                             console.log("Successful login");

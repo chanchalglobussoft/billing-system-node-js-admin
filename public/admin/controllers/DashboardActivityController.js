@@ -16,7 +16,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
         $scope.topfiveclients = function (req, res) {
 
-            $http.post('/api/orders-per-client', {
+            $http.post('/admin/api/orders-per-client', {
                 token: $cookies.token,
             }).
                     success(function (data, status, headers, config) {
@@ -50,7 +50,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
 
 
-            $http.post('/api/get-orders-by-day', {
+            $http.post('/admin/api/get-orders-by-day', {
                 token: $cookies.token,
                 day: day,
                 current_date: x,
@@ -182,7 +182,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
 
 
-            $http.get('/api/billingstatus?token=' + $cookies.token).
+            $http.get('/admin/api/billingstatus?token=' + $cookies.token).
                     success(function (data, status, headers, config) {
                         console.log(data); //1=pending;2=active;3=cancelled;4=fraud
 
@@ -211,7 +211,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
                 console.log("Error in '/log/count-logs/");
             });
 
-            $http.post('/api/get-info', {
+            $http.post('/admin/api/get-info', {
                 token: $cookies.token,
                 adminId: $scope.myAdminId
             }).
@@ -222,7 +222,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
                     });
 
 
-            $http.post('/api/calculateART', {
+            $http.post('/admin/api/calculateART', {
                 token: $cookies.token
             }).
                     success(function (data) {
@@ -275,7 +275,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
 
 
-            $http.post('/api/find-notes', {
+            $http.post('/admin/api/find-notes', {
                 token: $cookies.token,
                 adminId: $scope.myAdminId
 
@@ -296,7 +296,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
                 if (data) {
 
                     ///api/insert-notes
-                    $http.post('/api/insert-notes', {
+                    $http.post('/admin/api/insert-notes', {
                         token: $cookies.token,
                         data: data,
                         date: moment().format('YYYY-MM-DD'),
@@ -319,7 +319,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
             $scope.deletenote = function (Id) {
 
-                $http.post('/api/update-notes', {
+                $http.post('/admin/api/update-notes', {
                     token: $cookies.token,
                     notesId: Id
 
@@ -344,7 +344,7 @@ MetronicApp.controller('DashboardActivityController', ['$rootScope', '$scope', '
 
 
         $scope.getnotes = function () {
-            $http.post('/api/find-notes', {
+            $http.post('/admin/api/find-notes', {
                 token: $cookies.token,
                 adminId: $scope.myAdminId
 
@@ -373,7 +373,7 @@ MetronicApp.controller('VieworderController', ['$rootScope', '$scope', '$http', 
         $scope.init = function () {
 
             var orderId = $location.$$search.orderId;
-            $http.post('/api/orderdetails', {
+            $http.post('/admin/api/orderdetails', {
                 orderId: orderId,
                 token: $cookies.token
             }).
@@ -514,7 +514,7 @@ MetronicApp.controller('OrderOverviewController', ['$rootScope', '$scope', '$htt
 
 
 
-            $http.get('/api/orderstatus?token=' + $cookies.token).
+            $http.get('/admin/api/orderstatus?token=' + $cookies.token).
                     success(function (data, status, headers, config) {
                         console.log(data); //1=pending;2=active;3=cancelled;4=fraud
 
@@ -540,7 +540,7 @@ MetronicApp.controller('OrderOverviewController', ['$rootScope', '$scope', '$htt
 
         $scope.topfiveclients = function (req, res) {
 
-            $http.post('/api/orders-per-client', {
+            $http.post('/admin/api/orders-per-client', {
                 token: $cookies.token,
             }).
                     success(function (data, status, headers, config) {
@@ -573,7 +573,7 @@ MetronicApp.controller('OrderOverviewController', ['$rootScope', '$scope', '$htt
 
 
 
-            $http.post('/api/get-orders-by-day', {
+            $http.post('/admin/api/get-orders-by-day', {
                 token: $cookies.token,
                 day: day,
                 current_date: x,
@@ -625,7 +625,7 @@ MetronicApp.controller('ClientOverViewController', ['$rootScope', '$scope', '$ht
         });
 
         $scope.init = function () {
-            $http.get('/api/clientCount?token=' + $cookies.token).
+            $http.get('/admin/api/clientCount?token=' + $cookies.token).
                     success(function (data, status, headers, config) {
                         $scope.response.clientCount = data.Data[0];
                         $scope.response.orderCount = data.Data[1];
@@ -633,7 +633,7 @@ MetronicApp.controller('ClientOverViewController', ['$rootScope', '$scope', '$ht
                     });
 
 
-            $http.get('/api/testapi/listall?token=' + $cookies.token).
+            $http.get('/admin/api/testapi/listall?token=' + $cookies.token).
                     success(function (data) {
                         $scope.response.data = data.Data;
                         $scope.totalItems = data.Data.length;
@@ -738,7 +738,7 @@ MetronicApp.controller('BillingoverViewController', ['$rootScope', '$scope', '$h
 
 
 
-            $http.get('/api/billingstatus?token=' + $cookies.token).
+            $http.get('/admin/api/billingstatus?token=' + $cookies.token).
                     success(function (data, status, headers, config) {
                         console.log(data); //1=pending;2=active;3=cancelled;4=fraud
 
@@ -762,7 +762,7 @@ MetronicApp.controller('BillingoverViewController', ['$rootScope', '$scope', '$h
 
 
         $scope.getBill = function () {
-            $http.post('/api/get-bills', {
+            $http.post('/admin/api/get-bills', {
                 token: $cookies.token
             }).
                     success(function (data, status, headers, config) {
@@ -774,7 +774,7 @@ MetronicApp.controller('BillingoverViewController', ['$rootScope', '$scope', '$h
         }
 
         $scope.gettopfive = function () {
-            $http.post('/api/amount-per-client', {
+            $http.post('/admin/api/amount-per-client', {
                 token: $cookies.token
             }).
                     success(function (data, status, headers, config) {
@@ -806,7 +806,7 @@ MetronicApp.controller('BillingoverViewController', ['$rootScope', '$scope', '$h
             }
 
 
-            $http.post('/api/transaction-by-day', {
+            $http.post('/admin/api/transaction-by-day', {
                 startdate: start_date,
                 enddate: end_date,
                 token: $cookies.token

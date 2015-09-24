@@ -75,7 +75,7 @@ c.on('connect', function() {
 
 module.exports = function(app) {
     app.set('superSecret', config.secret); //setting secrete for jwt
-    app.use('/api', apiRoutes); //renaming api roots
+    app.use('/admin/api', apiRoutes); //renaming api roots
 
     apiRoutes.post('/auth', function(req, res) {
         var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
