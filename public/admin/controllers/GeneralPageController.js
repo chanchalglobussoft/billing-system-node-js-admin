@@ -12,7 +12,7 @@ MetronicApp.controller('GeneralPageController', ['$rootScope','$timeout', '$scop
 
 
       //alert("hi");
-      $http.post('/api/get-registered-domains', {//get all domains registered
+      $http.post('/admin/api/get-registered-domains', {//get all domains registered
 
 
               token: $cookies.token

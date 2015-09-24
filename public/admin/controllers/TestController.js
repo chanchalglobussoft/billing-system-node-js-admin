@@ -4,12 +4,12 @@ MetronicApp.controller('Mycontroller', ['$rootScope', '$scope', '$http', '$cooki
          console.log("Got this value from $cookieStore"+adminValueFromCookie);
 //        $scope.response = {};
 
-   
+
 //        $scope.submit = function () {
-//            $http.post('/api/auth', {data: $scope.session}).
+//            $http.post('/admin/api/auth', {data: $scope.session}).
 //                    success(function (data, status, headers, config) {
 //                        if (data.code === 200) {
-//                            console.log("Successful login");                      
+//                            console.log("Successful login");
 //                            $cookies['token'] = data.token;
 //                            $cookieStore.put('adminId', data.admin.adminId);
 //                            $window.location.href = '#/dashboard.html';
@@ -25,6 +25,3 @@ MetronicApp.controller('Mycontroller', ['$rootScope', '$scope', '$http', '$cooki
 
 
     }]);
-
-
-

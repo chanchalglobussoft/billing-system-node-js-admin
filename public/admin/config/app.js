@@ -61,7 +61,7 @@ MetronicApp.controller('HeaderController', ['$scope', '$http', '$cookies', funct
         // console.log($scope.name);
 
 
-        $http.post('/api/getGLobal', {
+        $http.post('/admin/api/getGLobal', {
             data: $scope.name,
             token: $cookies.token
         }).
@@ -273,11 +273,11 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                 return $ocLazyLoad.load([{
                     name: 'MetronicApp',
                     files: [
-                        'assets/css/datepicker3.css',
-                        'assets/css/select2.css',
-                        'assets/css/dataTables.bootstrap.css',
-                        'assets/css/dataTables.scroller.min.css',
-                        'assets/css/dataTables.colReorder.min.css',
+                        // 'assets/css/datepicker3.css',
+                        // // 'assets/css/select2.css',
+                        // 'assets/css/dataTables.bootstrap.css',
+                        // 'assets/css/dataTables.scroller.min.css',
+                        // 'assets/css/dataTables.colReorder.min.css',
                         //
                         'assets/js/select2.min.js',
                         'assets/js/all.min.js',
@@ -1646,6 +1646,27 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             }
         })
         //---------------------------------------------------------------------------------------------------
+        .state('adminProfile', {
+                url: "/admin-profile.html",
+                templateUrl: "views/admin/admin-account.html",
+                data: {
+                    pageTitle: 'Admin Profile'
+                },
+                //controller: "ClientsProfileController",
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'MetronicApp',
+                            insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                            files: [
+                                  'controllers/AdministratorController.js'
+                            ]
+                        });
+                    }]
+                }
+            })
+
+        //admin profile upto here
 
     // User Profile
     .state("profile", {

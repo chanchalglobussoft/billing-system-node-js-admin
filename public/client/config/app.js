@@ -54,13 +54,13 @@ BillingApp.factory('settings', ['$rootScope', function($rootScope) {
 BillingApp.controller('AppController', ['$scope', '$rootScope', function($scope, $rootScope) {
     $scope.$on('$viewContentLoaded', function() {
         Billing.initComponents(); // init core components
-        //Layout.init(); //  Init entire layout(header, footer, sidebar, etc) on page load if the partials included in server side instead of loading with ng-include directive 
+        //Layout.init(); //  Init entire layout(header, footer, sidebar, etc) on page load if the partials included in server side instead of loading with ng-include directive
     });
 }]);
 
 /***
 Layout Partials.
-By default the partials are loaded through AngularJS ng-include directive. In case they loaded in server side(e.g: PHP include function) then below partial 
+By default the partials are loaded through AngularJS ng-include directive. In case they loaded in server side(e.g: PHP include function) then below partial
 initialization can be disabled and Layout.init() should be called on page load complete as explained above.
 ***/
 
@@ -340,7 +340,7 @@ BillingApp.run(function($rootScope, $location, Auth) {
         $rootScope.loggedIn = Auth.isLoggedIn();
         if ($rootScope.loggedIn && $location.$$path == "/signup") {
             $location.path('/home');
-        } else if (!$rootScope.loggedIn && $location.$$path != "/forgot" && $location.$$path.substring(0, 9) != "/ackcode/" && $location.$$path.substring(0, 6) != "/code/" && $location.$$path.substring(0, 9) != "/message/"&& $location.$$path.substring(0, 7) != "/rcode/") {
+        } else if (!$rootScope.loggedIn && $location.$$path != "/forgot" && $location.$$path.substring(0, 9) != "/ackcode/" && $location.$$path.substring(0, 6) != "/code/" && $location.$$path.substring(0, 9) != "/message/"&& $location.$$path.substring(0, 7) != "/rcode/"  && $location.$$path.substring(0, 8) != "/errno/" ) {
             $location.path('/signup');
         }
         if ($rootScope.loggedIn && $location.$$path == "/signup") {
@@ -356,7 +356,7 @@ BillingApp.run(function($rootScope, $location, Auth) {
                 $rootScope.user = data.data;
 
                 if ($rootScope.user.emailverified == 0 || (h && h.length == 2)) {
-                    // $location.path('/welcome');
+                    $location.path('/welcome');
                 }
             });
     });

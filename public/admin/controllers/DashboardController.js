@@ -5,7 +5,7 @@ MetronicApp.controller('DashboardController', ['$rootScope', '$scope', '$http', 
         $scope.securityQuestions = {};
 
 
-        $http.post('api/country/get-only-names', {
+        $http.post('/admin/api/country/get-only-names', {
             token: $cookies.token
         }).success(function (data) {
             console.log(data);
@@ -14,7 +14,7 @@ MetronicApp.controller('DashboardController', ['$rootScope', '$scope', '$http', 
             console.log("Error in /country/get-all-data: " + data);
         });
 
-        $http.post('api/country/get-only-currencies', {
+        $http.post('/admin/api/country/get-only-currencies', {
             token: $cookies.token
         }).success(function (data) {
             console.log(data);
@@ -23,7 +23,7 @@ MetronicApp.controller('DashboardController', ['$rootScope', '$scope', '$http', 
             console.log("Error in /country/get-all-data: " + data);
         });
 
-        $http.post('api/security-questions/get-only-questions', {
+        $http.post('/admin/api/security-questions/get-only-questions', {
             token: $cookies.token
         }).success(function (data) {
             console.log(data);
@@ -174,7 +174,7 @@ MetronicApp.controller('ManageOrderController', ['$rootScope', '$timeout', '$sco
 
           };
 
-            $http.post('/api/latest-findorders', {data: $scope.session, token: $cookies.token}).
+            $http.post('/admin/api/latest-findorders', {data: $scope.session, token: $cookies.token}).
                     success(function (data, status, headers, config) {
 
 
@@ -211,7 +211,7 @@ MetronicApp.controller('ManageOrderController', ['$rootScope', '$timeout', '$sco
             //console.log($scope.session);
             if ($scope.session) {
 
-                $http.post('/api/findorders', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
+                $http.post('/admin/api/findorders', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
                         success(function (data, status, headers, config) {
 
                             if (data.Data.length > 0) {
@@ -305,7 +305,7 @@ MetronicApp.controller('billFilterController', ['$rootScope', '$scope', '$http',
 
         $scope.init = function () {
 
-            $http.post('/api/latest-transations', {token: $cookies.token}).
+            $http.post('/admin/api/latest-transations', {token: $cookies.token}).
                     success(function (data, status, headers, config) {
                         if (data.Data.length > 0) {
                             $scope.response.data = data.Data;
@@ -328,7 +328,7 @@ MetronicApp.controller('billFilterController', ['$rootScope', '$scope', '$http',
 //                console.log("On sbumit" + JSON.stringify($scope.session));
 
                 if ($scope.session) {
-                    $http.post('/api/findtransations', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
+                    $http.post('/admin/api/findtransations', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
                             success(function (data, status, headers, config) {
 //                                console.log("Inside controller " + JSON.stringify(data));
                                 if (data.Data.length > 0) {
@@ -415,7 +415,7 @@ $scope.$watch('searchInvoices', function(term) {
             };
 
 
-            $http.post('/api/latest-findinvoices', {token: $cookies.token}).
+            $http.post('/admin/api/latest-findinvoices', {token: $cookies.token}).
                     success(function (data, status, headers, config) {
                         if (data.Data.length > 0) {
                             $scope.response.data = data.Data;
@@ -438,7 +438,7 @@ $scope.$watch('searchInvoices', function(term) {
             console.log($scope.session);
             if ($scope.session) {
 
-                $http.post('/api/findinvoices', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
+                $http.post('/admin/api/findinvoices', {data: $scope.session, dateswitch: $scope.dateSwitch, dayswitch: $scope.daysAgoSwitch, token: $cookies.token}).
                         success(function (data, status, headers, config) {
                             if (data.Data.length > 0) {
                                 $scope.response.data = data.Data;

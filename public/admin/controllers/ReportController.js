@@ -11,9 +11,9 @@ MetronicApp.controller('ReportActivityController', ['$rootScope', '$scope', '$ht
 
             var now = moment().format('YYYY-MM-DD');
             var mydate = moment().add(-data, 'days').format('YYYY-MM-DD');
-            
+
             // console.log(now);
-            $http.post('/api/income', {
+            $http.post('/admin/api/income', {
                 startdate: now,
                 enddate: mydate,
                 token: $cookies.token
@@ -279,7 +279,7 @@ MetronicApp.controller('AnnualIncomeController', ['$rootScope', '$timeout', '$sc
             var now = moment().format('YYYY-MM-DD');
             var mydate = moment().add(-data, 'days').format('YYYY-MM-DD');
 
-            $http.post('/api/income', {
+            $http.post('/admin/api/income', {
                 startdate: now,
                 enddate: mydate,
                 token: $cookies.token
@@ -424,7 +424,7 @@ MetronicApp.controller('MonthlyTransactionController', ['$rootScope', '$timeout'
             var now = moment().format('YYYY-MM-DD');
             var mydate = moment().add(-data, 'days').format('YYYY-MM-DD');
 
-            $http.post('/api/income', {
+            $http.post('/admin/api/income', {
                 startdate: now,
                 enddate: mydate,
                 token: $cookies.token
@@ -608,7 +608,7 @@ MetronicApp.controller('IncomebyProductController', ['$rootScope', '$timeout', '
             };
 
 
-            $http.post('/api/income-by-product', {
+            $http.post('/admin/api/income-by-product', {
                 token: $cookies.token
 
             }).
@@ -660,7 +660,7 @@ MetronicApp.controller('PormocodeReportsController', ['$rootScope', '$timeout', 
 
 
 
-            $http.post('/api/promocodes-report', {
+            $http.post('/admin/api/promocodes-report', {
                 token: $cookies.token
 
             }).
@@ -697,7 +697,7 @@ MetronicApp.controller('RTPTController', ['$rootScope', '$scope', '$http', '$coo
         $scope.sortReverse = false;
 
         $scope.init = function () {
-            $http.post('/api/calculateRTPT', {
+            $http.post('/admin/api/calculateRTPT', {
                 token: $cookies.token
             }).
                     success(function (data) {
@@ -717,7 +717,7 @@ MetronicApp.controller('ARTController', ['$rootScope', '$scope', '$http', '$cook
         $scope.sortReverse = false;
 
         $scope.init = function () {
-            $http.post('/api/calculateART', {
+            $http.post('/admin/api/calculateART', {
                 token: $cookies.token
             }).
                     success(function (data) {
@@ -737,7 +737,7 @@ MetronicApp.controller('AFRTController', ['$rootScope', '$scope', '$http', '$coo
         $scope.sortReverse = false;
 
         $scope.init = function () {
-            $http.post('/api/calculateAFRT', {
+            $http.post('/admin/api/calculateAFRT', {
                 token: $cookies.token
             }).
                     success(function (data) {
@@ -776,7 +776,7 @@ MetronicApp.controller('ADTController', ['$rootScope', '$scope', '$http', '$cook
             var currentYear = d.getFullYear();
             var monthId = currentMonth;
             var yearId = currentYear;
-            $http.post('/api/calculateADT', {
+            $http.post('/admin/api/calculateADT', {
                 token: $cookies.token,
                 monthId: monthId,
                 yearId: yearId
@@ -795,7 +795,7 @@ MetronicApp.controller('ADTController', ['$rootScope', '$scope', '$http', '$cook
         $scope.calcADT = function (mid, yid) {
             var monthId = mid;
             var yearId = yid;
-            $http.post('/api/calculateADT', {
+            $http.post('/admin/api/calculateADT', {
                 token: $cookies.token,
                 monthId: monthId,
                 yearId: yearId
@@ -845,7 +845,7 @@ MetronicApp.controller('TDRController', ['$rootScope', '$scope', '$http', '$cook
             var currentYear = d.getFullYear();
             var monthId = currentMonth;
             var yearId = currentYear;
-            $http.post('/api/calculateDTR', {
+            $http.post('/admin/api/calculateDTR', {
                 token: $cookies.token,
                 monthId: monthId,
                 yearId: yearId
@@ -865,7 +865,7 @@ MetronicApp.controller('TDRController', ['$rootScope', '$scope', '$http', '$cook
         $scope.calcADT = function (mid, yid) {
             var monthId = mid;
             var yearId = yid;
-            $http.post('/api/calculateDTR', {
+            $http.post('/admin/api/calculateDTR', {
                 token: $cookies.token,
                 monthId: monthId,
                 yearId: yearId

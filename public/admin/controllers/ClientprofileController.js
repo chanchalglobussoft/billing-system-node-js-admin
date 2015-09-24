@@ -4,7 +4,7 @@ MetronicApp.controller('ClientsProfileController', ['$rootScope', '$timeout', '$
         var clientId = $location.$$search.clientId;
         $scope.init = function () {
 
-            $http.post('/api/client-profile', {
+            $http.post('/admin/api/client-profile', {
                 clientId: clientId,
                 token: $cookies.token
             }).

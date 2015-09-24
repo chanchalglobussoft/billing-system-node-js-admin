@@ -89,7 +89,7 @@ exports.signup = function(req, res) {
 
 
 
-	// Then save the user 
+	// Then save the user
 	// user.save(function(err) {
 	// 	if (err) {
 	// 		return res.status(400).send({
@@ -151,7 +151,10 @@ exports.signout = function(req, res) {
 exports.oauthCallback = function(strategy) {
 	return function(req, res, next) {
 		passport.authenticate(strategy, function(err, user, redirectURL) {
-			if (err == 1) {
+			console.log("!!!!!!!!!!!!!!!!");
+			console.log(err);
+			console.log(user);
+			if (err == 1 ) {
 				res.redirect("/#/errorno/" + 1);
 			} else {
 				console.log("hello");
@@ -203,7 +206,8 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 	var searchQuery = {
 		$or: [mainProviderSearchQuery, additionalProviderSearchQuery]
 	};
-
+	console.log("----------");
+console.log(providerUserProfile);
 	var data = [];
 	console.log("provider:" + providerUserProfile.provider);
 	console.log();
@@ -242,8 +246,8 @@ exports.saveOAuthUserProfile = function(req, providerUserProfile, done) {
 
 
 						// email = null;
-						if (!email) {
-							done("1", null);
+						if (!email||email==null) {
+							done("1", "1");
 
 						} else {
 

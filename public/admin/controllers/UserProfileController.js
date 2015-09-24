@@ -19,7 +19,7 @@ $scope.response={};
 $scope.init=function(){
 
   var invoiceId=$location.$$search.invoiceId;
-              $http.post('/api/invoicedetails', {invoiceId: invoiceId, token: $cookies.token}).
+              $http.post('/admin/api/invoicedetails', {invoiceId: invoiceId, token: $cookies.token}).
                       success(function(data, status, headers, config) {
                           if (data.code == 200) {
                             var a=10;

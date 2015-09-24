@@ -52,7 +52,7 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
 
 
                       $scope.getAllProducts = function () {
-                          $http.post('/api/get-all-products', {
+                          $http.post('/admin/api/get-all-products', {
                               token: $cookies.token
                           }).
                                   success(function (data, status, headers, config) {
@@ -66,7 +66,7 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
                       }
 
                       $scope.getAllClients = function () {
-                          $http.post('/api/get-all-clients', {
+                          $http.post('/admin/api/get-all-clients', {
                               token: $cookies.token
                           }).
                                   success(function (data, status, headers, config) {
@@ -80,7 +80,7 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
 
             // $scope.keyPress = function (keyCode) {
             //
-            //     $http.post('/api/select-client', {
+            //     $http.post('/admin/api/select-client', {
             //         data: $scope.name,
             //         token: $cookies.token
             //     }).
@@ -101,7 +101,7 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
             // }
 
             $scope.searchproduct = function () {
-                $http.post('/api/select-product', {
+                $http.post('/admin/api/select-product', {
                     product: $scope.product,
                     token: $cookies.token
                 }).
@@ -139,14 +139,14 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
                 if ($scope.response.productId == 4) {
                     window.location.href = "#/reg-domain.html";
                 } else {
-                    $http.post('/api/deduct-balance', {
+                    $http.post('/admin/api/deduct-balance', {
                         clientId: $scope.response.clientId,
                         amount: $scope.response.price,
                         token: $cookies.token
                     }).
                             success(function (data, status, headers, config) {
                                 if (data.code == 200) {
-                                    $http.post('/api/order-details', {
+                                    $http.post('/admin/api/order-details', {
                                         clientId: $scope.response.clientId,
                                         amount: $scope.response.price,
                                         promocodes: "Null",
@@ -175,7 +175,7 @@ MetronicApp.controller('CreateorderController', ['$rootScope', '$scope', '$http'
                 if ($scope.response.productId == 4) {
                     window.location.href = "#/reg-domain.html";
                 } else {
-                    $http.post('/api/order-details', {
+                    $http.post('/admin/api/order-details', {
                         clientId: $scope.response.clientId,
                         amount: $scope.response.price,
                         promocodes: "Null",
