@@ -1,8 +1,9 @@
 'use strict';
 /* Setup general page controller */
 BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'settings', '$http', 'mySharedService', function($rootScope, $scope, settings, $http, sharedService) {
-	$scope.$on('$viewContentLoaded', function() {
+		$scope.$on('$viewContentLoaded', function() {
 		Billing.initAjax();
+
 		$scope.resend = function() {
 			$http.post("/authapi/resend")
 				.success(function(data) {
@@ -22,7 +23,16 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 			if(localStorage.getItem('token'))
 			{
 				$http.get('/authapi/me').success(function(response) {
-					$scope.verifyemail=1-response.emailverified;
+					if(response.emailverified)
+					{
+						$scope.resend="DONE";
+$scope.verifyemail=true;
+					}
+					else
+					{
+$scope.verifyemail=false;
+					}
+				
 
       });
 			}
@@ -32,7 +42,17 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 		{
 			console.log($rootScope.user.emailverified);
 		
-		$scope.verifyemail = 1-$rootScope.user.emailverified;
+			if($rootScope.user.emailverified)
+					{
+						$scope.resend="DONE";
+$scope.verifyemail=true;
+					}
+					else
+					{
+						$scope.resend="RESEND";
+
+$scope.verifyemail=false;
+					}
 		$scope.payment = true;
 		}
 

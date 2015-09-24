@@ -1,9 +1,24 @@
 
+<style>
+	.page-sidebar-wrapper {
+		display: none;
+	}
+	.page-content {
+		margin-left: 0 !important;
+	}
+	.disable-content {
+		opacity: .4;
+	}
+	.disable-content .tile {
+		cursor: not-allowed !important;
+	}
+</style>
+<!-- BEGIN MAIN JS & CSS -->
 <!-- BEGIN MAIN CONTENT -->
 <div ng-controller="GeneralPageController" ng-init="init()">
 	<!-- BEGIN DASHBOARD STATS -->
 	<div class="row" style="margin-top:5%;">
-		<div class="col-md-4">
+		<div class="col-md-4 " ng-class="{'disable-content':verifyemail}">
 			<div class="portlet light">
 				<div class="portlet-body tiles">
 					<div class="tile" style="width:100% !important; height: auto;">
@@ -13,13 +28,13 @@
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
 							<h3>Confirm Email</h3>
 							<p>If you didn’t receive your conﬁrmation email, please check your spam folder.</p>
-							<button class="btn btn-info" ng-click="resend()">Resend</button>
+							<button class="btn btn-info" ng-disabled="verifyemail" ng-click="resend()">{{resend}}</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-4" id="">
 			<div class="portlet light">
 				<div class="portlet-body tiles">
 					<div class="tile" style="width:100% !important; height: auto;">
@@ -29,7 +44,7 @@
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
 							<h3>Update Billing</h3>
 							<p>You will need to update your billing profile before you launch your first droplet.</p>
-							<button class="btn btn-info" ng-disabled="verifyemail">Get Started</button>
+							<a href="#/payment" class="btn btn-info" ng-disabled="!verifyemail">Get Started</a>
 						</div>
 					</div>
 				</div>
@@ -59,13 +74,3 @@
 <!-- BEGIN MAIN JS & CSS -->
 <script>
 </script>
-
-<style>
-	.page-sidebar-wrapper {
-		display: none;
-	}
-	.page-content {
-		margin-left: 0 !important;
-	}
-</style>
-<!-- BEGIN MAIN JS & CSS -->

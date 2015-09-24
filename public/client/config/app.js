@@ -273,6 +273,28 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
                 }]
             }
         })
+        // Payment
+        .state('payment', {
+            url: "/payment",
+            templateUrl: "client/views/dashboard/payment.html",
+            data: {pageTitle: 'Welcome to,', pageSubTitle: ' Billing System'},
+            controller: "PaymentController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({ 
+                        name: 'BillingApp',  
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            'client/assets/css/select2.css',
+                            
+                         
+                            
+                            'client/controllers/dashboard/PaymentController.js'  
+                        ]
+                    });
+                }]
+            }
+        })
         .state('rpassword', {
             url: "/rcode/:rcode",
             controller: "rpasswordController",

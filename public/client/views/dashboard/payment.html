@@ -1,0 +1,258 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="PaymentController ">
+	<!-- BEGIN PAYMENT -->
+	<div class="row">
+		<div class="col-md-12">
+			<div class="thankDiv">
+				<h4>Thanks! Please add a credit card to activate your account.</h4>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top:3%;">
+		<div class="col-md-12">
+			<div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<h2>Payment Methods</h2>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div>
+						<h5>Please enter your preferred payment method below. You can use a credit card or prepay through Paypal.</h5>
+					</div>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<div class="tabbable-line">
+								<ul class="nav nav-tabs">
+									<li class="active text-center" style="padding: 1%; padding-bottom:.3%;">
+										<a data-toggle="tab" href="payment.html/#tab_15_1" aria-expanded="true">
+											<i class="fa fa-credit-card fa-2x"></i>
+											<br/> Credit Card
+										</a>
+									</li>
+									<li class="text-center" style="padding: 1%; padding-bottom:.3%;">
+										<a data-toggle="tab" href="payment.html/#tab_15_2" aria-expanded="false">
+											<i class="fa fa-paypal fa-2x"></i>
+											<br/> PayPal
+										</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div id="tab_15_1" class="tab-pane active" style="margin-bottom: 3%;">
+										<h3 class="label-control">Add Credit Card</h3>
+										<div class="row">
+											<div class="col-md-10 col-md-offset-1">
+												<form class="form-body" ng-submit="savecard()">
+													<fieldset style="margin-top: 3%;">
+														<legend>YOUR DETAILS</legend>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="fname" 
+																	ng-model="card.FirstName"
+																	placeholder="First Name" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="lname"
+																	ng-model="card.LastName"
+																	 placeholder="Last Name" required />
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="phone" 
+																	ng-model="card.phone"placeholder="Phone Number" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="street" 
+																	ng-model="card.street" placeholder="Street Address" required />
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="city" 
+																	ng-model="card.city"placeholder="City" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="state" 
+																	ng-model="card.state"placeholder="State" required />
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="code" 
+																	ng-model="card.postal"placeholder="Postal Code" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<select class="form-control select2me" id="form_control_3" 
+																	ng-model="card.country"data-placeholder="Country">
+																		<option value=""></option>
+																		<option value="India">India</option>
+																		<option value="France">France</option>
+																		<option value="United States">United States</option>
+																		<option value="United Kindgom">United Kindgom</option>
+																	</select>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+													<fieldset style="margin-top: 3%;">
+														<legend>Credit Card Details</legend>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control"
+																	ng-model="card.cardno" name="credit" placeholder="Credit Card Number" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="cvv" 
+																	ng-model="card.cvv"placeholder="CVV" required />
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="expiry"
+																	ng-model="card.expdate" placeholder="Expires MM/YYYY" required />
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" class="form-control" name="cname" 
+																	ng-model="card.cname"placeholder="Please enter a name for this credit card" required />
+																</div>
+															</div>
+														</div>
+														<div class="row" style="margin-top: 2%;">
+															<div class="col-md-12">
+																<button class="btn btn-success">Save Credit Card</button>
+															</div>
+														</div>
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</div>
+									<div id="tab_15_2" class="tab-pane">
+										<h3 class="label-control">PayPal Payment</h3>
+										<div class="row">
+											<div class="col-md-10 col-md-offset-1">
+												<form  class="form-body">
+													<label class="control-label">This is a one-time payment that will not recur. Payment may take up to 5 minutes to process.</label>
+													<div class="form-group">
+														<select class="form-control input-medium select2me" id="form_control_3" data-placeholder="Select..">
+															<option value=""></option>
+															<option value="">$5.00 USD</option>
+															<option value="">$10.00 USD</option>
+															<option value="">$15.00 USD</option>
+															<option value="">$20.00 USD</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<button class="btn btn-default">Submit</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin-top:3%;">
+		<div class="col-md-12">
+			<div class="portlet light">
+				<div class="portlet-title">
+					<div class="caption">
+						<h2>Promo Code</h2>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div>
+						<h5>To add a promo code, please first link a credit card or add paypal credit.</h5>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Promo Code" disabled />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END PAYMENT -->
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+	.page-head {
+		display: none;
+	}
+
+	.page-sidebar-wrapper {
+		display: none;
+	}
+	
+	.page-content-wrapper .page-content {
+	  	margin-left: 0;
+	}
+
+	form legend::after {
+		background: #dfdfdf none repeat scroll 0 0;
+		content: "";
+		height: 1px;
+		margin-left: 0.5rem;
+		position: absolute;
+		top: 1rem;
+		width: 100%;
+	}
+	
+	form legend {
+		display: block;
+		margin-bottom: 0.5rem;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+		color: #bbbbbb;
+		font-size: 1.5rem;
+		border: none;
+		font-weight: 600;
+		letter-spacing: 0.06rem;
+		text-transform: uppercase;
+	}
+	
+	.thankDiv {
+		background-color: #f9fcff;
+		border: 2px solid #e8f4ff;
+		border-radius: 3px;
+		padding: 1.5rem;
+		position: relative;
+	}
+</style>
+<script>
+</script>
+<!-- BEGIN MAIN JS & CSS -->
