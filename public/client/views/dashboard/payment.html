@@ -42,7 +42,7 @@
 										<h3 class="label-control">Add Credit Card</h3>
 										<div class="row">
 											<div class="col-md-10 col-md-offset-1">
-												<form class="form-body" ng-submit="savecard()">
+												<form class="form-body" ng-submit="savecard()" name="paymentForm">
 													<fieldset style="margin-top: 3%;">
 														<legend>YOUR DETAILS</legend>
 														<div class="row">
@@ -50,29 +50,37 @@
 																<div class="form-group">
 																	<input type="text" class="form-control" name="fname" 
 																	ng-model="card.FirstName"
-																	placeholder="First Name" required />
+																	placeholder="First Name" ng-pattern="/^[A-z]+$/"  required />
 																</div>
+																<p class="error" ng-show="paymentForm.fname.$error.required"   style="color:red">*first name is required</p>
+																<p class="error" ng-show="paymentForm.fname.$error.pattern"   style="color:red">*Enter valid name</p>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" class="form-control" name="lname"
 																	ng-model="card.LastName"
-																	 placeholder="Last Name" required />
+																	 placeholder="Last Name" ng-pattern="/^[A-z]+$/"  required />
 																</div>
+																<p class="error" ng-show="paymentForm.lname.$error.required"   style="color:red">*last name is required</p>
+																<p class="error" ng-show="paymentForm.lname.$error.pattern"   style="color:red">*Enter valid name</p>
+
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="phone" 
-																	ng-model="card.phone"placeholder="Phone Number" required />
+																	<input type="tel" class="form-control" name="phone" 
+																	ng-model="card.phone" ng-pattern="/^[+0-9]{6,10}/" placeholder="Phone Number" required />
 																</div>
+																<p class="error" ng-show="paymentForm.phone.$error.required"   style="color:red">*number is required</p>
+																<p class="error" ng-show="paymentForm.phone.$error.pattern"   style="color:red">*Enter valid number</p>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" class="form-control" name="street" 
 																	ng-model="card.street" placeholder="Street Address" required />
 																</div>
+																	<p class="error" ng-show="paymentForm.street.$error.required"   style="color:red">*street is required</p>
 															</div>
 														</div>
 														<div class="row">
@@ -81,20 +89,25 @@
 																	<input type="text" class="form-control" name="city" 
 																	ng-model="card.city"placeholder="City" required />
 																</div>
+																	<p class="error" ng-show="paymentForm.city.$error.required"   style="color:red">*City is required</p>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" class="form-control" name="state" 
 																	ng-model="card.state"placeholder="State" required />
 																</div>
+																	<p class="error" ng-show="paymentForm.state.$error.required"   style="color:red">*state is required</p>
 															</div>
 														</div>
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" class="form-control" name="code" 
-																	ng-model="card.postal"placeholder="Postal Code" required />
+																	ng-model="card.postal" ng-pattern="/^\d+$/" ng-minlength="5" placeholder="Postal Code" required />
 																</div>
+																<p class="error" ng-show="paymentForm.code.$error.required"   style="color:red">*zipcode is required</p>
+																<p class="error" ng-show="paymentForm.code.$error.pattern"   style="color:red">*Enter valid zipcode</p>
+
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
@@ -115,34 +128,54 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control"
-																	ng-model="card.cardno" name="credit" placeholder="Credit Card Number" required />
-																</div>
+																	<input  type="text" class="form-control"
+																	ng-model="card.cardno" name="credit" placeholder="Credit Card Number" required cc-number cc-eager-type ng-class="paymentForm.credit.$valid?'borderg':''"/>
+														<p  ng-show="paymentForm.credit.$invalid && paymentForm.credit.$ccEagerType">
+  Looks like you're typing a {{paymentForm.credit.$ccEagerType}} number!
+</p>
+<p style="color:green" ng-show="paymentForm.credit.$valid">
+  Yes, that looks like a valid {{paymentForm.credit.$ccType}} number!
+</p>														</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="cvv" 
-																	ng-model="card.cvv"placeholder="CVV" required />
+																	<input type="text" class="form-control" name="cvc" 
+																	ng-model="card.cvc"placeholder="CVV" cc-cvc cc-type="credit.$ccType" required />
+																	
 																</div>
 															</div>
 														</div>
 														<div class="row">
-															<div class="col-md-6">
+															<div class="col-md-3">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="expiry"
-																	ng-model="card.expdate" placeholder="Expires MM/YYYY" required />
+																	<input type="text" class="form-control" maxlength="2" name="expirye"
+																	ng-model="card.expdate" placeholder="Expires MM" required />
 																</div>
+																<p style="color:green" ng-hide="paymentForm.$error.ccExp">
+  Yes, that looks like a valid 
+</p>
+															</div>
+															<div class="col-md-3">
+																<div class="form-group" cc-exp>
+																<input type="text" class="form-control"  ng-hide="true" name="expirym"
+																	ng-model="card.expdate" placeholder="Expires MM" required cc-exp-month  />
+																	<input type="text" class="form-control" maxlength="2" name="expiryy"
+																	ng-model="card.expyear" placeholder="Expires YYYY" required cc-exp-year  />
+																</div>
+																
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" class="form-control" name="cname" 
-																	ng-model="card.cname"placeholder="Please enter a name for this credit card" required />
+																	ng-model="card.cname" ng-pattern="/^[A-z]+$/" placeholder="Please enter a name for this credit card" required />
 																</div>
+																	<p class="error" ng-show="paymentForm.cname.$error.required"   style="color:red">*name is required</p>
+																<p class="error" ng-show="paymentForm.cname.$error.pattern"   style="color:red">*Enter valid name</p>
 															</div>
 														</div>
 														<div class="row" style="margin-top: 2%;">
 															<div class="col-md-12">
-																<button class="btn btn-success">Save Credit Card</button>
+																<button class="btn btn-success" ng-disabled="(!paymentForm.credit.$ccType)||(!paymentForm.cvc.$valid)||(paymentForm.$error.ccExp)">Save Credit Card</button>
 															</div>
 														</div>
 													</fieldset>
@@ -252,7 +285,23 @@
 		padding: 1.5rem;
 		position: relative;
 	}
-</style>
+
+	.ng-valid-cc-cvc
+	{
+		border-color: green!important;
+	}
+
+
+	.borderg{
+
+		border-color: green;
+	}
+
+	 .ng-invalid-pattern{
+	 	border-color: red;
+	 }
+
+	  </style>
 <script>
 </script>
 <!-- BEGIN MAIN JS & CSS -->

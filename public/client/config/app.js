@@ -7,7 +7,8 @@ var BillingApp = angular.module("BillingApp", [
     "ui.router",
     "ui.bootstrap",
     "oc.lazyLoad",
-    "ngSanitize"
+    "ngSanitize",
+    "credit-cards"
 ]);
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */

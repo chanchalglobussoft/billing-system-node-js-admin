@@ -23,7 +23,7 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 			if(localStorage.getItem('token'))
 			{
 				$http.get('/authapi/me').success(function(response) {
-					if(response.emailverified)
+					if(response.emailverified==1)
 					{
 						$scope.resend="DONE";
 $scope.verifyemail=true;
@@ -42,7 +42,7 @@ $scope.verifyemail=false;
 		{
 			console.log($rootScope.user.emailverified);
 		
-			if($rootScope.user.emailverified)
+			if($rootScope.user.emailverified==1)
 					{
 						$scope.resend="DONE";
 $scope.verifyemail=true;
