@@ -4,13 +4,15 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 		$scope.$on('$viewContentLoaded', function() {
 		Billing.initAjax();
 
-		$scope.resend = function() {
+		$scope.resendmail = function() {
 			$http.post("/authapi/resend")
 				.success(function(data) {
-					console.log(data);
+					$scope.resend="Mail Sent";
+					$scope.mailsent=true;
+					//console.log(data);
 				})
 		}
-		
+
 		if (window.addEventListener) {
 			// Normal browsers
 			window.addEventListener("storage", handler, false);
@@ -23,16 +25,18 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 			if(localStorage.getItem('token'))
 			{
 				$http.get('/authapi/me').success(function(response) {
-					if(response.emailverified==1)
+
+					if(response.emailverified == 1)
 					{
 						$scope.resend="DONE";
-$scope.verifyemail=true;
+						$scope.verifyemail=true;
 					}
 					else
 					{
-$scope.verifyemail=false;
+						$scope.resend="RESEND";
+						$scope.verifyemail=false;
 					}
-				
+
 
       });
 			}
@@ -41,19 +45,19 @@ $scope.verifyemail=false;
 		if($rootScope.user)
 		{
 			console.log($rootScope.user.emailverified);
-		
-			if($rootScope.user.emailverified==1)
+
+			if($rootScope.user.emailverified == 1)
+
 					{
 						$scope.resend="DONE";
-$scope.verifyemail=true;
+						$scope.verifyemail=true;
 					}
 					else
 					{
 						$scope.resend="RESEND";
-
-$scope.verifyemail=false;
+						$scope.verifyemail=false;
 					}
-		$scope.payment = true;
+					$scope.payment = true;
 		}
 
 	});
