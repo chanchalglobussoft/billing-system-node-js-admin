@@ -28,7 +28,9 @@
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
 							<h3>Confirm Email</h3>
 							<p>If you didn’t receive your conﬁrmation email, please check your spam folder.</p>
-							<button class="btn btn-info" ng-disabled="verifyemail" ng-click="resend()">{{resend}}</button>
+								<button class="btn btn-danger"  ng-click="resendmail()" ng-if="!verifyemail && !mailsent">{{resend}}</button>
+									<button class="btn btn-info"  ng-if="mailsent && !verifyemail" disabled>{{resend}}</button>
+										<button class="btn btn-info" ng-if="verifyemail" disabled>{{resend}}</button>
 						</div>
 					</div>
 				</div>
@@ -43,8 +45,9 @@
 						</div>
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
 							<h3>Update Billing</h3>
-							<p>You will need to update your billing profile before you launch your first droplet.</p>
-							<a href="#/payment" class="btn btn-info" ng-disabled="!verifyemail">Get Started</a>
+							<p>You will need to update your billing profile before you launch your first cell.</p>
+							<a href="#/payment" class="btn btn-danger" ng-if="verifyemail">Get Started</a>
+								<a href="#" class="btn btn-info"  ng-if="!verifyemail" disabled>Get Started</a>
 						</div>
 					</div>
 				</div>
@@ -55,12 +58,12 @@
 				<div class="portlet-body tiles">
 					<div class="tile" style="width:100% !important; height: auto;">
 						<div class="tile-body" style="color: #000;">
-							<i class="icon-drop" style="font-size: 77px;"></i>
+							<i class="fa fa-server" style="font-size: 77px;"></i>
 						</div>
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
-							<h3>Create Droplet</h3>
-							<p>Select your droplet size, location, distribution, and launch in 55 seconds!</p>
-							<button class="btn btn-info" ng-disabled="payment">Create Droplet</button>
+							<h3>Power up a cell</h3>
+							<p>Select your cell nickname, type, location, template and Power it now !</p>
+							<button class="btn btn-info" ng-disabled="payment">Power up now</button>
 						</div>
 					</div>
 				</div>
