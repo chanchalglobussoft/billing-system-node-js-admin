@@ -1,0 +1,173 @@
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="paymentvController">
+	<div class="loader"></div>
+</div>
+<!-- END MAIN CONTENT -->
+
+<!-- BEGIN MAIN JS & CSS -->
+<style>
+	.page-head,
+	.page-header,
+	.page-sidebar-wrapper,
+	.page-footer {
+		display: none;
+	}
+	
+	.page-content-wrapper .page-content {
+		margin-left: 0;
+		min-height: 0;
+	}
+	
+	@-webkit-keyframes loaderRotation {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		25% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		60% {
+			-webkit-transform: rotate(-180deg);
+			transform: rotate(-180deg);
+		}
+		75% {
+			-webkit-transform: rotate(-180deg);
+			transform: rotate(-180deg);
+		}
+		100% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+	}
+	
+	@keyframes loaderRotation {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		25% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		60% {
+			-webkit-transform: rotate(-180deg);
+			transform: rotate(-180deg);
+		}
+		75% {
+			-webkit-transform: rotate(-180deg);
+			transform: rotate(-180deg);
+		}
+		100% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+	}
+	
+	@-webkit-keyframes dotMovement {
+		0% {
+			left: -65px;
+		}
+		10% {
+			left: -65px;
+		}
+		25% {
+			left: 115px;
+		}
+		50% {
+			left: 115px;
+			z-index: 20;
+		}
+		60% {
+			left: 115px;
+			z-index: 22;
+		}
+		75% {
+			left: -65px;
+			z-index: 22;
+		}
+		100% {
+			left: -65px;
+			z-index: 20;
+		}
+	}
+	
+	@keyframes dotMovement {
+		0% {
+			left: -65px;
+		}
+		10% {
+			left: -65px;
+		}
+		25% {
+			left: 115px;
+		}
+		50% {
+			left: 115px;
+			z-index: 20;
+		}
+		60% {
+			left: 115px;
+			z-index: 22;
+		}
+		75% {
+			left: -65px;
+			z-index: 22;
+		}
+		100% {
+			left: -65px;
+			z-index: 20;
+		}
+	}
+	
+	.loader {
+		width: 100px;
+		height: 100px;
+		position: absolute;
+		margin-top: 10%;
+		left: 48%;
+		-webkit-animation: loaderRotation 3s linear infinite;
+		animation: loaderRotation 3s linear infinite;
+	}
+	
+	.loader:before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		background: transparent;
+		box-shadow: 0 0 0 35px #E84C3D;
+		z-index: 20;
+	}
+	
+	.loader:after {
+		content: "";
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		left: -65px;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		transform: translateY(-50%);
+		background: #F1C40F;
+		z-index: 1;
+		-webkit-animation: dotMovement 3s linear infinite;
+		animation: dotMovement 3s linear infinite;
+	}
+</style>
+<script>
+	$(document).ready(function () {
+		$("button#save-card").click(function () {
+			$("#card-content").slideUp(3000);
+		});
+	});
+</script>
+<!-- BEGIN MAIN JS & CSS -->

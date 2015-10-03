@@ -15,6 +15,8 @@ module.exports = function(app) {
 
 app.use('/payment', apiRoutes);
 
+apiRoutes.get('/maketransactionws', payment.maketransactionws);
+
  apiRoutes.use(function(req, res, next) {
         // check header or url parameters or post parameters for token
         var token = req.body.token || req.param('token') || req.headers['x-access-token'];
@@ -45,9 +47,22 @@ app.use('/payment', apiRoutes);
         }
     });
 
+apiRoutes.post('/savecard', payment.savecard);
+
+apiRoutes.get('/maketransaction', payment.maketransaction);
 
 
-    apiRoutes.post('/savecard', payment.savecard);
+
+apiRoutes.get('/getcard', payment.getcard);
+
+apiRoutes.post('/getlink', payment.getlink);
+
+apiRoutes.post('/test', payment.test);
+
+
+
+
+   
 
 
 
