@@ -96,7 +96,6 @@ BillingApp.controller('FooterController', ['$scope', function($scope) {
     });
 }]);
 
-
 /* Setup Rounting For All Pages */
 BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -106,133 +105,7 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
 
     $stateProvider
 
-    //starts here  //ackcode
-  .state('ackcode', {
-            url: "/ackcode/:ackcode",
-            controller: "ackcodeController",
-            templateUrl: "client/views/authentication/ackcode.html",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'BillingApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            'client/assets/css/views/auth.css',
-                            'client/assets/css/datepicker3.css',
-                            'client/assets/css/select2.css',
-                            'client/assets/css/todo.css',
-
-                            'client/assets/js/lib/bootstrap-datepicker.js',
-                            'client/assets/js/lib/select2.min.js',
-
-                            'client/assets/js/lib/index.js',
-
-                            'client/controllers/authentication/ackcode.js'
-                        ]
-                    });
-                }]
-            }
-        })
-  //forgot password
-   .state('forgot', {
-            url: "/forgot",
-            templateUrl: "client/views/authentication/forgotpassword.html",
-            controller: "fpasswordController",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'BillingApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            'client/controllers/authentication/fpass.js'
-                        ]
-                    });
-                }]
-            }
-        })
-
-  .state('message', {
-        url: "/message/:no",
-        controller: "messageController",
-        templateUrl: "client/views/authentication/message.html",
-        resolve: {
-            deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                return $ocLazyLoad.load({
-                    name: 'BillingApp',
-                    insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                    files: [
-                        'client/assets/css/views/auth.css',
-                        'client/assets/css/datepicker3.css',
-                        'client/assets/css/select2.css',
-                        'client/assets/css/todo.css',
-
-                        'client/assets/js/lib/bootstrap-datepicker.js',
-                        'client/assets/js/lib/select2.min.js',
-
-                        'client/assets/js/lib/index.js',
-
-                        'client/controllers/authentication/message.js'
-                    ]
-                });
-            }]
-        }
-    })
-  //payment verfication
-   .state('paymentv', {
-            url: "/paymentv",
-            controller: "paymentvController",
-            templateUrl: "client/views/authentication/paymentv.html",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'BillingApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            'client/assets/css/views/auth.css',
-                            'client/assets/css/datepicker3.css',
-                            'client/assets/css/select2.css',
-                            'client/assets/css/todo.css',
-
-                            'client/assets/js/lib/bootstrap-datepicker.js',
-                            'client/assets/js/lib/select2.min.js',
-
-                            'client/assets/js/lib/index.js',
-
-                            'client/controllers/authentication/paymentv.js'
-                        ]
-                    });
-                }]
-            }
-        })
-
-   .state('rpassword', {
-            url: "/rcode/:rcode",
-            controller: "rpasswordController",
-            templateUrl: "client/views/authentication/rcode.html",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'BillingApp',
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
-                            'client/assets/css/views/auth.css',
-                            'client/assets/css/datepicker3.css',
-                            'client/assets/css/select2.css',
-                            'client/assets/css/todo.css',
-
-                            'client/assets/js/lib/bootstrap-datepicker.js',
-                            'client/assets/js/lib/select2.min.js',
-
-                            'client/assets/js/lib/index.js',
-
-                            'client/controllers/authentication/rpassword.js'
-                        ]
-                    });
-                }]
-            }
-        })
-  //signup
-   .state('signup', {
+        .state('signup', {
             url: "/signup",
             templateUrl: "client/views/authentication/signup.html",
 
@@ -259,9 +132,7 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
                 }]
             }
         })
-
-  //token
-  .state('code', {
+        .state('code', {
             url: "/code/:code",
             controller: "tokenController",
             templateUrl: "client/views/authentication/token.html",
@@ -286,48 +157,60 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
                     });
                 }]
             }
-        }) // Welcome
-    .state('welcome', {
-            url: "/welcome",
-            templateUrl: "client/views/dashboard/welcome.html",
-            controller: "GeneralPageController",
+        })
+        .state('ackcode', {
+            url: "/ackcode/:ackcode",
+            controller: "ackcodeController",
+            templateUrl: "client/views/authentication/ackcode.html",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({
                         name: 'BillingApp',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
-                            'client/controllers/dashboard/GeneralPageController.js'
-                        ]
-                    });
-                }]
-            }
-        })
-
-    //payment
-      // Payment
-        .state('payment', {
-            url: "/payment",
-            templateUrl: "client/views/dashboard/payment.html",
-            data: {pageTitle: 'Welcome to,', pageSubTitle: ' Billing System'},
-            controller: "PaymentController",
-            resolve: {
-                deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                    return $ocLazyLoad.load({ 
-                        name: 'BillingApp',  
-                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
-                        files: [
+                            'client/assets/css/views/auth.css',
+                            'client/assets/css/datepicker3.css',
                             'client/assets/css/select2.css',
-                            
-                         
-                            
-                            'client/controllers/dashboard/PaymentController.js'  
+                            'client/assets/css/todo.css',
+
+                            'client/assets/js/lib/bootstrap-datepicker.js',
+                            'client/assets/js/lib/select2.min.js',
+
+                            'client/assets/js/lib/index.js',
+
+                            'client/controllers/authentication/ackcode.js'
                         ]
                     });
                 }]
             }
         })
 
+    .state('message', {
+        url: "/message/:no",
+        controller: "messageController",
+        templateUrl: "client/views/authentication/message.html",
+        resolve: {
+            deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                return $ocLazyLoad.load({
+                    name: 'BillingApp',
+                    insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                    files: [
+                        'client/assets/css/views/auth.css',
+                        'client/assets/css/datepicker3.css',
+                        'client/assets/css/select2.css',
+                        'client/assets/css/todo.css',
+
+                        'client/assets/js/lib/bootstrap-datepicker.js',
+                        'client/assets/js/lib/select2.min.js',
+
+                        'client/assets/js/lib/index.js',
+
+                        'client/controllers/authentication/message.js'
+                    ]
+                });
+            }]
+        }
+    })
 
 
     // HomePage
@@ -358,11 +241,65 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
         }
     })
 
-     .state('testtt', {
-            url: "/testt",
-            templateUrl: "client/views/authentication/signup.html",
-
-
+    // Welcome
+    .state('welcome', {
+            url: "/welcome",
+            templateUrl: "client/views/dashboard/welcome.html",
+            controller: "GeneralPageController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BillingApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            'client/controllers/dashboard/GeneralPageController.js'
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('forgot', {
+            url: "/forgot",
+            templateUrl: "client/views/authentication/forgotpassword.html",
+            controller: "fpasswordController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BillingApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            'client/controllers/authentication/fpass.js'
+                        ]
+                    });
+                }]
+            }
+        })
+        // Payment
+        .state('payment', {
+            url: "/payment",
+            templateUrl: "client/views/dashboard/payment.html",
+            data: {pageTitle: 'Welcome to,', pageSubTitle: ' Billing System'},
+            controller: "PaymentController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({ 
+                        name: 'BillingApp',  
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            'client/assets/css/select2.css',
+                            
+                         
+                            
+                            'client/controllers/dashboard/PaymentController.js'  
+                        ]
+                    });
+                }]
+            }
+        })
+        .state('rpassword', {
+            url: "/rcode/:rcode",
+            controller: "rpasswordController",
+            templateUrl: "client/views/authentication/rcode.html",
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -379,17 +316,40 @@ BillingApp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', func
 
                             'client/assets/js/lib/index.js',
 
-                            'client/controllers/authentication/signup.js'
+                            'client/controllers/authentication/rpassword.js'
                         ]
                     });
                 }]
             }
-        })//ends here
+        })
+ .state('paymentv', {
+            url: "/paymentv",
+            controller: "paymentvController",
+            templateUrl: "client/views/authentication/paymentv.html",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BillingApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+                            'client/assets/css/views/auth.css',
+                            'client/assets/css/datepicker3.css',
+                            'client/assets/css/select2.css',
+                            'client/assets/css/todo.css',
 
+                            'client/assets/js/lib/bootstrap-datepicker.js',
+                            'client/assets/js/lib/select2.min.js',
+
+                            'client/assets/js/lib/index.js',
+
+                            'client/controllers/authentication/paymentv.js'
+                        ]
+                    });
+                }]
+            }
+        })
 
 }]);
-
-
 
 /* Init global settings and run the app */
 BillingApp.run(["$rootScope", "settings", "$state", function($rootScope, settings, $state) {

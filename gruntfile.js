@@ -14,6 +14,15 @@ module.exports = function(grunt) {
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		 concat: {
+    options: {
+      separator: '/n',
+    },
+    dist: {
+      src: ['public/client/routes/conf/top.js', 'public/client/routes/*.js', 'public/client/routes/conf/bottom.js'],
+      dest: 'public/client/config/app.js',
+    },
+  },
 		watch: {
 			serverViews: {
 				files: watchFiles.serverViews,
@@ -145,6 +154,8 @@ module.exports = function(grunt) {
 	// Load NPM tasks
 	require('load-grunt-tasks')(grunt);
 
+	grunt.loadNpmTasks('grunt-contrib-concat');
+
 	// Making grunt default to force in order not to break the project.
 	grunt.option('force', true);
 
@@ -158,7 +169,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['lint', 'concurrent:default']);
+	grunt.registerTask('default', ['lint','concat', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
@@ -167,7 +178,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('secure', ['env:secure', 'lint', 'concurrent:default']);
 
 	// Lint task(s).
-	grunt.registerTask('lint', ['jshint', 'csslint']);
+	grunt.registerTask('lint', ['csslint']);
 
 	// Build task(s).
 	grunt.registerTask('build', ['lint', 'loadConfig', 'ngAnnotate', 'uglify', 'cssmin']);
