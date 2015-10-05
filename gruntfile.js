@@ -16,11 +16,15 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		 concat: {
     options: {
-      separator: '/n',
+      separator: '',
     },
-    dist: {
+    client: {
       src: ['public/client/routes/conf/top.js', 'public/client/routes/*.js', 'public/client/routes/conf/bottom.js'],
       dest: 'public/client/config/app.js',
+    },
+    admin: {
+      src: ['public/admin/routes/conf/top.js', 'public/admin/routes/*.js', 'public/admin/routes/conf/bottom.js'],
+      dest: 'public/admin/config/app.js',
     },
   },
 		watch: {
