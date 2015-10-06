@@ -1,8 +1,10 @@
 'use strict';
 /* Setup general page controller */
-BillingApp.controller('PaymentController', ['$rootScope', '$scope', 'settings', '$http', 'mySharedService', '$window', function($rootScope, $scope, settings, $http, sharedService, $window) {
+BillingApp.controller('PaymentController', ['$rootScope', '$scope', 'settings', '$http', 'mySharedService', '$window','$location',function($rootScope, $scope, settings, $http, sharedService, $window,$location) {
 	$scope.$on('$viewContentLoaded', function() {
 		Billing.initAjax();
+
+			
 		$scope.card = {};
 		$scope.credit = 5;
 		$scope.loadthis = true;
@@ -15,11 +17,15 @@ BillingApp.controller('PaymentController', ['$rootScope', '$scope', 'settings', 
 					$scope.loadthis = true;
 					$http.post('/authapi/regen')
 						.success(function(datab) {
-
-
+							if(datab.status==200)
+{
 							var token = datab.data;
 							$window.localStorage.setItem('token', token);
-
+								$location.path('/welcome');
+}
+else{
+	alert(error);
+}
 
 
 						})
@@ -46,6 +52,10 @@ BillingApp.controller('PaymentController', ['$rootScope', '$scope', 'settings', 
 		}
 
 
+if ($rootScope.user.paymentverified == 1)
 
+			{
+				$location.path('/welcome');
+			}
 	});
 }]);
