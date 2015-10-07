@@ -150,11 +150,44 @@ module.exports = function(app) {
             });
         }
     });
+
+
+
+    //test
+    // apiRoutes.use(function(req, res, next) {
+    //     // check header or url parameters or post parameters for token
+    //     var role = req.decoded.role;
+    //
+    //     // decode token
+    //     if (role) {
+    //
+    //       if(role == "1")
+    //        next();
+    //        else {
+    //          return res.json({
+    //              success: false,
+    //              message: 'Only Admin can access this.'
+    //          });
+    //        }
+    //
+    //     } else {
+    //         // if there is no token
+    //         // return an error
+    //         return res.status(403).send({
+    //             success: false,
+    //             message: 'No token provided.'
+    //         });
+    //     }
+    // });
+    //test
+
+
     // end of authentication code
 
     // to get the details of all of the clients in the db
 
     // to get the details of all of the clients in the db
+                    // /admin/api/testapi/listall
     apiRoutes.get('/testapi/listall', clients.listall);
 
 
@@ -180,7 +213,7 @@ module.exports = function(app) {
 
     apiRoutes.post('/updatedcancellations', clients.updatecancellations);
     apiRoutes.post('/update-client-info', clients.updateClientInfo);
-
+    apiRoutes.post('/get-client-mail-ids', clients.getClientMailIds);
 
 
 

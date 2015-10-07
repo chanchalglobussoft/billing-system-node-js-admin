@@ -1,6 +1,6 @@
-<div ng-controller="DashboardController" class="margin-top-10">
+<div ng-controller="MassMailController" class="margin-top-10" data-ng-init="init()">
     <div class="row">
-        <div class="col-md-3" id="clientsPortlet" style="position:fixed; height: 450px !important; width:20%;">
+        <div class="col-md-3" id="mass-mail-Portlet" style="position:fixed; height: 450px !important; width:20%;">
 
             <div class="portlet light">
                 <div class="portlet-title">
@@ -34,195 +34,242 @@
             </div>
 
         </div>
-        <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">
-           <!--<div class="col-md-offset-3" style="margin-left: 21%; margin-right: 1%;">-->
-			<form action="#" class="row well">
-				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h1>Mass Mail</h1>
-					<p>This mass mail tool allows you to send emails to selective groups of your clients. The type of email you choose to send will determine what merge fields you can include within it. For example, sending a product/service related email allows you to include product specific items like domain, usernames, server, next due date, etc... Use Ctrl+Click to make multiple selections.</p>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h2>Message Type</h2>
-					<div class="form-group">
-						<label class="control-label"> Email Type </label>
-						<div class="form-inline">
-							<div class="checkbox">
-								<label data-toggle="collapse" data-target="#collapseOne">
-									<input type="radio" name="collapse" /> General
-								</label>
-							</div>
-							<div class="checkbox">
-								<label data-toggle="collapse" data-target="#collapseTwo">
-									<input type="radio" name="collapse" /> Product/Service
-								</label>
-							</div>
-							<div class="checkbox">
-								<label data-toggle="collapse" data-target="#collapseThree">
-									<input type="radio" name="collapse" /> Addon
-								</label>
-							</div>
-							<div class="checkbox">
-								<label data-toggle="collapse" data-target="#collapseFour">
-									<input type="radio" name="collapse" /> Domain
-								</label>
-							</div>
-						</div>
-					</div>
-					<div id="collapseOne" class="panel-collapse collapse">
-						<div class="panel-body">
-							<div class="driving-license-kind">
-								<div class="checkbox">
-									<input type="checkbox" value="">A
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" value="">B
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" value="">C
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" value="">D
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" value="">E
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h2>Client Criteria</h2>
-					<div class="form-group">
-						<strong class="labelCheck"> Client Group </strong>
-						<select class="form-control" name="cGroup" multiple="">
-							<option value="1"> BS-01 </option>
-							<option value="2"> BS-02 </option>
-							<option value="3"> BS-03 </option>
-							<option value="4"> BS-04 </option>
-							<option value="5"> BS-05 </option>
-							<option value="6"> BS-06 </option>
-							<option value="7"> BS-07 </option>
-						</select>
-					</div>
-					<div class="form-group">
+          <div class="col-md-offset-3" style="margin-left: 21%; margin-right: 3%;">
 
-					</div>
-					<div class="form-group">
-						<strong class="labelCheck"> Language </strong>
-						<select class="form-control" multiple>
-							<option> English </option>
-							<option> Tamil </option>
-							<option> Telugu </option>
-							<option> Hindi </option>
-						</select>
-					</div>
-					<div class="form-group">
-						<strong class="labelCheck"> Client Status </strong>
-						<select class="form-control" multiple>
-							<option> Active </option>
-							<option> Inactive </option>
-							<option> Clear </option>
-						</select>
-					</div>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h2>Product / Service Criteria</h2>
-					<div class="form-group">
-						<strong class="labelCheck"> Product / Service </strong>
-						<select class="form-control" multiple>
-							<option> BS-01 </option>
-							<option> BS-02 </option>
-							<option> BS-03 </option>
-							<option> BS-04 </option>
-							<option> BS-05 </option>
-							<option> BS-06 </option>
-							<option> BS-07 </option>
-						</select>
-					</div>
-					<div class="form-group">
-						<strong class="labelCheck"> Product / Service Status </strong>
-						<select class="form-control" multiple>
-							<option> Active </option>
-							<option> Inactive </option>
-							<option> Clear </option>
-						</select>
-					</div>
-					<div class="form-group">
-						<strong class="labelCheck"> Assigned Server </strong>
-						<select class="form-control" multiple>
-							<option> BS-01 </option>
-							<option> BS-02 </option>
-							<option> BS-03 </option>
-							<option> BS-04 </option>
-							<option> BS-05 </option>
-							<option> BS-06 </option>
-							<option> BS-07 </option>
-						</select>
-					</div>
-					<div class="form-group">
-						<div class="ac-custom ac-checkbox radioCustom ac-checkmark" autocomplete="off">
-							<strong class="labelCheck">Send for Each Domain</strong>
-							<br/>
-							<input id="check5" name="check5" type="checkbox" />
-							<label for="check5">Tick this box to send an email for every matching domain *</label>
-						</div>
-					</div>
-				</div>
-        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h2>Addon Criteria</h2>
-          <div class="form-group">
-						<strong class="labelCheck"> Addon </strong>
-						<select class="form-control" multiple>
-							<option> Active </option>
-							<option> Inactive </option>
-							<option> Clear </option>
-						</select>
-					</div>
-					<div class="form-group">
-						<strong class="labelCheck"> Addon Status </strong>
-						<select class="form-control" multiple>
-							<option> BS-01 </option>
-							<option> BS-02 </option>
-							<option> BS-03 </option>
-							<option> BS-04 </option>
-							<option> BS-05 </option>
-							<option> BS-06 </option>
-							<option> BS-07 </option>
-						</select>
-					</div>
+        <div role="tabpanel">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a data-target="#general" aria-controls="profile" role="tab" data-toggle="tab"> General </a>
+                </li>
+                <li role="presentation" >
+                    <a data-target="#products" aria-controls="profile" role="tab" data-toggle="tab"> Product / Service </a>
+                </li>
+                <li role="presentation" >
+                    <a data-target="#addon" aria-controls="profile" role="tab" data-toggle="tab"> Addon </a>
+                </li>
+                <li role="presentation" >
+                    <a data-target="#domain" aria-controls="profile" role="tab" data-toggle="tab"> Domain </a>
+                </li>
+                  <button class="btn btn-danger" ng-click="clearAll()" style="float:right" ng-disabled="!selectedGroupList"> Reset Selection </button>
+            </ul>
+
+
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="general">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                              <h2>Client Criteria</h2>
+                              <div class="form-group">
+                                <strong class="labelCheck"> Client Group </strong>
+                                <span style="color:red" ng-show="noGroup" > * Please select at least one group to continue</span>
+                                <select  class="form-control" id="generalSelect" multiple="true" ng-model="selectedGroupList" ng-options="group.name for group in clientGroups"></select>
+                                <!-- {{selectedGroupList}} -->
+                              </div>
+
+                              <div class="form-group">
+                                <strong class="labelCheck"> Language </strong>
+
+                                <select  class="form-control"  multiple="true" ng-model="selectedLanguage" ng-options="lang.name for lang in languages"></select>
+                                  <!-- {{selectedLanguage}} -->
+
+                              </div>
+                              <div class="form-group">
+                                <strong class="labelCheck"> Client Status </strong>
+
+                                <select  class="form-control"  multiple="true" ng-model="selectClientStatus" ng-options="status.name for status in clientStatus"></select>
+                                  <!-- {{selectClientStatus}} -->
+
+                              </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <div class="form-group text-center col-md-offset-4 col-md-6" style="margin-top:77px;">
+                                    <button class="btn btn-primary" value="COMPOSE MESSAGE" ng-click ="generalMail()">
+                                      <i class="fa fa-envelope"></i><span>Compose Message</span>
+                                    </button>
+                                </div>
+                                </div>
+                              </div>
+
+
+                    </div>
+                </div>
+              </div>
+
+
+                <div role="tabpanel" class="tab-pane " id="products">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                          <div class="col-md-6">
+                            <h2>Client Criteria</h2>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Group </strong>
+                              <span style="color:red" ng-show="noGroup" > * Please select at least one group to continue</span>
+                              <select  class="form-control" id="generalSelect" multiple="true" ng-model="selectedGroupList" ng-options="group.name for group in clientGroups"></select>
+                              <!-- {{selectedGroupList}} -->
+                            </div>
+
+                            <div class="form-group">
+                              <strong class="labelCheck"> Language </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectedLanguage" ng-options="lang.name for lang in languages"></select>
+                                <!-- {{selectedLanguage}} -->
+
+                            </div>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Status </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectClientStatus" ng-options="status.name for status in clientStatus"></select>
+                                <!-- {{selectClientStatus}} -->
+
+                            </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                              <h2>Product / Service Criteria</h2>
+                    					<div class="form-group">
+                    						<strong class="labelCheck"> Product / Service </strong>
+                                <select  class="form-control"  multiple="true" ng-model="selectedProductList" ng-options="product.name for product in productGroups"></select>
+                    					</div>
+                    					<div class="form-group">
+                    						<strong class="labelCheck"> Product / Service Status </strong>
+
+                                  <select  class="form-control"  multiple="true" ng-model="selectedProductStatus" ng-options="product.name for product in productStatus"></select>
+
+                    					</div>
+                    					<div class="form-group">
+                    						<strong class="labelCheck"> Assigned Server </strong>
+
+                                <select  class="form-control"  multiple="true" ng-model="selectedServer" ng-options="server.name for server in serverGroups"></select>
+
+
+                    					</div>
+                              <div class="ac-custom ac-checkbox radioCustom ac-checkmark" autocomplete="off">
+                                <strong class="labelCheck">Send for Each Domain</strong>
+                                <br/>
+                                <input id="check5" name="check5" type="checkbox" ng-model="allMatchingDomains"  />
+                                <label for="check5">Tick this box to send an email for every matching domain *</label>
+                              </div>
+                            </div>
+                              <div class="form-group text-center" >
+                                <button class="btn btn-primary" value="COMPOSE MESSAGE" ng-click ="productMail()">
+                                  <i class="fa fa-envelope"></i><span> Compose Message </span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane " id="addon">
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="col-md-6">
+                            <h2>Client Criteria</h2>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Group </strong>
+                              <span style="color:red" ng-show="noGroup" > * Please select at least one group to continue</span>
+                              <select  class="form-control" id="generalSelect" multiple="true" ng-model="selectedGroupList" ng-options="group.name for group in clientGroups"></select>
+                              <!-- {{selectedGroupList}} -->
+                            </div>
+
+                            <div class="form-group">
+                              <strong class="labelCheck"> Language </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectedLanguage" ng-options="lang.name for lang in languages"></select>
+                                <!-- {{selectedLanguage}} -->
+
+                            </div>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Status </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectClientStatus" ng-options="status.name for status in clientStatus"></select>
+                                <!-- {{selectClientStatus}} -->
+
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                              <h2>Addon Criteria</h2>
+                              <div class="form-group">
+                    						<strong class="labelCheck"> Addon </strong>
+
+                                  <select  class="form-control"  multiple="true" ng-model="selectAddons" ng-options="addon.name for addon in addonGroups"></select>
+
+                    					</div>
+                    					<div class="form-group">
+                    						<strong class="labelCheck"> Addon Status </strong>
+                    						  <select  class="form-control"  multiple="true" ng-model="selectAddonStatus" ng-options="addonstatus.name for addonstatus in addonStatus"></select>
+                    					</div>
+
+                              <div class="form-group">
+                                <div class="form-group text-center col-md-offset-4 col-md-6" style="margin-top:30px;">
+                                  <button class="btn btn-primary" value="COMPOSE MESSAGE" ng-click ="addonMail()">
+                                    <i class="fa fa-envelope"></i><span>Compose Message</span>
+                                  </button>
+                              </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane " id="domain">
+                    <div class="row">
+                        <div class="col-md-12">
+                          <div class="col-md-6">
+                            <h2>Client Criteria</h2>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Group </strong>
+                              <span style="color:red" ng-show="noGroup" > * Please select at least one group to continue</span>
+                              <select  class="form-control" id="generalSelect" multiple="true" ng-model="selectedGroupList" ng-options="group.name for group in clientGroups"></select>
+                              <!-- {{selectedGroupList}} -->
+                            </div>
+
+                            <div class="form-group">
+                              <strong class="labelCheck"> Language </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectedLanguage" ng-options="lang.name for lang in languages"></select>
+                                <!-- {{selectedLanguage}} -->
+
+                            </div>
+                            <div class="form-group">
+                              <strong class="labelCheck"> Client Status </strong>
+
+                              <select  class="form-control"  multiple="true" ng-model="selectClientStatus" ng-options="status.name for status in clientStatus"></select>
+                                <!-- {{selectClientStatus}} -->
+
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+
+                              <h2>Domain Criteria</h2>
+                              					<div class="form-group">
+                              						<strong class="labelCheck"> Domain Status </strong>
+
+                                          <select  class="form-control"  multiple="true" ng-model="selectDomainStatus" ng-options="domain.name for domain in domainStatus"></select>
+                              					</div>
+
+
+                                        <div class="form-group">
+                                          <div class="form-group text-center col-md-offset-4 col-md-6" style="margin-top:30px;">
+                                            <button class="btn btn-primary" value="COMPOSE MESSAGE" ng-click ="domainMail()">
+                                              <i class="fa fa-envelope"></i><span>Compose Message</span>
+                                            </button>
+                                        </div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<h2>Domain Criteria</h2>
-					<div class="form-group">
-						<strong class="labelCheck"> Domain Status </strong>
-						<select class="form-control" multiple>
-							<option> BS-01 </option>
-							<option> BS-02 </option>
-							<option> BS-03 </option>
-							<option> BS-04 </option>
-							<option> BS-05 </option>
-							<option> BS-06 </option>
-							<option> BS-07 </option>
-						</select>
-					</div>
-        </div>
-				<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
-					<div class="form-group text-center col-md-offset-4 col-md-6" style="margin-top:30px;">
-						<button class="btn btn-primary" value="COMPOSE MESSAGE">
-							<i class="fa fa-envelope"></i><span>Compose Message</span>
-						</button>
-					</div>
-				</div>
-			</form>
-		<!--</div>-->
-            
-            
+          <p>This mass mail tool allows you to send emails to selective groups of your clients. The type of email you choose to send will determine what merge fields you can include within it. For example, sending a product/service related email allows you to include product specific items like domain, usernames, server, next due date, etc... Use Ctrl+Click to make multiple selections.</p>
         </div>
     </div>
 </div>
-<!-- END MAIN CONTENT -->
-<!-- BEGIN MAIN JS & CSS -->
-<script>
-    $("#clientsPortlet").mCustomScrollbar({theme: "minimal"});
-</script>
-<!-- BEGIN MAIN JS & CSS -->

@@ -551,7 +551,7 @@ exports.updateClientInfo = function (req, res) {
      console.log(dataInput);
      var clientID = req.body.clientID;
      console.log(clientID);
-     
+
      var fname = dataInput.RegistrantFirstName;
      var lname = dataInput.RegistrantLastName;
      var company = dataInput.RegistrantOrganizationName;
@@ -562,9 +562,9 @@ exports.updateClientInfo = function (req, res) {
      var country = dataInput.RegistrantCountry;
      var emailId = dataInput.RegistrantEmailAddress;
      var phone = dataInput.RegistrantPhone;
-     var mobile = phone.split(".")[1]; 
+     var mobile = phone.split(".")[1];
 //     console.log("Split"+mobile);
-     
+
      if(company)
      {
          var updateQuery = 'UPDATE client SET fname= "'+fname+'", lname = "' + lname + '", company = "' + company + '", address1 = "' + address1 + '", city = "' + city + '", state = "' + state + '", zipcode = "' + zip + '", country = "' + country + '", emailId = "' + emailId + '", mobile = "' + mobile + '" WHERE clientId="' + clientID + '"';
@@ -573,7 +573,7 @@ exports.updateClientInfo = function (req, res) {
          var updateQuery = 'UPDATE client SET fname= "'+fname+'", lname = "' + lname + '", address1 = "' + address1 + '", city = "' + city + '", state = "' + state + '", zipcode = "' + zip + '", country = "' + country + '", emailId = "' + emailId + '", mobile = "' + mobile + '" WHERE clientId="' + clientID + '"';
      }
      console.log(updateQuery);
-     
+
           var data = [];
          c.query(updateQuery)
             .on('result', function (resrow) {
@@ -590,7 +590,7 @@ exports.updateClientInfo = function (req, res) {
                             console.log('Updated Client Info successfully');
                         });
             })
-     
+
 //     res.end("done");
 
 //    var data = [];
@@ -630,4 +630,85 @@ function makeid() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+
+
+// for mass mailer
+
+//get mailIDs from groupIds of the client
+exports.getClientMailIds = function (req, res) {
+
+    var gList = req.body.gList;
+
+    console.log(gList);
+
+    var baseQuery = 'select emailId from client where clientGId in ('+gList+')';
+
+    console.log("-----------------------");
+    console.log("Base Query: " + baseQuery);
+    console.log("-----------------------");
+
+    var data = [];
+    c.query(baseQuery)
+            .on('result', function (resrow) {
+                resrow.on('row', function (row) {
+                    data.push(row);
+                })
+                        .on('error', function (err) {
+                            //         console.log('Result error: ' + inspect(err));
+                        })
+                        .on('end', function (info) {
+                            console.log('Result finished successfully');
+                        });
+            })
+            .on('end', function () {
+
+                res.json({
+                    Data: data,
+                    code: 200
+                });
+
+                console.log('Done with all results');
+            });
+
+}
+
+
+//get mailIDs of the clients 
+exports.getClientMailIds = function (req, res) {
+
+    var gList = req.body.gList;
+
+    console.log(gList);
+
+    var baseQuery = 'select emailId from client where clientGId in ('+gList+')';
+
+    console.log("-----------------------");
+    console.log("Base Query: " + baseQuery);
+    console.log("-----------------------");
+
+    var data = [];
+    c.query(baseQuery)
+            .on('result', function (resrow) {
+                resrow.on('row', function (row) {
+                    data.push(row);
+                })
+                        .on('error', function (err) {
+                            //         console.log('Result error: ' + inspect(err));
+                        })
+                        .on('end', function (info) {
+                            console.log('Result finished successfully');
+                        });
+            })
+            .on('end', function () {
+
+                res.json({
+                    Data: data,
+                    code: 200
+                });
+
+                console.log('Done with all results');
+            });
+
 }

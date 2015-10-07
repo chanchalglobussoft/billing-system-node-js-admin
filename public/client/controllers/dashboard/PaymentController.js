@@ -6,6 +6,19 @@ BillingApp.controller('PaymentController', ['$rootScope', '$scope', 'settings', 
 		$scope.card = {};
 		$scope.credit = 5;
 		$scope.loadthis = true;
+
+		// $scope.init = function(){
+			$http.post('/admin/api/country/get-all-data', {
+					token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.W3siYWRtaW5JZCI6IjExIiwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiYWRtaW4iLCJmbmFtZSI6IlN5ZWQiLCJsbmFtZSI6IkFyc2hhZCIsIm1vYmlsZSI6Ijg4MTg4OTY2NjgiLCJlbWFpbElkIjoic3llZGFyc2hhZEBnbG9idXNzb2Z0LmNvbSIsInNreXBlSWQiOiJzeWVkYXJzaGFkX2dsb2J1c3NvZnQiLCJmYklkIjoiIiwic3VwcG9ydFRpY2tldFNpZ25hdHVyZSI6bnVsbCwiY3JlYXRlZE9uIjoiMjAxNS0wOC0zMSAxMToyOToxOSIsImxhc3RNb2RpZmllZE9uIjoiMjAxNS0wOC0zMSAxMToyOToxOSJ9XQ.4HwFgbB84PV0hPDgbHb9At6RqP3A8VSli7hxycNXIqk'
+							}).success(function (data) {
+					console.log(data);
+					$scope.countries = data.Data;
+			}).error(function (data) {
+					console.log("Error in /country/get-all-data: " + data);
+			});
+		// }
+
+
 		$scope.savecard = function() {
 			$scope.loadthis = false;
 			$scope.card.type = $scope.card.type.toLowerCase();

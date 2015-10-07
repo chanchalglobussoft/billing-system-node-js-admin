@@ -1,5 +1,5 @@
-<!-- BEGIN MAIN CONTENT --> 
-<div ng-controller="PaymentController ">
+<!-- BEGIN MAIN CONTENT -->
+<div ng-controller="PaymentController " >
 	<!-- BEGIN PAYMENT -->
 	<div class="row">
 		<div class="col-md-12">
@@ -55,7 +55,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="fname" 
+																	<input type="text" class="form-control" name="fname"
 																	ng-model="card.FirstName"
 																	placeholder="First Name" ng-pattern="/^[A-z]+$/"  required />
 																</div>
@@ -76,7 +76,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="tel" class="form-control" name="phone" 
+																	<input type="tel" class="form-control" name="phone"
 																	ng-model="card.phone" ng-pattern="/^[+0-9]{6,10}/" placeholder="Phone Number" required />
 																</div>
 																<p class="error" ng-show="paymentForm.phone.$error.required&&!paymentForm.phone.$pristine"   style="color:red">*number is required</p>
@@ -84,7 +84,7 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="street" 
+																	<input type="text" class="form-control" name="street"
 																	ng-model="card.street" placeholder="Street Address" required />
 																</div>
 																	<p class="error" ng-show="paymentForm.street.$error.required&&!paymentForm.street.$pristine"   style="color:red">*street is required</p>
@@ -93,14 +93,14 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="city" 
+																	<input type="text" class="form-control" name="city"
 																	ng-model="card.city"placeholder="City" required />
 																</div>
 																	<p class="error" ng-show="paymentForm.city.$error.required&&!paymentForm.city.$pristine"   style="color:red">*City is required</p>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="state" 
+																	<input type="text" class="form-control" name="state"
 																	ng-model="card.state"placeholder="State" required />
 																</div>
 																	<p class="error" ng-show="paymentForm.state.$error.required&&!paymentForm.state.$pristine"   style="color:red">*state is required</p>
@@ -109,7 +109,7 @@
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="code" 
+																	<input type="text" class="form-control" name="code"
 																	ng-model="card.postal" ng-pattern="/^\d+$/" ng-minlength="5" placeholder="Postal Code" required />
 																</div>
 																<p class="error" ng-show="paymentForm.code.$error.required&&!paymentForm.code.$pristine"   style="color:red">*zipcode is required</p>
@@ -118,13 +118,19 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<select class="form-control select2me" id="form_control_3" 
+
+																	<select class="form-control select2me"  ng-model="session.countryID" ng-change="selectedCountry(session.countryID)" data-placeholder="Country">
+																			<option value="">Select a Country </option>
+																			<option ng-repeat="country in countries" value="{{country.iso_alpha2}}">{{country.name}}</option>
+																	</select>
+
+																	<!-- <select class="form-control select2me" id="form_control_3"
 																	ng-model="card.country"data-placeholder="Country">
 																		<option value=""></option>
 																		<option value="IN">India</option>
 																		<option value="US">United States</option>
 																		<option value="UK">United Kindgom</option>
-																	</select>
+																	</select> -->
 																</div>
 															</div>
 														</div>
@@ -146,9 +152,9 @@
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="cvc" 
+																	<input type="text" class="form-control" name="cvc"
 																	ng-model="card.cvc"placeholder="CVV" cc-cvc cc-type="credit.$ccType" required />
-																	
+
 																</div>
 															</div>
 														</div>
@@ -159,7 +165,7 @@
 																	ng-model="card.expdate" placeholder="Expires MM" required />
 																</div>
 																<p style="color:green" ng-hide="paymentForm.$error.ccExp">
-  Yes, that looks like a valid 
+  Yes, that looks like a valid
 </p>
 															</div>
 															<div class="col-md-3">
@@ -169,11 +175,11 @@
 																	<input type="text" class="form-control" maxlength="2" name="expiryy"
 																	ng-model="card.expyear" placeholder="Expires YYYY" required cc-exp-year  />
 																</div>
-																
+
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" class="form-control" name="cname" 
+																	<input type="text" class="form-control" name="cname"
 																	ng-model="card.cname" ng-pattern="/^[A-z]+$/" placeholder="Please enter a name for this credit card" required />
 																</div>
 																	<p class="error" ng-show="paymentForm.cname.$error.required&&!paymentForm.phone.$pristine"   style="color:red">*name is required</p>
@@ -277,7 +283,7 @@
 	.page-sidebar-wrapper {
 		display: none;
 	}
-	
+
 	.page-content-wrapper .page-content {
 	  	margin-left: 0;
 	}
@@ -291,7 +297,7 @@
 		top: 1rem;
 		width: 100%;
 	}
-	
+
 	form legend {
 		display: block;
 		margin-bottom: 0.5rem;
@@ -305,7 +311,7 @@
 		letter-spacing: 0.06rem;
 		text-transform: uppercase;
 	}
-	
+
 	.thankDiv {
 		background-color: #f9fcff;
 		border: 2px solid #e8f4ff;

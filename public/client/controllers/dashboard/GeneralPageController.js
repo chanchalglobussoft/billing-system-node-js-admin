@@ -26,7 +26,7 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 			{
 				$http.get('/authapi/me').success(function(response) {
 
-					if(response.emailverified == 1)
+					if(response.emailverified == "1")
 					{
 						$scope.resend="DONE";
 						$scope.verifyemail=true;
@@ -46,7 +46,7 @@ BillingApp.controller('GeneralPageController', ['$rootScope', '$scope', 'setting
 		{
 			console.log($rootScope.user.emailverified);
 
-			if($rootScope.user.emailverified == 1)
+			if($rootScope.user.emailverified == "1")
 
 					{
 						$scope.resend="DONE";

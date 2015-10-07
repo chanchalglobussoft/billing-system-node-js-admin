@@ -338,13 +338,13 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             pageTitle: 'Client',
             pageSubTitle: 'Mass Mail'
         },
-        controller: "GeneralPageController",
+        // controller: "GeneralPageController",
         resolve: {
             deps: ['$ocLazyLoad', function($ocLazyLoad) {
                 return $ocLazyLoad.load([{
                     name: 'MetronicApp',
                     files: [
-                        'controllers/GeneralPageController.js'
+                        'controllers/ClientController.js'
                     ]
                 }]);
             }]
@@ -1648,7 +1648,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
         //---------------------------------------------------------------------------------------------------
         .state('adminProfile', {
                 url: "/admin-profile.html",
-                templateUrl: "views/admin/admin-account.html",
+                templateUrl: "views/admin/admin-profile.html",
                 data: {
                     pageTitle: 'Admin Profile'
                 },
@@ -1665,7 +1665,48 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                     }]
                 }
             })
-
+            //
+            // //---------------------------------------------------------------------------------------------------
+            // .state('adminAccount', {
+            //         url: "/admin-account.html",
+            //         templateUrl: "views/admin/admin-account.html",
+            //         data: {
+            //             pageTitle: 'Admin Account'
+            //         },
+            //         //controller: "ClientsProfileController",
+            //         resolve: {
+            //             deps: ['$ocLazyLoad', function($ocLazyLoad) {
+            //                 return $ocLazyLoad.load({
+            //                     name: 'MetronicApp',
+            //                     insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+            //                     files: [
+            //                           'controllers/AdministratorController.js'
+            //                     ]
+            //                 });
+            //             }]
+            //         }
+            //     })
+            //
+            //     //---------------------------------------------------------------------------------------------------
+                // .state('adminSettings', {
+                //         url: "/admin-settings.html",
+                //         templateUrl: "views/admin/admin-settings.html",
+                //         data: {
+                //             pageTitle: 'Admin Settings'
+                //         },
+                //         //controller: "ClientsProfileController",
+                //         resolve: {
+                //             deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                //                 return $ocLazyLoad.load({
+                //                     name: 'MetronicApp',
+                //                     insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                //                     files: [
+                //                           'controllers/AdministratorController.js'
+                //                     ]
+                //                 });
+                //             }]
+                //         }
+                //     })
         //admin profile upto here
 
     // User Profile
