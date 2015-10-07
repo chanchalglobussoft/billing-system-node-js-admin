@@ -29,7 +29,7 @@ paypal.configure({
 
 
 /**
- * save card details and decut 5 dollars for confirmation
+ * save card details and deduct 5 dollars for confirmation
  */
 exports.savecard = function(req, res) {
 
@@ -50,7 +50,9 @@ exports.savecard = function(req, res) {
 		}
 	};
 
-
+/**
+ * save card
+ */
 
 	paypal.creditCard.create(card_data, function(error, credit_card) {
 		if (error) {
@@ -60,6 +62,10 @@ exports.savecard = function(req, res) {
 			});
 		} else {
 			if (credit_card.httpStatusCode == "201") {
+
+/**
+ * make transaction of 5$
+ */
 
 				var creditCardId = credit_card.id;
 				console.log(credit_card);
@@ -75,7 +81,7 @@ exports.savecard = function(req, res) {
 					},
 					"transactions": [{
 						"amount": {
-							"total": "7",
+							"total": "5",
 							"currency": "USD"
 
 						},
@@ -115,6 +121,19 @@ exports.savecard = function(req, res) {
 							 * add credits 
 							 *
 							 */
+							
+							var paymentinfo={
+								"clientId": req.decoded.clientId,
+								"amount": payment.transactions[0].amount.total,
+								"paypalid": payment.id,
+								"paytype": payment.payer.payment_method,
+								"state":payment.state
+							}
+							
+							mariaq.insert(c, "client_transaction", paymentinfo, function(info) {
+							
+							});
+
 							mariaq.update(c, "client", userr, "clientId=" + req.decoded.clientId,
 								function(data) {});
 
@@ -207,52 +226,7 @@ exports.maketransaction = function(req, res) {
 	});
 };
 
-/**
- * make transaction
- */
-exports.maketransactionws = function(req, res) {
 
-
-	var savedCard = {
-		"intent": "sale",
-		"payer": {
-			"payment_method": "credit_card",
-			"funding_instruments": [{
-				"credit_card_token": {
-					"credit_card_id": "CARD-3T067192TG703370MKYF33KI"
-				}
-			}]
-		},
-		"transactions": [{
-			"amount": {
-				"total": "7",
-				"currency": "USD"
-
-			},
-			"description": "This is the payment transaction description."
-		}]
-	};
-	paypal.payment.create(savedCard, function(error, payment) {
-		if (error) {
-			res.send(error);
-		} else {
-			console.log("Pay with stored card Response");
-			console.log(JSON.stringify(payment));
-			res.send(payment);
-
-		}
-
-	});
-};
-
-
-/**
- * save card details
- */
-exports.getcard = function(req, res) {
-
-
-};
 
 /**
  * save card details
@@ -327,6 +301,19 @@ exports.test = function(req, res) {
 				 * add credits 
 				 *
 				 */
+					var paymentinfo={
+								"clientId": req.decoded.clientId,
+								"amount": payment.transactions[0].amount.total,
+								"paypalid": payment.id,
+								"paytype": payment.payer.payment_method,
+								"state":payment.state,
+								"payer_id": req.body.PayerID,
+
+							}
+							
+							mariaq.insert(c, "client_transaction", paymentinfo, function(info) {
+							
+							});
 				mariaq.update(c, "client", userr, "clientId=" + req.decoded.clientId,
 					function(data) {});
 				// console.log("Get Payment Response");

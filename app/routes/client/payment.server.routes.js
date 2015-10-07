@@ -15,7 +15,7 @@ module.exports = function(app) {
 
 app.use('/payment', apiRoutes);
 
-apiRoutes.get('/maketransactionws', payment.maketransactionws);
+
 
  apiRoutes.use(function(req, res, next) {
         // check header or url parameters or post parameters for token
@@ -50,10 +50,6 @@ apiRoutes.get('/maketransactionws', payment.maketransactionws);
 apiRoutes.post('/savecard', payment.savecard);
 
 apiRoutes.get('/maketransaction', payment.maketransaction);
-
-
-
-apiRoutes.get('/getcard', payment.getcard);
 
 apiRoutes.post('/getlink', payment.getlink);
 

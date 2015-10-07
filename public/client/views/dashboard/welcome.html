@@ -15,7 +15,7 @@
 </style>
 <!-- BEGIN MAIN JS & CSS -->
 <!-- BEGIN MAIN CONTENT -->
-<div ng-controller="GeneralPageController" ng-init="init()">
+<div  ng-init="init()">
 	<!-- BEGIN DASHBOARD STATS -->
 	<div class="row" style="margin-top:5%;">
 		<div class="col-md-4 " ng-class="{'disable-content':verifyemail}">
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4" id="">
+		<div class="col-md-4" id="" ng-class="{'disable-content':paymentverified}">
 			<div class="portlet light">
 				<div class="portlet-body tiles">
 					<div class="tile" style="width:100% !important; height: auto;">
@@ -46,8 +46,8 @@
 						<div class="tile-object" style="color:#000; margin-top:2%; position:relative; text-align:center; padding-bottom:7%;">
 							<h3>Update Billing</h3>
 							<p>You will need to update your billing profile before you launch your first cell.</p>
-							<a href="#/payment" class="btn btn-danger" ng-if="verifyemail">Get Started</a>
-								<a href="#" class="btn btn-info"  ng-if="!verifyemail" disabled>Get Started</a>
+							<a href="#/payment" class="btn btn-danger" ng-if="!paymentverified">{{paym}}</a>
+								<a href="#" class="btn btn-info"  ng-if="paymentverified" disabled>{{paym}}</a>
 						</div>
 					</div>
 				</div>
